@@ -1,33 +1,4 @@
-<!doctype html>
-<html lang="fr">
-<head>
-<meta charset="utf-8">
-<meta name="viewport" content="width=device-width, initial-scale=1">
-<meta name="robots" content="noindex, nofollow">
-<title>LifeTold · Les histoires de ceux qu'on aime, racontées de leur voix</title>
-<meta name="description" content="Une question à la fois, vos proches racontent leur vie à voix haute depuis leur téléphone. Vous recevez le livre de leur histoire, et leur voix à réécouter.">
-<link rel="icon" href="assets/icon.svg" type="image/svg+xml">
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=Manrope:wght@400;500;600;700;800&display=swap">
-<link rel="stylesheet" href="assets/site.css">
-</head>
-<body>
-<div class="preview"><div class="wrap"><span><b>Aperçu du site LifeTold</b> · version de travail, non officielle</span><span>Textes, visuels et prix à valider · aucune vente possible</span></div></div>
-<div class="annonce">Offrez-le <b>jusqu'au 24 décembre au soir</b> · la carte cadeau s'imprime tout de suite</div>
-<header class="site">
-  <div class="wrap">
-    <a class="logo" href="index.html" aria-label="LifeTold, accueil"><span class="onde" aria-hidden="true"><i></i><i></i><i></i><i></i><i></i><i></i><i></i></span>LifeTold</a>
-    <nav class="main" aria-label="Navigation principale"><ul><li><a href="comment-ca-marche.html">Comment ça marche</a></li><li><a href="index.html#livres">Les livres</a></li><li><a href="carte-cadeau.html">Offrir</a></li><li><a href="faq.html">FAQ</a></li></ul></nav>
-    <div class="hdr-right">
-      <a class="btn btn-ink" href="memoire.html">Offrir une histoire</a>
-      <span class="cart" aria-label="Panier (aperçu)"><svg viewBox="0 0 24 24"><path d="M5 8h14l-1.4 11H6.4z"/><path d="M9 8V6.5a3 3 0 0 1 6 0V8"/></svg></span>
-      <button class="menu-btn" type="button" aria-expanded="false" aria-controls="mnav" aria-label="Menu"><svg viewBox="0 0 24 24"><path d="M4 7h16M4 12h16M4 17h16"/></svg></button>
-    </div>
-  </div>
-  <div class="wrap"><nav class="mobile-nav" id="mnav" aria-label="Navigation mobile"><a href="comment-ca-marche.html">Comment ça marche</a><a href="index.html#livres">Les livres</a><a href="carte-cadeau.html">Offrir</a><a href="faq.html">FAQ</a><a href="memoire.html">Offrir une histoire</a></nav></div>
-</header>
-<main id="top">
+<!-- title: LifeTold · Les histoires de ceux qu'on aime, racontées de leur voix | description: Une question à la fois, vos proches racontent leur vie à voix haute depuis leur téléphone. Vous recevez le livre de leur histoire, et leur voix à réécouter. | nav: -->
 <div class="hero" id="hero">
   <div class="thread" aria-hidden="true">
     <svg viewBox="0 0 1000 1400" preserveAspectRatio="none">
@@ -60,7 +31,7 @@
     </div>
 
     <div id="comment" class="how-head" style="padding-block:96px 0">
-      <span class="onde" aria-hidden="true"><i></i><i></i><i></i><i></i><i></i><i></i><i></i></span>
+      {{ONDE}}
       <p class="kicker" style="margin:0">Comment ça marche</p>
       <h2>Trois étapes, et une année d'histoires</h2>
     </div>
@@ -176,7 +147,7 @@
       <div class="ctas"><a class="btn btn-line" href="carte-cadeau.html">Voir la carte cadeau</a></div>
     </div>
     <div class="card-mock" aria-label="Aperçu de la carte cadeau">
-      <div class="card-front"><span class="onde" aria-hidden="true"><i></i><i></i><i></i><i></i><i></i><i></i><i></i></span><div><div class="t">L'histoire de Mamie</div><div class="f" style="margin-top:8px">De la part de Sophie</div></div></div>
+      <div class="card-front">{{ONDE}}<div><div class="t">L'histoire de Mamie</div><div class="f" style="margin-top:8px">De la part de Sophie</div></div></div>
       <div class="card-in"><small>Votre mot, à la main</small><div class="hand"></div><small>Code : K7Q2-M9TA</small></div>
     </div>
   </div>
@@ -224,25 +195,8 @@
 
 <section>
   <div class="wrap final">
-    <span class="onde" aria-hidden="true"><i></i><i></i><i></i><i></i><i></i><i></i><i></i></span>
+    {{ONDE}}
     <h2>Leurs histoires méritent <em>mieux que l'oubli</em></h2>
     <a class="btn btn-ink" href="memoire.html">Offrir une histoire · 99 €</a>
   </div>
 </section>
-</main>
-<footer class="site">
-  <div class="wrap">
-    <div class="fcols">
-      <div>
-        <a class="logo" href="index.html"><span class="onde" aria-hidden="true"><i></i><i></i><i></i><i></i><i></i><i></i><i></i></span>LifeTold</a>
-        <p class="story"><span class="todo">[Le sens du nom LifeTold, à écrire par Diane]</span></p>
-        <p style="color:var(--grey);margin:0">Instagram · TikTok · Facebook · Pinterest <span class="todo">[comptes à créer]</span></p>
-      </div>
-      <div><h4>Les livres</h4><ul><li><a href="ma-vie.html">Ma vie</a></li><li><a href="mes-ancetres.html">Mes ancêtres</a></li><li><a href="un-temps-fort.html">Un temps fort</a></li><li><a href="lignes-de-vie.html">Lignes de vie</a></li><li><a href="recit.html">Récit : voyage, EVJF, mariage</a> <span class="tag">Bientôt</span></li><li><a href="chronique.html">Chronique : une année en famille</a> <span class="tag">Bientôt</span></li></ul></div><div><h4>Offrir</h4><ul><li><a href="carte-cadeau.html">La carte cadeau</a></li><li style="color:var(--grey)">Pour Noël</li><li style="color:var(--grey)">Fête des grands-mères</li><li style="color:var(--grey)">Fête des mères</li><li style="color:var(--grey)">Fête des pères</li><li style="color:var(--grey)">Un anniversaire</li></ul></div><div><h4>LifeTold</h4><ul><li style="color:var(--grey)">Notre histoire</li><li><a href="comment-ca-marche.html">Comment ça marche</a></li><li><a href="index.html#prix">Tarifs</a></li><li><a href="faq.html">FAQ</a></li><li><a href="app.html">Télécharger l'app</a></li><li style="color:var(--grey)">Devenir ambassadeur</li><li><a href="contact.html">Contact</a></li></ul></div><div><h4>Légal</h4><ul><li><a href="mentions-legales.html">Mentions légales</a></li><li style="color:var(--grey)">CGV</li><li><a href="confidentialite.html">Confidentialité</a></li><li style="color:var(--grey)">Cookies</li><li><a href="confidentialite.html#suppression">Supprimer mes données</a></li></ul></div>
-    </div>
-    <div class="fbottom"><span>© 2026 LifeTold · Diane Decléty EI · TVA non applicable, art. 293 B du CGI</span><span class="pay"><span>Visa</span><span>Mastercard</span><span>Apple Pay</span><span>Google Pay</span><span>Shop Pay</span></span></div>
-  </div>
-</footer>
-<script src="assets/site.js" defer></script>
-</body>
-</html>

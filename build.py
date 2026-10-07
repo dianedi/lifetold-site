@@ -13,6 +13,7 @@ ROOT = Path(__file__).resolve().parent
 SRC = ROOT / "src"
 BRAND = "LifeTold"
 
+LOGO = '<img src="assets/logo.svg" alt="" width="30" height="29">'
 ONDE = '<span class="onde" aria-hidden="true"><i></i><i></i><i></i><i></i><i></i><i></i><i></i></span>'
 
 NAV = [
@@ -44,7 +45,7 @@ def header(active: str) -> str:
 <div class="annonce">Offrez-le <b>jusqu'au 24 décembre au soir</b> · la carte cadeau s'imprime tout de suite</div>
 <header class="site">
   <div class="wrap">
-    <a class="logo" href="index.html" aria-label="{BRAND}, accueil">{ONDE}{BRAND}</a>
+    <a class="logo" href="index.html" aria-label="{BRAND}, accueil">{LOGO}{BRAND}</a>
     <nav class="main" aria-label="Navigation principale"><ul>{links}</ul></nav>
     <div class="hdr-right">
       <a class="btn btn-ink" href="memoire.html">Offrir une histoire</a>
@@ -69,7 +70,7 @@ def footer() -> str:
   <div class="wrap">
     <div class="fcols">
       <div>
-        <a class="logo" href="index.html">{ONDE}{BRAND}</a>
+        <a class="logo" href="index.html">{LOGO}{BRAND}</a>
         <p class="story"><span class="todo">[Le sens du nom {BRAND}, à écrire par Diane]</span></p>
         <p style="color:var(--grey);margin:0">Instagram · TikTok · Facebook · Pinterest <span class="todo">[comptes à créer]</span></p>
       </div>
@@ -92,6 +93,8 @@ def page(meta: dict, body: str) -> str:
 <title>{full_title}</title>
 <meta name="description" content="{meta.get('description', '')}">
 <link rel="icon" href="assets/icon.svg" type="image/svg+xml">
+<link rel="icon" href="assets/favicon.png" type="image/png" sizes="64x64">
+<link rel="apple-touch-icon" href="assets/apple-touch-icon.png">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=Manrope:wght@400;500;600;700;800&display=swap">

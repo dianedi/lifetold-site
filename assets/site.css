@@ -58,7 +58,7 @@ nav.main a:hover,nav.main a[aria-current]{text-decoration:underline;text-underli
 .mobile-nav a{display:block;padding:12px 0;font-size:17px;text-decoration:none;border-bottom:1px solid var(--rule)}
 .mobile-nav.open{display:block}
 @media (max-width:900px){nav.main{display:none}.menu-btn{display:grid}}
-@media (max-width:480px){.hdr-right .btn{padding:12px 14px;font-size:13px}.logo{font-size:24px}}
+@media (max-width:480px){.hdr-right{gap:8px}.hdr-right .btn{padding:11px 13px;font-size:13px}.cart{display:none}.logo{font-size:24px}}
 
 /* hero d'accueil */
 .hero{position:relative;overflow:hidden}

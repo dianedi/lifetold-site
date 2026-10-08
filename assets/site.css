@@ -628,3 +628,16 @@ header.site nav.main ul{gap:30px;font-size:15px;font-weight:600}
 .moments b{display:block;font:400 24px/1.1 var(--f-serif);margin-bottom:8px}
 .moments p{margin:0;font-size:14.5px;color:var(--grey)}
 @media (max-width:860px){.moments{grid-template-columns:1fr}}
+
+/* ── Hero des pages produits : même design que l'accueil, avec une photo fixe (08/10) ── */
+.product-hero .hero-bg img{opacity:1;animation:none}
+.product-hero .hero-grid{grid-template-columns:minmax(0,720px);padding-block:clamp(40px,7vw,96px) clamp(36px,5vw,64px)}
+.product-hero h1{font-size:clamp(42px,6.2vw,80px);line-height:.98}
+.product-hero .crumbs,.product-hero .crumbs a{color:rgba(255,255,255,.72)}
+.product-hero .lead{font-size:19px;max-width:620px}
+.keyfacts-wrap{padding-top:clamp(8px,2vw,16px)}
+.keyfacts-wrap .keyfacts{margin-top:0;border-top:0}
+/* Photos dans les cartes « pour qui » et dans les présentations de l'accueil */
+.moments .photo{display:block;width:calc(100% + 48px);max-width:none;margin:-24px -24px 18px;aspect-ratio:16/10;object-fit:cover;border-radius:22px 22px 0 0}
+.ph.has-img{padding:0;overflow:hidden}
+.ph.has-img img{width:100%;height:100%;object-fit:cover;display:block}

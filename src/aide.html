@@ -5,7 +5,7 @@
   <h1>Une question ? <em>Posez-la ici</em></h1>
   <p class="lead">Écrivez votre question comme elle vous vient : la réponse arrive tout de suite. Si elle n'y est pas, votre message est transmis à l'équipe, qui vous répond par email.</p>
   <div class="assistant" id="assistant" style="margin-top:32px;max-width:760px">
-    <div class="log" aria-live="polite"><div class="msg bot">Bonjour ! Que voulez-vous savoir sur {{BRAND}} ?</div></div>
+    <div class="log" aria-live="polite"><div class="msg bot">Bonjour. Que voulez-vous savoir sur {{BRAND}} ?</div></div>
     <div class="suggest"><button type="button">Combien de temps pour remplir le livre ?</button><button type="button">Et s'il n'est pas à l'aise avec un téléphone ?</button><button type="button">Combien coûte la livraison ?</button></div>
     <form><label for="ask" style="position:absolute;left:-9999px">Votre question</label><input id="ask" placeholder="Votre question…" autocomplete="off"><button class="btn btn-ink" type="submit">Envoyer</button></form>
   </div>
@@ -16,46 +16,50 @@
   <div class="wrap narrow">
     <h2 style="font-size:clamp(28px,4vw,44px);margin-bottom:32px">Les questions <em>fréquentes</em></h2>
     <div class="faq-group">
-      <h2>L'offre</h2>
-      <details><summary>Peut-on relire le livre avant l'impression ?</summary><p>Oui. Celui qui termine le livre le relit en entier et le valide : rien ne part à l'impression sans cet accord. À la fin de la durée prévue, nous le rappelons par email, et par une notification dans l'app, jusqu'à la validation.</p></details>
-      <details><summary>Que comprend l'offre à 99 € ?</summary><p>Un an d'accès à l'app pour raconter, le livre relié de 150 à 200 pages avec couverture rigide personnalisée, les QR codes pour réécouter sa voix, la carte cadeau à imprimer et la livraison en Europe.</p></details>
-      <details><summary>Puis-je offrir plusieurs histoires ?</summary><p>Oui, une histoire par personne qui raconte. Dès 2 histoires dans la même commande, vous bénéficiez de 10 % de remise sur le tout.</p></details>
-      <details><summary>Peut-on commander un exemplaire supplémentaire du livre ?</summary><p>Oui : vous pouvez en ajouter dans votre panier, au moment de la commande.</p></details>
+      <h2>Les livres et les prix</h2>
+      <details><summary>Combien coûtent les livres ?</summary><p>Mémoire (Ma vie, Mes ancêtres, Un temps fort) : 99 € ; Récit : 59 € ; Chronique : 149 € ; Un anniversaire : 49 € ; Voyage solo : 49 €. Le prix comprend le temps pour raconter dans l'app, le livre relié, les QR codes pour réécouter les voix, la carte cadeau et la livraison en Europe.</p></details>
+      <details><summary>Quel est le format du livre ?</summary><p>Un livre carré de 210 × 210 mm. Il compte jusqu'à 200 pages pour Mémoire, 100 pour Chronique et 80 pour Récit et Voyage solo ; pour Un anniversaire, une page par voix. Le nombre de pages dépend de ce qui a été raconté.</p></details>
+      <details><summary>Puis-je offrir plusieurs histoires ?</summary><p>Oui, plusieurs histoires différentes dans la même commande : chacune ne s'ajoute qu'une fois au panier. Dès 2 histoires différentes, vous bénéficiez de 10 % de remise.</p></details>
+      <details><summary>Peut-on commander un exemplaire supplémentaire du livre ?</summary><p>Oui, en option dans le panier : 39 € pour Mémoire et Chronique, 29 € pour Récit. <span class="todo">[à confirmer : prix de l'exemplaire supplémentaire pour Un anniversaire et Voyage solo]</span></p></details>
       <details><summary>Et si je change d'avis ?</summary><p>Vous êtes satisfait ou remboursé pendant 30 jours, sans avoir à vous justifier.</p></details>
     </div>
 
     <div class="faq-group">
       <h2>Pour la personne qui raconte</h2>
       <details><summary>Et s'il n'est pas à l'aise avec un téléphone ?</summary><p>L'app tient en un geste : une carte, on la touche pour parler, on la touche pour terminer. Le texte est écrit en grand. Le plus simple est de l'accompagner pour la première carte ; ensuite, il avance seul, à son rythme.</p></details>
-      <details><summary>Faut-il un smartphone ?</summary><p>Oui, un iPhone ou un téléphone Android. Pas de mot de passe : le code de la carte cadeau, une seule fois, puis son email, pour retrouver son histoire s'il change de téléphone.</p></details>
-      <details><summary>Combien de temps faut-il pour remplir le livre ?</summary><p>Il a un an pour raconter. Le livre est prêt quand environ quatre heures d'histoires ont été enregistrées, soit deux ou trois réponses par semaine. Une jauge montre l'avancement.</p></details>
+      <details><summary>Faut-il un smartphone ?</summary><p>Oui, un iPhone ou un téléphone Android, sans mot de passe : le code de la carte cadeau suffit. Seuls les invités d'un anniversaire répondent depuis un simple lien web, sans installer l'app.</p></details>
+      <details><summary>Combien de temps faut-il pour remplir le livre ?</summary><p>Cela dépend du livre : 12 mois pour Mémoire et Chronique, 3 mois pour Récit, 2 mois pour Voyage solo, 2 semaines pour Un anniversaire. Pour Mémoire, le livre est complet quand environ quatre heures d'histoires ont été enregistrées ; une jauge montre l'avancement.</p></details>
       <details><summary>Et s'il n'a pas envie de répondre à une question ?</summary><p>Il fait glisser la carte : elle reviendra plus tard, ou pas. Personne n'est obligé de tout raconter.</p></details>
-      <details><summary>Combien de temps peut durer une réponse ?</summary><p>Jusqu'à 20 minutes. Quelques minutes suffisent souvent ; quand une histoire en appelle une autre, on peut continuer.</p></details>
+      <details><summary>Combien de temps peut durer une réponse ?</summary><p>Jusqu'à 20 minutes ; quelques minutes suffisent souvent. Pour Un anniversaire, chaque invité dispose de 2 minutes au total, soit une page du livre.</p></details>
     </div>
 
     <div class="faq-group">
       <h2>Pour vous qui offrez</h2>
-      <details><summary>Est-ce que je peux écouter ses réponses ?</summary><p>Vous recevez des extraits des plus beaux moments au fil de l'année. Le reste, vous le découvrirez dans le livre.</p></details>
+      <details><summary>Est-ce que je peux écouter ses réponses ?</summary><p>Vous recevez quelques extraits choisis au fil du projet. Le reste, vous le découvrirez dans le livre.</p></details>
       <details><summary>Puis-je ajouter mes propres questions ?</summary><p>Oui, à tout moment dans l'app. Elles arrivent dans son paquet de cartes, avec votre prénom.</p></details>
+      <details><summary>Peut-on ajouter des photos ?</summary><p>Oui, 5 par livre au total, ajoutées par vous ou par la personne qui raconte. Chaque photo devient une question : « Racontez-nous cette photo ».</p></details>
       <details><summary>Et si je veux tout raconter moi-même ?</summary><p>C'est possible : connectez-vous dans l'app avec l'email de votre commande, puis choisissez « C'est moi qui raconte » en préparant votre livre.</p></details>
     </div>
 
     <div class="faq-group">
       <h2>Le livre</h2>
+      <details><summary>Qui décide que le livre est terminé ?</summary><p>Pour Mémoire, vous ou la personne qui raconte ; pour Récit, Chronique et Un anniversaire, la personne qui a offert ; pour Voyage solo, le voyageur seul. Le livre peut être terminé avant la fin de la durée prévue.</p></details>
+      <details><summary>Peut-on relire le livre avant l'impression ?</summary><p>Oui, et c'est obligatoire : la personne qui termine le livre relit tout, texte et mise en page, puis le valide. Rien n'est imprimé sans cette validation. À la fin de la durée prévue, nous la relançons par email et par notification dans l'app jusqu'à ce qu'elle valide.</p></details>
       <details><summary>Le livre est-il fidèle à ce qu'il a dit ?</summary><p>Oui. On garde ses mots et ses expressions, on remet les souvenirs dans l'ordre et on enlève les répétitions. Rien n'est inventé ni romancé.</p></details>
-      <details><summary>Comment fonctionnent les QR codes ?</summary><p>Ils sont imprimés dans le livre. En les scannant avec un téléphone, on réécoute le passage, de sa voix. Ils sont faits pour fonctionner pour toujours.</p></details>
+      <details><summary>Comment fonctionnent les QR codes ?</summary><p>Ils sont imprimés dans le livre. En les scannant avec un téléphone, on réécoute le passage, de la voix de celui qui l'a raconté. Ils sont faits pour fonctionner pour toujours.</p></details>
     </div>
 
     <div class="faq-group">
       <h2>Livraison</h2>
-      <details><summary>Combien coûte la livraison ?</summary><p>Elle est offerte partout en Europe.</p></details>
-      <details><summary>Jusqu'à quand puis-je l'offrir pour Noël ?</summary><p>Jusqu'au 24 décembre au soir : la carte cadeau s'imprime tout de suite après l'achat.</p></details>
+      <details><summary>Quand reçoit-on le livre ?</summary><p>Environ 3 semaines après sa validation : il est alors imprimé, puis livré à l'adresse indiquée à la commande.</p></details>
+      <details><summary>Combien coûte la livraison ?</summary><p>Elle est offerte en Europe. Hors Europe, les frais de livraison sont indiqués avant le paiement.</p></details>
+      <details><summary>Jusqu'à quand puis-je l'offrir pour Noël ?</summary><p>Jusqu'au 24 décembre au soir : vous offrez la carte cadeau, que vous imprimez tout de suite après l'achat. Le livre s'écrit ensuite, au fil des histoires.</p></details>
     </div>
 
     <div class="faq-group">
       <h2>Données personnelles</h2>
-      <details><summary>Qui a accès à ce qu'il raconte ?</summary><p>La personne qui offre reçoit seulement quelques extraits choisis ; le reste, elle le découvrira dans le livre. Les enregistrements servent uniquement à écrire le livre et ne sont jamais vendus ni partagés. Plus de détails sur la page <a href="donnees.html">Vos données</a>.</p></details>
-      <details><summary>Comment supprimer ses données ?</summary><p>Dans l'app, ouvrez les réglages et touchez « Supprimer toutes mes données ». Vous pouvez aussi écrire à <a href="mailto:rgpd@memoreees.com">rgpd@memoreees.com</a>. Tous les détails sont dans la <a href="confidentialite.html">politique de confidentialité</a>.</p></details>
+      <details><summary>Qui écoute les enregistrements ?</summary><p>Personne. Ils servent uniquement à écrire le livre et ne sont jamais vendus ni partagés. Plus de détails sur la page <a href="donnees.html">Vos données</a>.</p></details>
+      <details><summary>Comment supprimer ses données ?</summary><p>Si vous racontez : dans l'app, ouvrez les réglages et touchez « Supprimer toutes mes données ». Si vous avez offert : écrivez à <a href="mailto:rgpd@memoreees.com">rgpd@memoreees.com</a>. Tous les détails sont dans la <a href="confidentialite.html">politique de confidentialité</a>.</p></details>
     </div>
   </div>
 </section>

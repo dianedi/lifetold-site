@@ -213,6 +213,7 @@ nav.main a:hover,nav.main a[aria-current]{text-decoration:underline;text-underli
 .faq-tabs button{border:0;border-radius:999px;padding:10px 16px;font:700 13px var(--f-sans);background:var(--soft);color:var(--ink);cursor:pointer;transition:background .2s,color .2s}
 .faq-tabs button:hover{background:#f3e9ef}
 .faq-tabs button[aria-pressed="true"]{background:var(--ink);color:#fff}
+@media (max-width:600px){.faq-tabs{flex-wrap:nowrap;overflow-x:auto;scrollbar-width:none;margin-inline:-16px;padding-inline:16px}.faq-tabs button{flex:none}}
 details{border-top:1px solid var(--rule);padding-block:18px}
 details:last-of-type{border-bottom:1px solid var(--rule)}
 details[hidden]{display:none}
@@ -680,3 +681,19 @@ header.site nav.main ul{gap:30px;font-size:15px;font-weight:600}
 .spread.voices .lettrine::first-letter{float:left;font:400 calc(var(--pw)*.082)/.8 var(--f-serif);margin:calc(var(--pw)*.008) calc(var(--pw)*.012) 0 0;color:var(--rose)}
 .spread.voices .exergue{float:right;width:46%;margin:calc(var(--pw)*.012) 0 calc(var(--pw)*.012) calc(var(--pw)*.03);padding:calc(var(--pw)*.018) 0;border-top:1px solid var(--rose);border-bottom:1px solid var(--rose);font:italic 400 calc(var(--pw)*.034)/1.25 var(--f-serif);color:var(--ink);text-align:left}
 .spread.voices .page .listen{margin-top:auto;padding-top:calc(var(--pw)*.02)}
+
+/* Boutons au survol (09/10, option B « le soulevé », provisoire) : le bouton monte légèrement, une ombre douce,
+   et une flèche apparaît sur les boutons d'action. Préféré noir → prune ; sur photo, le secondaire devient une vitre dépolie. */
+.btn{transition:transform .25s cubic-bezier(.3,.7,.4,1),box-shadow .25s,background .25s,color .25s}
+.btn:hover{transform:translateY(-2px)}
+.btn:active{transform:translateY(0)}
+.btn-ink::after,.btn-light::after,.btn-cta::after,.btn-grad::after,.btn-peach::after{content:"→";display:inline-block;width:0;opacity:0;overflow:hidden;transform:translateX(-4px);transition:width .25s,opacity .25s,transform .25s;margin-left:-8px}
+.btn-ink:hover::after,.btn-light:hover::after,.btn-cta:hover::after,.btn-grad:hover::after,.btn-peach:hover::after{width:14px;opacity:1;transform:none;margin-left:0}
+.btn-ink:hover,.btn-cta:hover{background:var(--prune);color:#fff;box-shadow:0 10px 24px rgba(90,36,113,.28)}
+.btn-line:hover{background:#fff;box-shadow:inset 0 0 0 1px var(--ink),0 8px 18px rgba(28,19,32,.10)}
+.btn-light:hover{background:#fff;color:var(--ink);box-shadow:0 10px 30px rgba(255,255,255,.35)}
+.btn-ghost-light:hover{background:rgba(255,255,255,.14);color:#fff;-webkit-backdrop-filter:blur(6px);backdrop-filter:blur(6px)}
+.btn-grad:hover{background:linear-gradient(90deg,#f4432f,#fa8216 55%,#ffb812);color:var(--ink);box-shadow:0 10px 24px rgba(250,130,22,.30)}
+.cookie-btns .btn::after{display:none}
+.has-hero header.site:not(.scrolled) .btn-cta:hover{background:#fff;color:var(--ink);box-shadow:0 10px 30px rgba(255,255,255,.35)}
+@media (prefers-reduced-motion:reduce){.btn,.btn::after{transition:none}.btn:hover{transform:none}}

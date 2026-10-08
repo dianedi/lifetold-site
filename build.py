@@ -45,7 +45,7 @@ FOOTER = [
                 ("Fête des mères", None), ("Fête des pères", None), ("Un anniversaire", None)]),
     (BRAND, [("L'app", "application.html"), ("Comment ça marche", "comment-ca-marche.html"), ("Tarifs", "index.html#prix"),
              ("Aide et questions", "aide.html"), ("Mon compte", "compte.html"), ("Télécharger l'app", "app.html"),
-             ("Notre histoire", None), ("Devenir ambassadeur", None)]),
+             ("Notre engagement : 5 € par livre Mémoire", "engagement.html"), ("Devenir ambassadeur", "devenir-ambassadeur.html"), ("Notre histoire", None)]),
 ]
 
 LEGAL = [("Vos données, protégées", "donnees.html"), ("Mentions légales", "mentions-legales.html"), ("CGV", "cgv.html"),
@@ -83,6 +83,24 @@ COOKIE_BANNER = """<div class="cookie-bar" id="cookie-bar" role="region" aria-la
   document.addEventListener('click',function(e){if(e.target.closest('[data-cookie-reset]')){try{localStorage.removeItem(KEY);}catch(x){}bar.hidden=false;}});
 })();
 </script>"""
+
+# Cookiebot (choisi le 08/10) : dès que l'identifiant du compte est dans ../.env.acces (COOKIEBOT_ID=…),
+# le site charge Cookiebot (fenêtre au centre, réglée dans son tableau de bord) à la place de notre bandeau maison.
+def cookiebot_id() -> str:
+    import os
+    cb = os.environ.get("COOKIEBOT_ID", "")
+    env = Path(__file__).resolve().parent.parent / ".env.acces"
+    if not cb and env.exists():
+        for line in env.read_text(encoding="utf-8").splitlines():
+            if line.startswith("COOKIEBOT_ID="):
+                cb = line.split("=", 1)[1].strip()
+    return cb
+
+
+COOKIEBOT_ID = cookiebot_id()
+COOKIEBOT_HEAD = (f'<script id="Cookiebot" src="https://consent.cookiebot.com/uc.js" data-cbid="{COOKIEBOT_ID}" '
+                  f'data-blockingmode="auto" data-culture="fr"></script>\n') if COOKIEBOT_ID else ""
+COOKIEBOT_RESET = """<script>document.addEventListener('click',function(e){if(e.target.closest('[data-cookie-reset]')&&window.Cookiebot){Cookiebot.renew();}});</script>"""
 
 LAUREL = '<svg class="laurel" viewBox="0 0 24 48" aria-hidden="true"><path d="M20 46C8 40 4 28 6 4"/><path d="M6 12c-3-1-4-4-3-6 3 0 4 3 3 6zM5.5 20c-3-.5-4.5-3.5-4-6 3 .5 4.5 3.5 4 6zM6.5 28c-3 0-5-2.5-5-5 3 0 5 2.5 5 5zM9 35.5c-3 .5-5.5-1.5-6-4 3-.5 5.5 1.5 6 4zM13 41.5c-2.5 1-5.5-.5-6.5-3 2.5-1 5.5.5 6.5 3z"/></svg>'
 
@@ -182,7 +200,7 @@ def page(meta: dict, body: str) -> str:
 <html lang="fr">
 <head>
 <meta charset="utf-8">
-<meta name="viewport" content="width=device-width, initial-scale=1">
+{COOKIEBOT_HEAD}<meta name="viewport" content="width=device-width, initial-scale=1">
 <meta name="robots" content="noindex, nofollow">
 <title>{full_title}</title>
 <meta name="description" content="{meta.get('description', '')}">
@@ -201,7 +219,7 @@ def page(meta: dict, body: str) -> str:
 {body.strip()}
 </main>
 {footer()}
-{COOKIE_BANNER}
+{COOKIEBOT_RESET if COOKIEBOT_ID else COOKIE_BANNER}
 <script src="assets/site.js?v={version('site.js')}" defer></script>
 </body>
 </html>

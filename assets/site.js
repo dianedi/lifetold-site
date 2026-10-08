@@ -135,9 +135,13 @@
 
   // ---- Panier latéral (aperçu : rien n'est vendu, le panier reste dans ce navigateur) ----
   var PRODUCTS = {
-    memoire: { name: 'Mémoire · le livre d\'une vie', note: 'Livre choisi après l\'achat, dans l\'app', price: 99 },
+    mavie: { name: 'Mémoire · Ma vie', note: 'Une voix, 12 mois pour raconter', price: 99 },
+    ancetres: { name: 'Mémoire · Mes ancêtres', note: 'Une voix, 12 mois pour raconter', price: 99 },
+    tempsfort: { name: 'Mémoire · Un temps fort', note: 'Une voix, 12 mois pour raconter', price: 99 },
     lignes: { name: 'Lignes de vie', note: 'Le livre-journal à remplir à la main', price: 39 },
     copie: { name: 'Exemplaire supplémentaire', note: 'Du livre Mémoire, imprimé en même temps', price: 39 },
+    copieChronique: { name: 'Exemplaire supplémentaire', note: 'De la Chronique, imprimé en même temps', price: 39 },
+    copieRecit: { name: 'Exemplaire supplémentaire', note: 'Du Récit, imprimé en même temps', price: 29 },
     recit: { name: 'Récit · un moment à plusieurs voix', note: 'Jusqu\'à 10 voix, jusqu\'à 80 pages', price: 59 },
     chronique: { name: 'Chronique · une année en famille', note: 'Jusqu\'à 6 voix, jusqu\'à 100 pages', price: 149 },
     anniversaire: { name: 'Un anniversaire', note: 'Jusqu\'à 30 voix, une page par voix', price: 49 },
@@ -146,10 +150,14 @@
   };
   // Les histoires (produits à voix) ne s'achètent qu'une fois par panier : pas de quantité.
   // Seuls les compléments (exemplaire en plus, voix en plus, Lignes de vie) ont un compteur.
-  var STORIES = ['memoire', 'recit', 'chronique', 'anniversaire', 'voyageSolo'];
+  // Les trois livres Mémoire sont trois histoires distinctes : Ma vie pour l'une, Mes ancêtres pour l'autre, c'est possible.
+  var STORIES = ['mavie', 'ancetres', 'tempsfort', 'recit', 'chronique', 'anniversaire', 'voyageSolo'];
+  var MEMOIRE = { 'ma-vie': 'mavie', 'ancetres': 'ancetres', 'temps-fort': 'tempsfort' };
+  var hasMemoire = function () { return !!(cart.mavie || cart.ancetres || cart.tempsfort); };
   var isStory = function (k) { return STORIES.indexOf(k) >= 0; };
   var cart = {};
   try { cart = JSON.parse(localStorage.getItem('lt-cart') || '{}') || {}; } catch (e) { cart = {}; }
+  if (cart.memoire) { cart.mavie = 1; delete cart.memoire; }
   STORIES.forEach(function (k) { if (cart[k] > 1) cart[k] = 1; });
   var save = function () { try { localStorage.setItem('lt-cart', JSON.stringify(cart)); } catch (e) {} };
   var drawer = document.getElementById('cart');
@@ -178,10 +186,12 @@
     var nStories = STORIES.reduce(function (a, k) { return a + (cart[k] || 0); }, 0);
     var multi = nStories >= 2 ? Math.round(STORIES.reduce(function (a, k) { return a + PRODUCTS[k].price * (cart[k] || 0); }, 0) * 0.1 * 100) / 100 : 0;
     if (cart.anniversaire && (cart.voix10 || 0) < 3 * cart.anniversaire) html += '<div class="upsell"><span><b>10 voix de plus</b> · 9 €<br><small style="color:var(--grey)">Pour inviter jusqu\'à 40, 50 ou 60 proches</small></span><button type="button" data-inc="voix10">Ajouter</button></div>';
-    if (cart.memoire && !cart.copie) html += '<div class="upsell"><span><b>Exemplaire supplémentaire</b> · 39 €<br><small style="color:var(--grey)">Un deuxième livre, pour toute la famille</small></span><button type="button" data-inc="copie">Ajouter</button></div>';
+    if (hasMemoire() && !cart.copie) html += '<div class="upsell"><span><b>Exemplaire supplémentaire</b> · 39 €<br><small style="color:var(--grey)">Un deuxième livre, pour toute la famille</small></span><button type="button" data-inc="copie">Ajouter</button></div>';
+    if (cart.chronique && !cart.copieChronique) html += '<div class="upsell"><span><b>Exemplaire supplémentaire</b> · 39 €<br><small style="color:var(--grey)">Un livre par foyer</small></span><button type="button" data-inc="copieChronique">Ajouter</button></div>';
+    if (cart.recit && !cart.copieRecit) html += '<div class="upsell"><span><b>Exemplaire supplémentaire</b> · 29 €<br><small style="color:var(--grey)">Un livre pour chacun de ceux qui étaient là</small></span><button type="button" data-inc="copieRecit">Ajouter</button></div>';
     // Lignes de vie : seulement en complément discret d'un livre Mémoire.
-    if (cart.memoire && !cart.lignes) html += '<p class="addon">En plus, pour écrire à la main : <b>Lignes de vie</b>, le livre-journal · 39 € <button type="button" data-inc="lignes">Ajouter</button></p>';
-    if (nStories === 1) html += '<p style="margin:0;font-size:13px;color:var(--prune)">Ajoutez une 2<sup>e</sup> histoire : -10 % sur le tout.</p>';
+    if (hasMemoire() && !cart.lignes) html += '<p class="addon">En plus, pour écrire à la main : <b>Lignes de vie</b>, le livre-journal · 39 € <button type="button" data-inc="lignes">Ajouter</button></p>';
+    if (nStories === 1) html += '<p style="margin:0;font-size:13px;color:var(--prune)">Ajoutez une 2<sup>e</sup> histoire différente : -10 % sur les histoires.</p>';
     body.innerHTML = html;
     foot.innerHTML = '<form class="promo" onsubmit="event.preventDefault();this.querySelector(\'button\').textContent=\'Aperçu\'"><label for="promo" style="position:absolute;left:-9999px">Code promo</label><input id="promo" placeholder="Code promo" autocomplete="off"><button type="submit">Appliquer</button></form>' +
       '<div class="sum"><span>Sous-total</span><span>' + euro(sub) + '</span></div>' +
@@ -215,7 +225,15 @@
 
   // Fiche produit Mémoire : une histoire par panier.
   var add = document.getElementById('add-to-cart');
-  if (add) add.addEventListener('click', function () { window.ltAddToCart('memoire'); });
+  if (add) {
+    var pre = new URLSearchParams(location.search).get('livre');
+    var radio = pre && document.querySelector('input[name="livre"][value="' + pre + '"]');
+    if (radio) radio.checked = true;
+    add.addEventListener('click', function () {
+      var r = document.querySelector('input[name="livre"]:checked');
+      window.ltAddToCart(MEMOIRE[r ? r.value : 'ma-vie'] || 'mavie');
+    });
+  }
 
   // ---- Assistant de la page Aide (aperçu : réponses tirées de la FAQ, rien n'est envoyé) ----
   var chat = document.getElementById('assistant');

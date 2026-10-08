@@ -15,7 +15,9 @@ SRC = ROOT / "src"
 BRAND = "Memoreees"
 
 # Logo : deux versions qui alternent toutes les 3 secondes (le mot seul, puis le mot avec l'onde).
-LOGO = '<span class="brand" role="img" aria-label="Memoreees"><img class="va" src="assets/logo-a.png" alt="" width="929" height="105"><img class="vb" src="assets/logo-b.png" alt="" width="1269" height="250"></span>'
+LOGO = ('<span class="brand" role="img" aria-label="Memoreees">'
+        '<img class="va dark" src="assets/logo-a.png" alt="" width="929" height="105"><img class="vb dark" src="assets/logo-b.png" alt="" width="1269" height="250">'
+        '<img class="va light" src="assets/logo-a-white.png" alt="" width="929" height="105"><img class="vb light" src="assets/logo-b-white.png" alt="" width="1269" height="250"></span>')
 ONDE = '<span class="onde" aria-hidden="true"><i></i><i></i><i></i><i></i><i></i><i></i><i></i></span>'
 
 NAV = [
@@ -84,18 +86,18 @@ def header(active: str) -> str:
     return f"""<div class="preview"><div class="wrap"><span><b>Aperçu du site {BRAND}</b> · version de travail, non officielle</span><span>Textes, visuels et prix à valider · aucune vente possible</span></div></div>
 {banner()}
 <header class="site">
-  <div class="wrap">
+  <div class="bar">
     <a class="logo" href="index.html" aria-label="{BRAND}, accueil">{LOGO}</a>
     <nav class="main" aria-label="Navigation principale"><ul>{links}</ul></nav>
     <div class="hdr-right">
       <a class="icon-btn hide-sm" href="aide.html" aria-label="Aide et questions"{current if active == "aide" else ""}>{ICON_HELP}</a>
       <a class="icon-btn hide-sm" href="compte.html" aria-label="Mon compte">{ICON_USER}</a>
       <button class="icon-btn cart-btn" type="button" aria-label="Ouvrir le panier" data-open-cart>{ICON_BAG}<span class="cart-count" hidden>0</span></button>
-      <a class="btn btn-grad hdr-cta" href="memoire.html">Commencer une histoire</a>
+      <a class="btn btn-cta hdr-cta" href="memoire.html">Commencer une histoire</a>
       <button class="icon-btn menu-btn" type="button" aria-expanded="false" aria-controls="mnav" aria-label="Menu"><svg viewBox="0 0 24 24"><path d="M4 7h16M4 12h16M4 17h16"/></svg></button>
     </div>
   </div>
-  <div class="wrap"><nav class="mobile-nav" id="mnav" aria-label="Navigation mobile">{mobile}<a href="aide.html">Aide et questions</a><a href="compte.html">Mon compte</a><a href="memoire.html">Commencer une histoire</a></nav></div>
+  <div class="mnav-wrap"><nav class="mobile-nav" id="mnav" aria-label="Navigation mobile">{mobile}<a href="aide.html">Aide et questions</a><a href="compte.html">Mon compte</a><a href="memoire.html">Commencer une histoire</a></nav></div>
 </header>
 <div class="drawer-veil" data-close-cart hidden></div>
 <aside class="drawer" id="cart" aria-label="Panier" aria-hidden="true" tabindex="-1">
@@ -129,7 +131,6 @@ def footer() -> str:
       </div>
       {"".join(cols)}
     </div>
-    {REASSURE}
     <div class="fbottom"><span>© 2026 {BRAND}. Tous droits réservés.</span>{lang_switch()}<nav class="legal" aria-label="Informations légales">{legal}</nav></div>
   </div>
 </footer>"""
@@ -141,6 +142,7 @@ def version(name: str) -> str:
 
 
 def page(meta: dict, body: str) -> str:
+    body_class = ' class="has-hero"' if meta.get("hero") else ""
     title = meta.get("title", BRAND)
     full_title = title if BRAND in title else f"{title} · {BRAND}"
     return f"""<!doctype html>
@@ -160,7 +162,7 @@ def page(meta: dict, body: str) -> str:
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=Manrope:wght@400;500;600;700;800&display=swap">
 <link rel="stylesheet" href="assets/site.css?v={version('site.css')}">
 </head>
-<body>
+<body{body_class}>
 {header(meta.get('nav', ''))}
 <main id="top">
 {body.strip()}
@@ -183,7 +185,7 @@ def main():
                     k, v = part.split(":", 1)
                     meta[k.strip()] = v.strip()
             text = text[m.end():]
-        text = text.replace("{{ONDE}}", ONDE).replace("{{BRAND}}", BRAND)
+        text = text.replace("{{ONDE}}", ONDE).replace("{{BRAND}}", BRAND).replace("{{REASSURE}}", REASSURE)
         (ROOT / src.name).write_text(page(meta, text), encoding="utf-8")
         print("✓", src.name)
 

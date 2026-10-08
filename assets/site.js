@@ -40,6 +40,15 @@
     });
   });
 
+  // En-tête : transparent sur la photo d'accueil, barre blanche dès qu'on fait défiler.
+  var hdr = document.querySelector('header.site');
+  if (hdr && document.body.classList.contains('has-hero')) {
+    var onScroll = function () { hdr.classList.toggle('scrolled', window.scrollY > 30 || (mnav && mnav.classList.contains('open'))); };
+    window.addEventListener('scroll', onScroll, { passive: true });
+    if (menuBtn) menuBtn.addEventListener('click', onScroll);
+    onScroll();
+  }
+
   // Le logo alterne entre ses deux versions toutes les 3 secondes.
   if (!reduce) setInterval(function () { document.querySelectorAll('.brand').forEach(function (b) { b.classList.toggle('alt'); }); }, 3000);
 
@@ -58,6 +67,35 @@
     };
     window.addEventListener('scroll', function () { requestAnimationFrame(stackUpdate); }, { passive: true });
     stackUpdate();
+  }
+
+  // Étape 2 : la démonstration se joue une fois, quand le panneau arrive à l'écran.
+  var demo = document.getElementById('swipe-demo');
+  if (demo) {
+    // Extrait réel du chapitre test, reproduit avec l'accord de sa conteuse.
+    var words = "Mon tout premier souvenir, je vais peut-être me tromper. Je me souviens des soirs qui ont précédé la naissance de Betty. On dormait toutes les nuits sur la paillote, dehors…".split(' ');
+    var out = demo.querySelector('.transcript'), clock = demo.querySelector('.rec-time');
+    var play = function () {
+      if (reduce) { demo.className = 'swipe-demo p2 p4'; out.textContent = words.join(' '); return; }
+      demo.classList.add('p1');
+      setTimeout(function () { demo.classList.add('p2'); }, 1300);
+      setTimeout(function () { demo.classList.add('p3'); }, 2600);
+      setTimeout(function () {
+        demo.classList.add('p4');
+        var i = 0, sec = 12;
+        var timer = setInterval(function () {
+          out.textContent = words.slice(0, ++i).join(' ');
+          if (i % 3 === 0) clock.textContent = "En train d'écouter · 00:" + String(++sec).padStart(2, '0');
+          if (i >= words.length) clearInterval(timer);
+        }, 170);
+      }, 3700);
+    };
+    if ('IntersectionObserver' in window) {
+      var io = new IntersectionObserver(function (es) {
+        if (es[0].isIntersecting) { io.disconnect(); setTimeout(play, 400); }
+      }, { threshold: 0.75 });
+      io.observe(demo);
+    } else play();
   }
 
   // ---- Panier latéral (aperçu : rien n'est vendu, le panier reste dans ce navigateur) ----

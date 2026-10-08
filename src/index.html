@@ -1,4 +1,4 @@
-<!-- title: Memoreees · Les histoires de ceux qu'on aime, racontées de leur voix | description: Une question à la fois, vos proches racontent leur vie à voix haute depuis leur téléphone. Vous recevez le livre de leur histoire, et leur voix à réécouter. | nav: -->
+<!-- title: Memoreees · Vos histoires, de vive voix, pour toujours dans un livre | hero: 1 | description: Une vie, une année en famille, un voyage entre amis : chacun raconte à voix haute depuis son téléphone. Vous recevez le livre, et les voix à réécouter. | nav: -->
 <div class="hero" id="hero">
   <div class="thread" aria-hidden="true">
     <svg viewBox="0 0 1000 1400" preserveAspectRatio="none">
@@ -16,18 +16,14 @@
   <div class="wrap">
     <div class="hero-grid">
       <div>
-        <p class="kicker">Livres de vie · racontés de vive voix</p>
-        <h1>Les histoires de ceux qu'on aime, <em>racontées de leur voix.</em></h1>
-        <p class="lead">Une question à la fois, ils racontent depuis leur téléphone. Les questions rebondissent sur ce qu'ils disent, comme dans une vraie interview. Vous recevez le livre de leur vie, et leur voix à réécouter.</p>
-        <div class="ctas"><a class="btn btn-grad" href="memoire.html">Commencer une histoire · 99 €</a><a class="btn btn-ghost-light" href="#comment">Comment ça marche</a></div>
+        <p class="kicker hero-tags" aria-hidden="true"><span>Une vie · Mémoire</span><span>Un EVJF · Récit</span><span>Un voyage · Récit</span></p>
+        <h1>Vos histoires, de vive voix. <em>Pour toujours dans un livre.</em></h1>
+        <p class="lead">Une vie, une année en famille, un voyage entre amis : chacun raconte à voix haute depuis son téléphone, une question à la fois. Les questions rebondissent sur ce qui vient d'être dit, comme dans une vraie interview. Vous recevez le livre, et les voix à réécouter.</p>
+        <div class="ctas"><a class="btn btn-light" href="memoire.html">Commencer une histoire · 99 €</a><a class="btn btn-ghost-light" href="#comment">Comment ça marche</a></div>
         <p class="price-line">Livre relié · 1 an pour raconter · livraison offerte en Europe</p>
       </div>
-      <div class="deck" aria-label="Exemple de cartes de questions">
-        <div class="qcard qa"><div class="chip"><svg viewBox="0 0 24 24"><path d="M3 11l9-7 9 7v9H3z"/></svg></div><div><div class="cat">Enfance</div><h3>Décrivez la maison où vous avez grandi.</h3></div></div>
-        <div class="qcard qb"><div class="chip"><svg viewBox="0 0 24 24"><circle cx="9" cy="8" r="3"/><path d="M3 20c.5-3.5 3-5.5 6-5.5s5.5 2 6 5.5"/></svg></div><div><div class="cat">Question de Sophie</div><h3>Comment as-tu rencontré papi ?</h3></div></div>
-        <div class="qcard qc"><div class="chip"><svg viewBox="0 0 24 24"><rect x="9" y="3" width="6" height="11" rx="3"/><path d="M5 11a7 7 0 0 0 14 0M12 18v3"/></svg></div><div><div class="cat">Amours</div><h3>Qu'est-ce qui vous a plu chez elle, la toute première fois ?</h3><div class="rec"><span class="onde live" aria-hidden="true"><i></i><i></i><i></i><i></i><i></i><i></i><i></i></span>En train d'écouter · 01:42</div></div></div>
-      </div>
     </div>
+    {{REASSURE}}
   </div>
   </div>
 
@@ -64,7 +60,10 @@
           <p>Ils répondent à voix haute dans l'app, à leur rythme, pendant un an. Les questions rebondissent sur ce qu'ils viennent de raconter. Pas d'écriture, pas de pression.</p>
         </div>
         <div class="stack-visual">
-          <div class="qcard static" aria-hidden="true"><div class="chip"><svg viewBox="0 0 24 24"><rect x="9" y="3" width="6" height="11" rx="3"/><path d="M5 11a7 7 0 0 0 14 0M12 18v3"/></svg></div><div><div class="cat">Enfance</div><h3>Quel est votre tout premier souvenir ?</h3><div class="rec"><span class="onde live"><i></i><i></i><i></i><i></i><i></i><i></i><i></i></span>En train d'écouter · 02:14</div></div></div>
+          <div class="swipe-demo" id="swipe-demo" aria-label="Démonstration : une carte mise de côté, puis une carte racontée">
+            <div class="qcard demo-b"><div class="chip"><svg viewBox="0 0 24 24"><rect x="9" y="3" width="6" height="11" rx="3"/><path d="M5 11a7 7 0 0 0 14 0M12 18v3"/></svg></div><div><div class="cat">Enfance</div><h3>Quel est votre tout premier souvenir ?</h3><div class="rec"><span class="onde live" aria-hidden="true"><i></i><i></i><i></i><i></i><i></i><i></i><i></i></span><span class="rec-time">En train d'écouter · 00:12</span></div><p class="transcript" aria-hidden="true"></p></div><span class="stamp-tell">Je raconte</span></div>
+            <div class="qcard demo-a"><div class="chip"><svg viewBox="0 0 24 24"><path d="M3 11l9-7 9 7v9H3z"/></svg></div><div><div class="cat">Lieux &amp; maisons</div><h3>Décrivez la maison où vous avez grandi.</h3></div><span class="stamp-later">Pour plus tard</span></div>
+          </div>
         </div>
       </article>
       <article class="stack-card s3" style="--i:2">
@@ -189,29 +188,53 @@
 <section id="prix">
   <div class="wrap">
     <p class="kicker">Tarifs</p>
-    <h2>Un prix simple, <em>tout compris</em></h2>
-    <div class="prices">
-      <div class="offer main">
-        <p class="kicker">Mémoire · le livre d'une vie</p>
-        <div class="amount">99 € <small>tout compris</small></div>
+    <h2>Un format pour chaque histoire, <em>tout compris</em></h2>
+    <p class="lead">Le livre relié, l'app pour raconter, les QR codes pour réécouter les voix et la livraison en Europe sont toujours inclus.</p>
+    <div class="plans">
+      <article class="plan featured">
+        <p class="kicker">Mémoire</p>
+        <h3>Le livre d'une vie</h3>
+        <div class="amount">99 €</div>
         <ul class="ticks">
-          <li>Au choix : une vie entière, les ancêtres ou un temps fort</li>
-          <li>Un an d'accès à l'app pour raconter</li>
-          <li>Le livre relié, avec leur voix en QR codes</li>
+          <li>Ma vie, Mes ancêtres ou Un temps fort</li>
+          <li>1 personne qui raconte, 1 an pour le faire</li>
+          <li>Un livre de 150 à 200 pages</li>
           <li>La carte cadeau à imprimer tout de suite</li>
-          <li>Livraison offerte en Europe (hors Europe : 19 €)</li>
         </ul>
-        <a class="btn btn-ink" href="memoire.html">Commencer une histoire</a>
-        <p class="multi">-10 % dès 2 histoires offertes : une pour chaque grand-parent.</p>
-      </div>
-      <div class="offer alt">
-        <p class="kicker">À remplir à la main</p>
-        <div class="amount" style="font-size:56px">39 €</div>
-        <p style="margin:10px 0 0;color:var(--grey);font-size:15px"><b style="color:var(--ink)">Lignes de vie</b>, le livre-journal à remplir soi-même. Éditions Papa, Maman, Grand-père, Grand-mère.</p>
-        <ul class="ticks"><li>Livré en 72 h en France et en Espagne</li><li>Livraison offerte</li></ul>
-        <a class="btn btn-line" href="lignes-de-vie.html">Découvrir Lignes de vie</a>
-      </div>
+        <a class="btn btn-light" href="memoire.html">Commencer une histoire</a>
+      </article>
+      <article class="plan">
+        <p class="kicker">Récit <span class="tag">Bientôt</span></p>
+        <h3>Un moment à plusieurs voix</h3>
+        <div class="amount">59 € <span class="todo">[prix proposé]</span></div>
+        <ul class="ticks">
+          <li>Un voyage, un EVJF, un EVG, un mariage</li>
+          <li>Jusqu'à 10 personnes qui racontent, 3 mois pour le faire</li>
+          <li>Un livre de 60 à 80 pages</li>
+          <li>Facile à partager entre amis</li>
+        </ul>
+        <a class="btn btn-line" href="recit.html">Être prévenu</a>
+      </article>
+      <article class="plan">
+        <p class="kicker">Chronique <span class="tag">Bientôt</span></p>
+        <h3>Une année en famille</h3>
+        <div class="amount">149 € <span class="todo">[prix proposé]</span></div>
+        <ul class="ticks">
+          <li>Le quotidien de la famille, mois après mois</li>
+          <li>Jusqu'à 6 personnes qui racontent, pendant 12 mois</li>
+          <li>Un livre de 150 à 200 pages</li>
+          <li>Les petits comme les grands</li>
+        </ul>
+        <a class="btn btn-line" href="chronique.html">Être prévenu</a>
+      </article>
     </div>
+    <div class="plan-extras">
+      <span><b>-10 %</b> dès 2 histoires offertes</span>
+      <span><b>40 €</b> l'exemplaire supplémentaire du livre</span>
+      <span><b>89 €</b> une deuxième année d'histoires</span>
+      <span>Hors Europe : livraison <b>19 €</b></span>
+    </div>
+    <a class="plan-alt" href="lignes-de-vie.html"><span><b>Lignes de vie · 39 €</b> Le livre-journal à remplir soi-même, à la main. Livré en 72 h en France et en Espagne.</span><span aria-hidden="true">→</span></a>
   </div>
 </section>
 
@@ -231,16 +254,25 @@
   </div>
 </section>
 
-<section>
+<section class="reviews">
   <div class="wrap">
-    <p class="kicker">Ils l'ont offert</p>
-    <h2>Ce qu'en disent <em>les familles</em></h2>
-    <span class="warn">Section masquée sur le site officiel tant qu'il n'y a pas de vrais témoignages. Les cadres ci-dessous montrent seulement la mise en page.</span>
-    <div class="examples">
-      <blockquote>[EXEMPLE] Texte du témoignage réel à venir.<cite>Prénom · lien avec le conteur · ville</cite></blockquote>
-      <blockquote>[EXEMPLE] Texte du témoignage réel à venir.<cite>Prénom · lien avec le conteur · ville</cite></blockquote>
-      <blockquote>[EXEMPLE] Texte du témoignage réel à venir.<cite>Prénom · lien avec le conteur · ville</cite></blockquote>
-      <div class="stamp" aria-hidden="true"><span>EXEMPLE</span></div>
+    <p class="kicker">Ils l'ont offert, ils l'ont raconté</p>
+    <h2>Ce qu'on découvre <em>quand ils racontent</em></h2>
+    <span class="warn">Exemples de mise en page, rédigés par nous : jamais publiés. La section reste masquée sur le site officiel jusqu'aux vrais témoignages.</span>
+    <div class="review-feature">
+      <div class="review-photo"><span class="todo">[Photo de Camille et de sa grand-mère]</span></div>
+      <div>
+        <p class="chips-row"><span class="chip-s">Ma vie</span><span class="chip-s">Offert à Noël</span></p>
+        <blockquote>« Je pensais connaître l'histoire de ma grand-mère par cœur. Au troisième mois, j'ai reçu un extrait où elle raconte son premier bal, à seize ans, en cachette de son père. Personne dans la famille ne le savait. »</blockquote>
+        <p class="who"><b>Camille, 34 ans</b> · a offert Memoreees à sa grand-mère · Lyon</p>
+        <div class="excerpt-mini"><span class="onde" aria-hidden="true"><i></i><i></i><i></i><i></i><i></i><i></i><i></i></span><span>L'extrait reçu : « J'avais mis la robe de ma sœur, et j'étais rentrée par la fenêtre de la cuisine… »</span></div>
+      </div>
+    </div>
+    <div class="review-grid">
+      <figure class="review"><p class="chips-row"><span class="chip-s">Ce que j'ai raconté</span></p><blockquote>« Au début, je ne voulais pas. Et puis une carte m'a demandé le prénom de ma première institutrice. Je n'ai plus arrêté. »</blockquote><figcaption><b>Monique, 78 ans</b> · a raconté sa vie</figcaption></figure>
+      <figure class="review"><p class="chips-row"><span class="chip-s">Mes ancêtres</span></p><blockquote>« Mon père n'avait jamais parlé de ses grands-parents. Les questions sont allées chercher les détails : la rue, le métier, l'odeur de l'atelier. »</blockquote><figcaption><b>Julien, 41 ans</b> · pour son père · Nantes</figcaption></figure>
+      <figure class="review"><p class="chips-row"><span class="chip-s">2 histoires</span><span class="chip-s">-10 %</span></p><blockquote>« On en a offert deux, une pour chaque grand-mère. Le dimanche, elles comparent leurs questions et se racontent leurs réponses. »</blockquote><figcaption><b>Sophie, 38 ans</b> · pour ses deux grands-mères · Bordeaux</figcaption></figure>
+      <figure class="review"><p class="chips-row"><span class="chip-s">Un temps fort</span></p><blockquote>« Mon grand-père a raconté Mai 68 vu de son usine. Ce n'est pas du tout ce qu'on lit dans les livres d'histoire. »</blockquote><figcaption><b>Thomas, 29 ans</b> · pour son grand-père · Lille</figcaption></figure>
     </div>
   </div>
 </section>

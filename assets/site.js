@@ -43,6 +43,23 @@
   // Le logo alterne entre ses deux versions toutes les 3 secondes.
   if (!reduce) setInterval(function () { document.querySelectorAll('.brand').forEach(function (b) { b.classList.toggle('alt'); }); }, 3000);
 
+  // « 3 étapes » : chaque panneau recule légèrement quand le suivant vient se poser dessus.
+  var cards = [].slice.call(document.querySelectorAll('.stack-card'));
+  if (cards.length && !reduce) {
+    var stackUpdate = function () {
+      cards.forEach(function (c, i) {
+        var next = cards[i + 1];
+        if (!next) return;
+        var a = c.getBoundingClientRect(), b = next.getBoundingClientRect();
+        var p = Math.max(0, Math.min(1, 1 - (b.top - a.top) / a.height));
+        c.style.transform = 'scale(' + (1 - p * 0.06) + ')';
+        c.style.filter = 'brightness(' + (1 - p * 0.08) + ')';
+      });
+    };
+    window.addEventListener('scroll', function () { requestAnimationFrame(stackUpdate); }, { passive: true });
+    stackUpdate();
+  }
+
   // ---- Panier latéral (aperçu : rien n'est vendu, le panier reste dans ce navigateur) ----
   var PRODUCTS = {
     memoire: { name: 'Mémoire · le livre d\'une vie', note: 'Livre choisi après l\'achat, dans l\'app', price: 99 },

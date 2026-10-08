@@ -6,6 +6,7 @@ puis le contenu de <main>. Le résultat est écrit à la racine du dossier site/
 
 Usage : python3 site/build.py
 """
+import hashlib
 import re
 from pathlib import Path
 
@@ -116,6 +117,11 @@ def footer() -> str:
 </footer>"""
 
 
+def version(name: str) -> str:
+    """Empreinte du fichier : le navigateur recharge la feuille de style dès qu'elle change."""
+    return hashlib.md5((ROOT / "assets" / name).read_bytes()).hexdigest()[:8]
+
+
 def page(meta: dict, body: str) -> str:
     title = meta.get("title", BRAND)
     full_title = title if BRAND in title else f"{title} · {BRAND}"
@@ -134,7 +140,7 @@ def page(meta: dict, body: str) -> str:
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=Manrope:wght@400;500;600;700;800&display=swap">
-<link rel="stylesheet" href="assets/site.css">
+<link rel="stylesheet" href="assets/site.css?v={version('site.css')}">
 </head>
 <body>
 {header(meta.get('nav', ''))}
@@ -142,7 +148,7 @@ def page(meta: dict, body: str) -> str:
 {body.strip()}
 </main>
 {footer()}
-<script src="assets/site.js" defer></script>
+<script src="assets/site.js?v={version('site.js')}" defer></script>
 </body>
 </html>
 """

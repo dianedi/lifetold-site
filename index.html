@@ -13,7 +13,7 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=Manrope:wght@400;500;600;700;800&display=swap">
-<link rel="stylesheet" href="assets/site.css">
+<link rel="stylesheet" href="assets/site.css?v=774750c0">
 </head>
 <body>
 <div class="preview"><div class="wrap"><span><b>Aperçu du site Memoreees</b> · version de travail, non officielle</span><span>Textes, visuels et prix à valider · aucune vente possible</span></div></div>
@@ -75,10 +75,40 @@
       <p class="kicker" style="margin:0">Comment ça marche</p>
       <h2>Trois étapes, et une année d'histoires</h2>
     </div>
-    <div class="steps">
-      <div><span class="n">1 · VOUS OFFREZ</span><h3>Une carte, un code</h3><p>Dans l'app, vous choisissez le livre, ce que vous rêvez d'entendre et ce qu'il vaut mieux éviter. Puis vous imprimez la carte cadeau avec son code.</p></div>
-      <div><span class="n">2 · ILS RACONTENT</span><h3>Une carte, une question</h3><p>Ils répondent à voix haute dans l'app, à leur rythme, pendant un an. Pas d'écriture, pas de pression.</p></div>
-      <div><span class="n">3 · VOUS RECEVEZ</span><h3>Le livre de leur vie</h3><p>Leurs souvenirs remis dans l'ordre, avec leurs mots, dans un livre relié. Et leur voix à réécouter, page après page.</p></div>
+    <div class="stack" id="stack">
+      <article class="stack-card s1" style="--i:0">
+        <div class="stack-text">
+          <span class="num">Étape 1 · Vous offrez</span>
+          <h3>Une carte, <em>un code</em></h3>
+          <p>Dans l'app, vous choisissez le livre, ce que vous rêvez d'entendre et ce qu'il vaut mieux éviter. Puis vous imprimez la carte cadeau avec son code, ou vous l'envoyez par message.</p>
+        </div>
+        <div class="stack-visual">
+          <div class="card-mock" aria-hidden="true">
+            <div class="card-front"><span class="onde" aria-hidden="true"><i></i><i></i><i></i><i></i><i></i><i></i><i></i></span><div><div class="t">L'histoire de Mamie</div><div class="f" style="margin-top:8px">De la part de Sophie</div></div></div>
+            <div class="card-in"><small>Votre mot, à la main</small><div class="hand"></div><small>Code : K7Q2-M9TA</small></div>
+          </div>
+        </div>
+      </article>
+      <article class="stack-card s2" style="--i:1">
+        <div class="stack-text">
+          <span class="num">Étape 2 · Ils racontent</span>
+          <h3>Une carte, <em>une question</em></h3>
+          <p>Ils répondent à voix haute dans l'app, à leur rythme, pendant un an. Les questions rebondissent sur ce qu'ils viennent de raconter. Pas d'écriture, pas de pression.</p>
+        </div>
+        <div class="stack-visual">
+          <div class="qcard static" aria-hidden="true"><div class="chip"><svg viewBox="0 0 24 24"><rect x="9" y="3" width="6" height="11" rx="3"/><path d="M5 11a7 7 0 0 0 14 0M12 18v3"/></svg></div><div><div class="cat">Enfance</div><h3>Quel est votre tout premier souvenir ?</h3><div class="rec"><span class="onde live"><i></i><i></i><i></i><i></i><i></i><i></i><i></i></span>En train d'écouter · 02:14</div></div></div>
+        </div>
+      </article>
+      <article class="stack-card s3" style="--i:2">
+        <div class="stack-text">
+          <span class="num">Étape 3 · Vous recevez</span>
+          <h3>Le livre <em>de leur vie</em></h3>
+          <p>Leurs souvenirs remis dans l'ordre, avec leurs mots, dans un livre relié de 150 à 200 pages. Et leur voix à réécouter, page après page, grâce aux QR codes.</p>
+        </div>
+        <div class="stack-visual">
+          <div class="book big" aria-hidden="true"><div><span class="onde"><i></i><i></i><i></i><i></i><i></i><i></i><i></i></span></div><div><div class="t">L'histoire de Mamie</div><div class="s" style="margin-top:10px">Racontée par elle-même</div><div class="listen"><span class="qr"></span><span>Sa voix, à réécouter</span></div></div></div>
+        </div>
+      </article>
     </div>
   </div>
 </div>
@@ -120,13 +150,35 @@
   <div class="wrap">
     <p class="kicker">Pour toutes les histoires</p>
     <h2>Chaque vie, chaque moment <em>mérite son livre</em></h2>
-    <div class="tiles">
-      <a class="tile" href="ma-vie.html"><div><p class="fmt">Mémoire</p><h3>Ma vie</h3><p>L'enfance, les amours, le travail, les voyages, ce qu'on transmet.</p></div><span class="go">Découvrir →</span></a>
-      <a class="tile" href="mes-ancetres.html"><div><p class="fmt">Mémoire</p><h3>Mes ancêtres</h3><p>Les parents, les grands-parents, les origines, les secrets de famille.</p></div><span class="go">Découvrir →</span></a>
-      <a class="tile" href="un-temps-fort.html"><div><p class="fmt">Mémoire</p><h3>Un temps fort</h3><p>Une époque vécue de l'intérieur : la guerre, Mai 68, une révolution.</p></div><span class="go">Découvrir →</span></a>
-      <a class="tile soon" href="recit.html"><div><span class="tag">Bientôt</span><p class="fmt" style="margin-top:14px">Récit</p><h3>Un voyage</h3><p>Chacun raconte le voyage à sa façon, et tout se retrouve dans un livre.</p></div><span class="go">Être prévenu →</span></a>
-      <a class="tile soon" href="recit.html"><div><span class="tag">Bientôt</span><p class="fmt" style="margin-top:14px">Récit</p><h3>Un EVJF, un EVG, un mariage</h3><p>Le week-end raconté par toute la bande, souvenirs inavouables compris.</p></div><span class="go">Être prévenu →</span></a>
-      <a class="tile soon" href="chronique.html"><div><span class="tag">Bientôt</span><p class="fmt" style="margin-top:14px">Chronique</p><h3>Une année en famille</h3><p>Douze mois racontés par chacun, petits et grands.</p></div><span class="go">Être prévenu →</span></a>
+    <div class="lrows">
+      <article class="lrow">
+        <div class="lrow-media"><div class="ph" style="background:linear-gradient(150deg,#ffe7d1,#ffd0dc)"><span class="todo">[Photo : Un grand-parent qui raconte, au salon, téléphone à la main]</span></div><img class="sticker" src="assets/favicon-192.png" alt="" style="--r:12deg"></div>
+        <div class="lrow-text"><p class="fmt">Mémoire</p><h3>Ma vie</h3><p>Une vie entière, racontée de sa voix : l'enfance, les amours, le travail, les voyages, ce qu'on transmet. Une question à la fois, pendant un an.</p><a class="btn btn-peach" href="ma-vie.html">Offrir « Ma vie »</a></div>
+      </article>
+      <article class="lrow">
+        <div class="lrow-media"><div class="ph" style="background:linear-gradient(150deg,#f3e6fb,#ffe0cc)"><span class="todo">[Photo : De vieilles photos de famille étalées sur une table]</span></div><img class="sticker" src="assets/favicon-192.png" alt="" style="--r:-14deg"></div>
+        <div class="lrow-text"><p class="fmt">Mémoire</p><h3>Mes ancêtres</h3><p>Les parents, les grands-parents, les origines, les secrets de famille. Tout ce qui se perdrait sans ce livre.</p><a class="btn btn-peach" href="mes-ancetres.html">Offrir « Mes ancêtres »</a></div>
+      </article>
+      <article class="lrow">
+        <div class="lrow-media"><div class="ph" style="background:linear-gradient(150deg,#fff0e0,#f6dcef)"><span class="todo">[Photo : Un portrait en lumière douce, le regard qui se souvient]</span></div><img class="sticker" src="assets/favicon-192.png" alt="" style="--r:12deg"></div>
+        <div class="lrow-text"><p class="fmt">Mémoire</p><h3>Un temps fort</h3><p>Une époque vécue de l'intérieur : la guerre, Mai 68, la chute du mur. Ce qu'on entendait, ce qu'on craignait, ce qu'on espérait.</p><a class="btn btn-peach" href="un-temps-fort.html">Offrir « Un temps fort »</a></div>
+      </article>
+      <article class="lrow">
+        <div class="lrow-media"><div class="ph" style="background:linear-gradient(150deg,#e5f3ea,#fff0dc)"><span class="todo">[Photo : Un sac à dos sur un quai de gare, en plein soleil]</span></div><img class="sticker" src="assets/favicon-192.png" alt="" style="--r:-14deg"></div>
+        <div class="lrow-text"><p class="fmt"><span class="tag">Bientôt</span> Récit</p><h3>Un voyage</h3><p>Seul ou à plusieurs, chacun raconte le voyage à sa façon. Les étapes, les rencontres, les fous rires : tout se retrouve dans un livre.</p><a class="btn btn-peach" href="recit.html">Être prévenu</a></div>
+      </article>
+      <article class="lrow">
+        <div class="lrow-media"><div class="ph" style="background:linear-gradient(150deg,#ffe0ea,#ffe9cf)"><span class="todo">[Photo : Une bande d'amis qui trinque en riant]</span></div><img class="sticker" src="assets/favicon-192.png" alt="" style="--r:12deg"></div>
+        <div class="lrow-text"><p class="fmt"><span class="tag">Bientôt</span> Récit</p><h3>Un EVJF, un EVG</h3><p>Le week-end raconté par toute la bande, souvenirs inavouables compris.</p><a class="btn btn-peach" href="recit.html">Être prévenu</a></div>
+      </article>
+      <article class="lrow">
+        <div class="lrow-media"><div class="ph" style="background:linear-gradient(150deg,#fdf1f6,#f1e6fb)"><span class="todo">[Photo : Des invités qui dansent, flous de joie]</span></div><img class="sticker" src="assets/favicon-192.png" alt="" style="--r:-14deg"></div>
+        <div class="lrow-text"><p class="fmt"><span class="tag">Bientôt</span> Récit</p><h3>Un mariage</h3><p>Le grand jour raconté par ceux qui l'ont vécu : les mariés, les témoins, la famille, les amis.</p><a class="btn btn-peach" href="recit.html">Être prévenu</a></div>
+      </article>
+      <article class="lrow">
+        <div class="lrow-media"><div class="ph" style="background:linear-gradient(150deg,#fff3e3,#e6f1ea)"><span class="todo">[Photo : Une table de famille un dimanche midi]</span></div><img class="sticker" src="assets/favicon-192.png" alt="" style="--r:12deg"></div>
+        <div class="lrow-text"><p class="fmt"><span class="tag">Bientôt</span> Chronique</p><h3>Une année en famille</h3><p>Douze mois racontés par chacun, petits et grands. À la fin de l'année, le livre de votre famille.</p><a class="btn btn-peach" href="chronique.html">Être prévenu</a></div>
+      </article>
     </div>
   </div>
 </section>
@@ -276,6 +328,6 @@
     <div class="fbottom"><span>© 2026 Memoreees. Tous droits réservés.</span><div class="lang " aria-label="Langue"><a href="index.html" aria-current="true" lang="fr">FR</a><a href="es/index.html" lang="es" hreflang="es">ES</a></div><span class="pay"><span>Visa</span><span>Mastercard</span><span>Apple Pay</span><span>Google Pay</span><span>Shop Pay</span></span></div>
   </div>
 </footer>
-<script src="assets/site.js" defer></script>
+<script src="assets/site.js?v=fe663945" defer></script>
 </body>
 </html>

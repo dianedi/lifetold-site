@@ -41,15 +41,48 @@ FOOTER = [
                     ("Lignes de vie", "lignes-de-vie.html"), ("Un anniversaire : jusqu'à 30 voix", "anniversaire.html"),
                     ("Récit : voyage, EVJF, mariage", "recit.html"), ("Voyage solo : le carnet de bord", "voyage-solo.html"),
                     ("Chronique : une année en famille", "chronique.html")]),
-    ("Offrir", [("La carte cadeau", "carte-cadeau.html"), ("Pour Noël", None), ("Fête des grands-mères", None),
+    ("Offrir", [("La carte cadeau", "carte-cadeau.html"), ("Pour Noël", "offrir-noel.html"), ("Fête des grands-mères", "fete-des-grands-meres.html"),
                 ("Fête des mères", None), ("Fête des pères", None), ("Un anniversaire", None)]),
     (BRAND, [("L'app", "application.html"), ("Comment ça marche", "comment-ca-marche.html"), ("Tarifs", "index.html#prix"),
              ("Aide et questions", "aide.html"), ("Mon compte", "compte.html"), ("Télécharger l'app", "app.html"),
              ("Notre histoire", None), ("Devenir ambassadeur", None)]),
 ]
 
-LEGAL = [("Vos données, protégées", "donnees.html"), ("Mentions légales", "mentions-legales.html"), ("CGV", None),
-         ("Confidentialité", "confidentialite.html"), ("Cookies", None), ("Supprimer mes données", "donnees.html#supprimer")]
+LEGAL = [("Vos données, protégées", "donnees.html"), ("Mentions légales", "mentions-legales.html"), ("CGV", "cgv.html"),
+         ("Confidentialité", "confidentialite.html"), ("Cookies", "cookies.html"), ("Supprimer mes données", "donnees.html#supprimer")]
+
+
+# Bandeau cookies (brouillon du 08/10) : ne bloque pas la page, « Tout refuser » aussi visible que « Tout accepter ».
+# Le choix est gardé dans le navigateur (clé mm-consent). Aucun traceur n'est chargé aujourd'hui : quand la boutique,
+# la mesure d'audience ou les pixels arriveront, ils devront lire ce choix avant de se charger.
+COOKIE_BANNER = """<div class="cookie-bar" id="cookie-bar" role="region" aria-label="Cookies" hidden>
+  <p>Ce site n'enregistre que ce qui lui est indispensable, comme votre panier. Avec votre accord, nous pourrons aussi mesurer l'audience et l'efficacité de nos publicités. <a href="cookies.html">En savoir plus</a></p>
+  <div class="cookie-btns">
+    <button type="button" class="btn btn-line" data-consent="refuse">Tout refuser</button>
+    <a class="btn btn-line" href="cookies.html">Personnaliser</a>
+    <button type="button" class="btn btn-line" data-consent="accept">Tout accepter</button>
+  </div>
+</div>
+<style>
+.cookie-bar{position:fixed;left:16px;right:16px;bottom:16px;z-index:30;max-width:760px;margin:0 auto;background:#fff;color:var(--ink);border:1px solid var(--rule);border-radius:18px;box-shadow:0 18px 50px rgba(28,19,32,.14);padding:18px 20px;display:grid;gap:14px;font-size:14px;line-height:1.5}
+.cookie-bar[hidden]{display:none}
+.cookie-bar p{margin:0;color:var(--grey)}
+.cookie-bar a:not(.btn){color:var(--ink)}
+.cookie-btns{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:8px}
+.cookie-btns .btn{padding:12px 10px;font-size:13px;white-space:normal;text-align:center}
+@media (max-width:480px){.cookie-bar{left:8px;right:8px;bottom:8px;padding:14px}.cookie-btns{grid-template-columns:1fr 1fr}.cookie-btns a.btn{grid-column:1 / -1;order:3}}
+</style>
+<script>
+(function(){
+  var KEY='mm-consent', bar=document.getElementById('cookie-bar');
+  var read=function(){try{return JSON.parse(localStorage.getItem(KEY)||'null');}catch(e){return null;}};
+  var save=function(v){try{localStorage.setItem(KEY,JSON.stringify({choice:v,date:new Date().toISOString()}));}catch(e){}};
+  var c=read();
+  if(!c||!c.choice){bar.hidden=false;}
+  bar.addEventListener('click',function(e){var b=e.target.closest('[data-consent]');if(!b)return;save(b.getAttribute('data-consent'));bar.hidden=true;});
+  document.addEventListener('click',function(e){if(e.target.closest('[data-cookie-reset]')){try{localStorage.removeItem(KEY);}catch(x){}bar.hidden=false;}});
+})();
+</script>"""
 
 LAUREL = '<svg class="laurel" viewBox="0 0 24 48" aria-hidden="true"><path d="M20 46C8 40 4 28 6 4"/><path d="M6 12c-3-1-4-4-3-6 3 0 4 3 3 6zM5.5 20c-3-.5-4.5-3.5-4-6 3 .5 4.5 3.5 4 6zM6.5 28c-3 0-5-2.5-5-5 3 0 5 2.5 5 5zM9 35.5c-3 .5-5.5-1.5-6-4 3-.5 5.5 1.5 6 4zM13 41.5c-2.5 1-5.5-.5-6.5-3 2.5-1 5.5.5 6.5 3z"/></svg>'
 
@@ -169,6 +202,7 @@ def page(meta: dict, body: str) -> str:
 {body.strip()}
 </main>
 {footer()}
+{COOKIE_BANNER}
 <script src="assets/site.js?v={version('site.js')}" defer></script>
 </body>
 </html>

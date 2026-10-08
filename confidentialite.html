@@ -117,11 +117,39 @@
           <a href="#" aria-label="Facebook (compte à créer)"><svg viewBox="0 0 24 24"><path d="M14.5 21v-7.5h2.6l.4-3h-3V8.6c0-.9.3-1.5 1.5-1.5h1.6V4.4c-.3 0-1.2-.1-2.3-.1-2.3 0-3.8 1.4-3.8 3.9v2.3H9v3h2.5V21"/></svg></a>
         </div>
       </div>
-      <div><h4>Les livres</h4><ul><li><a href="ma-vie.html">Ma vie</a></li><li><a href="mes-ancetres.html">Mes ancêtres</a></li><li><a href="un-temps-fort.html">Un temps fort</a></li><li><a href="lignes-de-vie.html">Lignes de vie</a></li><li><a href="anniversaire.html">Un anniversaire : jusqu'à 30 voix</a></li><li><a href="recit.html">Récit : voyage, EVJF, mariage</a></li><li><a href="voyage-solo.html">Voyage solo : le carnet de bord</a></li><li><a href="chronique.html">Chronique : une année en famille</a></li></ul></div><div><h4>Offrir</h4><ul><li><a href="carte-cadeau.html">La carte cadeau</a></li><li style="color:var(--grey)">Pour Noël</li><li style="color:var(--grey)">Fête des grands-mères</li><li style="color:var(--grey)">Fête des mères</li><li style="color:var(--grey)">Fête des pères</li><li style="color:var(--grey)">Un anniversaire</li></ul></div><div><h4>Memoreees</h4><ul><li><a href="application.html">L'app</a></li><li><a href="comment-ca-marche.html">Comment ça marche</a></li><li><a href="index.html#prix">Tarifs</a></li><li><a href="aide.html">Aide et questions</a></li><li><a href="compte.html">Mon compte</a></li><li><a href="app.html">Télécharger l'app</a></li><li style="color:var(--grey)">Notre histoire</li><li style="color:var(--grey)">Devenir ambassadeur</li></ul></div>
+      <div><h4>Les livres</h4><ul><li><a href="ma-vie.html">Ma vie</a></li><li><a href="mes-ancetres.html">Mes ancêtres</a></li><li><a href="un-temps-fort.html">Un temps fort</a></li><li><a href="lignes-de-vie.html">Lignes de vie</a></li><li><a href="anniversaire.html">Un anniversaire : jusqu'à 30 voix</a></li><li><a href="recit.html">Récit : voyage, EVJF, mariage</a></li><li><a href="voyage-solo.html">Voyage solo : le carnet de bord</a></li><li><a href="chronique.html">Chronique : une année en famille</a></li></ul></div><div><h4>Offrir</h4><ul><li><a href="carte-cadeau.html">La carte cadeau</a></li><li><a href="offrir-noel.html">Pour Noël</a></li><li><a href="fete-des-grands-meres.html">Fête des grands-mères</a></li><li style="color:var(--grey)">Fête des mères</li><li style="color:var(--grey)">Fête des pères</li><li style="color:var(--grey)">Un anniversaire</li></ul></div><div><h4>Memoreees</h4><ul><li><a href="application.html">L'app</a></li><li><a href="comment-ca-marche.html">Comment ça marche</a></li><li><a href="index.html#prix">Tarifs</a></li><li><a href="aide.html">Aide et questions</a></li><li><a href="compte.html">Mon compte</a></li><li><a href="app.html">Télécharger l'app</a></li><li style="color:var(--grey)">Notre histoire</li><li style="color:var(--grey)">Devenir ambassadeur</li></ul></div>
     </div>
-    <div class="fbottom"><span>© 2026 Memoreees. Tous droits réservés.</span><div class="lang " aria-label="Langue"><a href="index.html" aria-current="true" lang="fr">FR</a><a href="es/index.html" lang="es" hreflang="es">ES</a></div><nav class="legal" aria-label="Informations légales"><a href="donnees.html">Vos données, protégées</a><a href="mentions-legales.html">Mentions légales</a><span>CGV</span><a href="confidentialite.html">Confidentialité</a><span>Cookies</span><a href="donnees.html#supprimer">Supprimer mes données</a></nav></div>
+    <div class="fbottom"><span>© 2026 Memoreees. Tous droits réservés.</span><div class="lang " aria-label="Langue"><a href="index.html" aria-current="true" lang="fr">FR</a><a href="es/index.html" lang="es" hreflang="es">ES</a></div><nav class="legal" aria-label="Informations légales"><a href="donnees.html">Vos données, protégées</a><a href="mentions-legales.html">Mentions légales</a><a href="cgv.html">CGV</a><a href="confidentialite.html">Confidentialité</a><a href="cookies.html">Cookies</a><a href="donnees.html#supprimer">Supprimer mes données</a></nav></div>
   </div>
 </footer>
+<div class="cookie-bar" id="cookie-bar" role="region" aria-label="Cookies" hidden>
+  <p>Ce site n'enregistre que ce qui lui est indispensable, comme votre panier. Avec votre accord, nous pourrons aussi mesurer l'audience et l'efficacité de nos publicités. <a href="cookies.html">En savoir plus</a></p>
+  <div class="cookie-btns">
+    <button type="button" class="btn btn-line" data-consent="refuse">Tout refuser</button>
+    <a class="btn btn-line" href="cookies.html">Personnaliser</a>
+    <button type="button" class="btn btn-line" data-consent="accept">Tout accepter</button>
+  </div>
+</div>
+<style>
+.cookie-bar{position:fixed;left:16px;right:16px;bottom:16px;z-index:30;max-width:760px;margin:0 auto;background:#fff;color:var(--ink);border:1px solid var(--rule);border-radius:18px;box-shadow:0 18px 50px rgba(28,19,32,.14);padding:18px 20px;display:grid;gap:14px;font-size:14px;line-height:1.5}
+.cookie-bar[hidden]{display:none}
+.cookie-bar p{margin:0;color:var(--grey)}
+.cookie-bar a:not(.btn){color:var(--ink)}
+.cookie-btns{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:8px}
+.cookie-btns .btn{padding:12px 10px;font-size:13px;white-space:normal;text-align:center}
+@media (max-width:480px){.cookie-bar{left:8px;right:8px;bottom:8px;padding:14px}.cookie-btns{grid-template-columns:1fr 1fr}.cookie-btns a.btn{grid-column:1 / -1;order:3}}
+</style>
+<script>
+(function(){
+  var KEY='mm-consent', bar=document.getElementById('cookie-bar');
+  var read=function(){try{return JSON.parse(localStorage.getItem(KEY)||'null');}catch(e){return null;}};
+  var save=function(v){try{localStorage.setItem(KEY,JSON.stringify({choice:v,date:new Date().toISOString()}));}catch(e){}};
+  var c=read();
+  if(!c||!c.choice){bar.hidden=false;}
+  bar.addEventListener('click',function(e){var b=e.target.closest('[data-consent]');if(!b)return;save(b.getAttribute('data-consent'));bar.hidden=true;});
+  document.addEventListener('click',function(e){if(e.target.closest('[data-cookie-reset]')){try{localStorage.removeItem(KEY);}catch(x){}bar.hidden=false;}});
+})();
+</script>
 <script src="assets/site.js?v=7a0b2831" defer></script>
 </body>
 </html>

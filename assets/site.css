@@ -14,7 +14,7 @@ body{margin:0;background:var(--paper);color:var(--ink);font-family:var(--f-sans)
 a{color:inherit}
 img{max-width:100%;display:block}
 .wrap{max-width:1140px;margin:0 auto;padding-inline:clamp(16px,5vw,48px)}
-.narrow{max-width:760px}
+.narrow{max-width:1140px}
 h1,h2,h3{font-family:var(--f-serif);font-weight:400;margin:0;text-wrap:balance;letter-spacing:-.01em}
 h1{font-size:clamp(44px,6.4vw,80px);line-height:.98}
 h2{font-size:clamp(32px,4.6vw,52px);line-height:1.04}

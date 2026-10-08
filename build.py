@@ -43,9 +43,25 @@ FOOTER = [
     (BRAND, [("L'app", "application.html"), ("Comment ça marche", "comment-ca-marche.html"), ("Tarifs", "index.html#prix"),
              ("Aide et questions", "aide.html"), ("Mon compte", "compte.html"), ("Télécharger l'app", "app.html"),
              ("Notre histoire", None), ("Devenir ambassadeur", None)]),
-    ("Légal", [("Vos données, protégées", "donnees.html"), ("Mentions légales", "mentions-legales.html"), ("CGV", None),
-               ("Confidentialité", "confidentialite.html"), ("Cookies", None), ("Supprimer mes données", "donnees.html#supprimer")]),
 ]
+
+LEGAL = [("Vos données, protégées", "donnees.html"), ("Mentions légales", "mentions-legales.html"), ("CGV", None),
+         ("Confidentialité", "confidentialite.html"), ("Cookies", None), ("Supprimer mes données", "donnees.html#supprimer")]
+
+LAUREL = '<svg class="laurel" viewBox="0 0 24 48" aria-hidden="true"><path d="M20 46C8 40 4 28 6 4"/><path d="M6 12c-3-1-4-4-3-6 3 0 4 3 3 6zM5.5 20c-3-.5-4.5-3.5-4-6 3 .5 4.5 3.5 4 6zM6.5 28c-3 0-5-2.5-5-5 3 0 5 2.5 5 5zM9 35.5c-3 .5-5.5-1.5-6-4 3-.5 5.5 1.5 6 4zM13 41.5c-2.5 1-5.5-.5-6.5-3 2.5-1 5.5.5 6.5 3z"/></svg>'
+
+# Réassurance discrète, en bas de page. La note Trustpilot et la presse sont des emplacements : rien n'est affiché en ligne tant qu'ils ne sont pas réels.
+REASSURE = f"""<div class="trust">
+      <ul class="trust-list">
+        <li>Satisfait ou remboursé 30 jours</li>
+        <li>Livraison offerte en Europe</li>
+        <li>Leur voix, pour toujours</li>
+      </ul>
+      <div class="trust-proof">
+        <div class="award">{LAUREL}<div><span class="stars" aria-hidden="true">★★★★★</span><small>Trustpilot <span class="todo">[note réelle à venir]</span></small></div>{LAUREL.replace('class="laurel"', 'class="laurel r"')}</div>
+        <div class="award">{LAUREL}<div><b class="press">LE FIGARO</b><small>Vu dans la presse <span class="todo">[exemple, en attente d'un vrai article]</span></small></div>{LAUREL.replace('class="laurel"', 'class="laurel r"')}</div>
+      </div>
+    </div>"""
 
 ICON_HELP = '<svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><path d="M9.6 9.4a2.5 2.5 0 0 1 4.8.9c0 1.7-2.4 2.2-2.4 3.7"/><path d="M12 17.2h.01"/></svg>'
 ICON_USER = '<svg viewBox="0 0 24 24"><circle cx="12" cy="8.5" r="3.5"/><path d="M5 20c.8-3.6 3.6-5.5 7-5.5s6.2 1.9 7 5.5"/></svg>'
@@ -75,7 +91,7 @@ def header(active: str) -> str:
       <a class="icon-btn hide-sm" href="aide.html" aria-label="Aide et questions"{current if active == "aide" else ""}>{ICON_HELP}</a>
       <a class="icon-btn hide-sm" href="compte.html" aria-label="Mon compte">{ICON_USER}</a>
       <button class="icon-btn cart-btn" type="button" aria-label="Ouvrir le panier" data-open-cart>{ICON_BAG}<span class="cart-count" hidden>0</span></button>
-      <a class="btn btn-ink hdr-cta" href="memoire.html">Offrir une histoire</a>
+      <a class="btn btn-grad hdr-cta" href="memoire.html">Offrir une histoire</a>
       <button class="icon-btn menu-btn" type="button" aria-expanded="false" aria-controls="mnav" aria-label="Menu"><svg viewBox="0 0 24 24"><path d="M4 7h16M4 12h16M4 17h16"/></svg></button>
     </div>
   </div>
@@ -98,12 +114,13 @@ def footer() -> str:
             tag = f' <span class="tag">{item[2]}</span>' if len(item) > 2 else ""
             lis.append(f'<li><a href="{href}">{label}</a>{tag}</li>' if href else f'<li style="color:var(--grey)">{label}{tag}</li>')
         cols.append(f'<div><h4>{title}</h4><ul>{"".join(lis)}</ul></div>')
+    legal = "".join(f'<a href="{h}">{l}</a>' if h else f'<span>{l}</span>' for l, h in LEGAL)
     return f"""<footer class="site">
   <div class="wrap">
     <div class="fcols">
       <div>
         <a class="logo" href="index.html" aria-label="{BRAND}, accueil">{LOGO}</a>
-        <p class="story">Vos histoires, de vive voix. <span class="todo">[accroche à choisir]</span></p>
+        <p class="story">Vos histoires, de vive voix.</p>
         <div class="social" aria-label="Réseaux sociaux">
           <a href="#" aria-label="Instagram (compte à créer)"><svg viewBox="0 0 24 24"><rect x="3" y="3" width="18" height="18" rx="5"/><circle cx="12" cy="12" r="4.2"/><circle cx="17.4" cy="6.6" r="1.1" class="dot"/></svg></a>
           <a href="#" aria-label="TikTok (compte à créer)"><svg viewBox="0 0 24 24"><path d="M14 3v11.5a3.5 3.5 0 1 1-3.5-3.5"/><path d="M14 3c.4 2.6 2.2 4.4 5 4.6"/></svg></a>
@@ -112,7 +129,8 @@ def footer() -> str:
       </div>
       {"".join(cols)}
     </div>
-    <div class="fbottom"><span>© 2026 {BRAND}. Tous droits réservés.</span>{lang_switch()}<span class="pay"><span>Visa</span><span>Mastercard</span><span>Apple Pay</span><span>Google Pay</span><span>Shop Pay</span></span></div>
+    {REASSURE}
+    <div class="fbottom"><span>© 2026 {BRAND}. Tous droits réservés.</span>{lang_switch()}<nav class="legal" aria-label="Informations légales">{legal}</nav></div>
   </div>
 </footer>"""
 

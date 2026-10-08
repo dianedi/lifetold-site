@@ -38,7 +38,8 @@ BANNER = [
 # Pages existantes : les liens du pied de page vers une page pas encore écrite restent du texte simple.
 FOOTER = [
     ("Les livres", [("Ma vie", "ma-vie.html"), ("Mes ancêtres", "mes-ancetres.html"), ("Un temps fort", "un-temps-fort.html"),
-                    ("Lignes de vie", "lignes-de-vie.html"), ("Récit : voyage, EVJF, mariage", "recit.html", "Bientôt"),
+                    ("Lignes de vie", "lignes-de-vie.html"), ("Un anniversaire : jusqu'à 30 voix", "anniversaire.html", "Bientôt"),
+                    ("Récit : voyage, EVJF, mariage", "recit.html", "Bientôt"),
                     ("Chronique : une année en famille", "chronique.html", "Bientôt")]),
     ("Offrir", [("La carte cadeau", "carte-cadeau.html"), ("Pour Noël", None), ("Fête des grands-mères", None),
                 ("Fête des mères", None), ("Fête des pères", None), ("Un anniversaire", None)]),

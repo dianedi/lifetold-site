@@ -1,13 +1,20 @@
-<!-- title: Questions fréquentes | description: Prix, fonctionnement de l'app, livre, livraison, données personnelles : toutes les réponses avant d'offrir une histoire. | nav: faq -->
+<!-- title: Aide et questions | description: Posez votre question, ou parcourez les réponses : prix, app, livre, livraison, données personnelles. | nav: aide -->
 <div class="wrap page-hero">
-  <p class="crumbs"><a href="index.html">Accueil</a> › FAQ</p>
-  <p class="kicker">Questions fréquentes</p>
-  <h1>Tout ce qu'on <em>se demande</em> avant d'offrir</h1>
-  <p class="lead">Vous ne trouvez pas votre réponse ? Écrivez-nous à <a href="mailto:hello@lifetold.me">hello@lifetold.me</a>.</p>
+  <p class="crumbs"><a href="index.html">Accueil</a> › Aide</p>
+  <p class="kicker">Aide et questions</p>
+  <h1>Une question ? <em>Posez-la ici</em></h1>
+  <p class="lead">Écrivez votre question comme elle vous vient : la réponse arrive tout de suite. Si elle n'y est pas, votre message est transmis à l'équipe, qui vous répond par email.</p>
+  <div class="assistant" id="assistant" style="margin-top:32px;max-width:760px">
+    <div class="log" aria-live="polite"><div class="msg bot">Bonjour ! Que voulez-vous savoir sur {{BRAND}} ?</div></div>
+    <div class="suggest"><button type="button">Combien de temps pour remplir le livre ?</button><button type="button">Et s'il n'est pas à l'aise avec un téléphone ?</button><button type="button">Combien coûte la livraison ?</button></div>
+    <form><label for="ask" style="position:absolute;left:-9999px">Votre question</label><input id="ask" placeholder="Votre question…" autocomplete="off"><button class="btn btn-ink" type="submit">Envoyer</button></form>
+  </div>
+  <p class="note">Aperçu : les réponses viennent des questions ci-dessous. La version en ligne connaîtra toutes vos réponses et transmettra les autres questions par email à hello@lifetold.me.</p>
 </div>
 
 <section style="padding-top:clamp(40px,6vw,72px)">
   <div class="wrap narrow">
+    <h2 style="font-size:clamp(28px,4vw,44px);margin-bottom:32px">Les questions <em>fréquentes</em></h2>
     <div class="faq-group">
       <h2>L'offre</h2>
       <details><summary>Que comprend l'offre à 99 € ?</summary><p>Un an d'accès à l'app pour raconter, le livre relié de 150 à 200 pages avec couverture rigide personnalisée, les QR codes pour réécouter sa voix, la carte cadeau à imprimer et la livraison en Europe.</p></details>
@@ -47,7 +54,7 @@
 
     <div class="faq-group">
       <h2>Données personnelles</h2>
-      <details><summary>Qui a accès à ce qu'il raconte ?</summary><p>Personne d'autre que l'équipe qui prépare le livre. La personne qui offre reçoit seulement quelques extraits choisis. Les données ne sont jamais vendues.</p></details>
+      <details><summary>Qui a accès à ce qu'il raconte ?</summary><p>La personne qui offre reçoit seulement quelques extraits choisis ; le reste, elle le découvrira dans le livre. Les enregistrements servent uniquement à écrire le livre et ne sont jamais vendus ni partagés. Plus de détails sur la page <a href="donnees.html">Vos données</a>.</p></details>
       <details><summary>Comment supprimer ses données ?</summary><p>Dans l'app, ouvrez les réglages et touchez « Supprimer toutes mes données ». Vous pouvez aussi écrire à <a href="mailto:rgpd@lifetold.me">rgpd@lifetold.me</a>. Tous les détails sont dans la <a href="confidentialite.html">politique de confidentialité</a>.</p></details>
     </div>
   </div>

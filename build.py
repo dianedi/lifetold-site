@@ -18,9 +18,17 @@ ONDE = '<span class="onde" aria-hidden="true"><i></i><i></i><i></i><i></i><i></i
 
 NAV = [
     ("comment", "comment-ca-marche.html", "Comment ça marche"),
+    ("app", "application.html", "L'app"),
     ("livres", "index.html#livres", "Les livres"),
     ("offrir", "carte-cadeau.html", "Offrir"),
-    ("faq", "faq.html", "FAQ"),
+]
+
+# Messages du bandeau défilant (offres validées : B8 Black Friday, C4 Noël, C1 livraison, B7 remboursement).
+BANNER = [
+    "<b>Black Friday</b> · Lignes de vie offert pour l'achat d'un livre Mémoire",
+    "<b>Noël</b> · offrez-le jusqu'au 24 décembre au soir, la carte cadeau s'imprime tout de suite",
+    "Livraison offerte partout en Europe",
+    "Satisfait ou remboursé 30 jours, sans justification",
 ]
 
 # Pages existantes : les liens du pied de page vers une page pas encore écrite restent du texte simple.
@@ -30,11 +38,25 @@ FOOTER = [
                     ("Chronique : une année en famille", "chronique.html", "Bientôt")]),
     ("Offrir", [("La carte cadeau", "carte-cadeau.html"), ("Pour Noël", None), ("Fête des grands-mères", None),
                 ("Fête des mères", None), ("Fête des pères", None), ("Un anniversaire", None)]),
-    (BRAND, [("Notre histoire", None), ("Comment ça marche", "comment-ca-marche.html"), ("Tarifs", "index.html#prix"),
-             ("FAQ", "faq.html"), ("Télécharger l'app", "app.html"), ("Devenir ambassadeur", None), ("Contact", "contact.html")]),
-    ("Légal", [("Mentions légales", "mentions-legales.html"), ("CGV", None), ("Confidentialité", "confidentialite.html"),
-               ("Cookies", None), ("Supprimer mes données", "confidentialite.html#suppression")]),
+    (BRAND, [("L'app", "application.html"), ("Comment ça marche", "comment-ca-marche.html"), ("Tarifs", "index.html#prix"),
+             ("Aide et questions", "aide.html"), ("Mon compte", "compte.html"), ("Télécharger l'app", "app.html"),
+             ("Notre histoire", None), ("Devenir ambassadeur", None)]),
+    ("Légal", [("Vos données, protégées", "donnees.html"), ("Mentions légales", "mentions-legales.html"), ("CGV", None),
+               ("Confidentialité", "confidentialite.html"), ("Cookies", None), ("Supprimer mes données", "donnees.html#supprimer")]),
 ]
+
+ICON_HELP = '<svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><path d="M9.6 9.4a2.5 2.5 0 0 1 4.8.9c0 1.7-2.4 2.2-2.4 3.7"/><path d="M12 17.2h.01"/></svg>'
+ICON_USER = '<svg viewBox="0 0 24 24"><circle cx="12" cy="8.5" r="3.5"/><path d="M5 20c.8-3.6 3.6-5.5 7-5.5s6.2 1.9 7 5.5"/></svg>'
+ICON_BAG = '<svg viewBox="0 0 24 24"><path d="M5 8h14l-1.4 11H6.4z"/><path d="M9 8V6.5a3 3 0 0 1 6 0V8"/></svg>'
+
+
+def banner() -> str:
+    items = "".join(f"<span>{m}</span><i aria-hidden=\"true\">·</i>" for m in BANNER)
+    return f"""<div class="annonce" role="region" aria-label="Offres en cours"><div class="marquee"><div class="track">{items}</div><div class="track" aria-hidden="true">{items}</div></div></div>"""
+
+
+def lang_switch(cls: str = "") -> str:
+    return f'<div class="lang {cls}" aria-label="Langue"><a href="index.html" aria-current="true" lang="fr">FR</a><a href="es/index.html" lang="es" hreflang="es">ES</a></div>'
 
 
 def header(active: str) -> str:
@@ -42,19 +64,28 @@ def header(active: str) -> str:
     links = "".join(f'<li><a href="{href}"{current if key == active else ""}>{label}</a></li>' for key, href, label in NAV)
     mobile = "".join(f'<a href="{href}">{label}</a>' for _, href, label in NAV)
     return f"""<div class="preview"><div class="wrap"><span><b>Aperçu du site {BRAND}</b> · version de travail, non officielle</span><span>Textes, visuels et prix à valider · aucune vente possible</span></div></div>
-<div class="annonce">Offrez-le <b>jusqu'au 24 décembre au soir</b> · la carte cadeau s'imprime tout de suite</div>
+{banner()}
 <header class="site">
   <div class="wrap">
     <a class="logo" href="index.html" aria-label="{BRAND}, accueil">{LOGO}{BRAND}</a>
     <nav class="main" aria-label="Navigation principale"><ul>{links}</ul></nav>
     <div class="hdr-right">
-      <a class="btn btn-ink" href="memoire.html">Offrir une histoire</a>
-      <span class="cart" aria-label="Panier (aperçu)"><svg viewBox="0 0 24 24"><path d="M5 8h14l-1.4 11H6.4z"/><path d="M9 8V6.5a3 3 0 0 1 6 0V8"/></svg></span>
-      <button class="menu-btn" type="button" aria-expanded="false" aria-controls="mnav" aria-label="Menu"><svg viewBox="0 0 24 24"><path d="M4 7h16M4 12h16M4 17h16"/></svg></button>
+      {lang_switch("hdr-lang")}
+      <a class="icon-btn hide-sm" href="aide.html" aria-label="Aide et questions"{current if active == "aide" else ""}>{ICON_HELP}</a>
+      <a class="icon-btn hide-sm" href="compte.html" aria-label="Mon compte">{ICON_USER}</a>
+      <button class="icon-btn cart-btn" type="button" aria-label="Ouvrir le panier" data-open-cart>{ICON_BAG}<span class="cart-count" hidden>0</span></button>
+      <a class="btn btn-ink hdr-cta" href="memoire.html">Offrir une histoire</a>
+      <button class="icon-btn menu-btn" type="button" aria-expanded="false" aria-controls="mnav" aria-label="Menu"><svg viewBox="0 0 24 24"><path d="M4 7h16M4 12h16M4 17h16"/></svg></button>
     </div>
   </div>
-  <div class="wrap"><nav class="mobile-nav" id="mnav" aria-label="Navigation mobile">{mobile}<a href="memoire.html">Offrir une histoire</a></nav></div>
-</header>"""
+  <div class="wrap"><nav class="mobile-nav" id="mnav" aria-label="Navigation mobile">{mobile}<a href="aide.html">Aide et questions</a><a href="compte.html">Mon compte</a><a href="memoire.html">Offrir une histoire</a>{lang_switch()}</nav></div>
+</header>
+<div class="drawer-veil" data-close-cart hidden></div>
+<aside class="drawer" id="cart" aria-label="Panier" aria-hidden="true" tabindex="-1">
+  <div class="drawer-head"><h2>Votre panier</h2><button class="icon-btn" type="button" data-close-cart aria-label="Fermer le panier"><svg viewBox="0 0 24 24"><path d="M6 6l12 12M18 6L6 18"/></svg></button></div>
+  <div class="drawer-body" id="cart-body"></div>
+  <div class="drawer-foot" id="cart-foot"></div>
+</aside>"""
 
 
 def footer() -> str:
@@ -76,7 +107,7 @@ def footer() -> str:
       </div>
       {"".join(cols)}
     </div>
-    <div class="fbottom"><span>© 2026 {BRAND} · Diane Decléty EI · TVA non applicable, art. 293 B du CGI</span><span class="pay"><span>Visa</span><span>Mastercard</span><span>Apple Pay</span><span>Google Pay</span><span>Shop Pay</span></span></div>
+    <div class="fbottom"><span>© 2026 {BRAND} · Diane Decléty EI · TVA non applicable, art. 293 B du CGI</span>{lang_switch()}<span class="pay"><span>Visa</span><span>Mastercard</span><span>Apple Pay</span><span>Google Pay</span><span>Shop Pay</span></span></div>
   </div>
 </footer>"""
 

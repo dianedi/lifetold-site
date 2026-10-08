@@ -16,19 +16,28 @@
 </head>
 <body>
 <div class="preview"><div class="wrap"><span><b>Aperçu du site LifeTold</b> · version de travail, non officielle</span><span>Textes, visuels et prix à valider · aucune vente possible</span></div></div>
-<div class="annonce">Offrez-le <b>jusqu'au 24 décembre au soir</b> · la carte cadeau s'imprime tout de suite</div>
+<div class="annonce" role="region" aria-label="Offres en cours"><div class="marquee"><div class="track"><span><b>Black Friday</b> · Lignes de vie offert pour l'achat d'un livre Mémoire</span><i aria-hidden="true">·</i><span><b>Noël</b> · offrez-le jusqu'au 24 décembre au soir, la carte cadeau s'imprime tout de suite</span><i aria-hidden="true">·</i><span>Livraison offerte partout en Europe</span><i aria-hidden="true">·</i><span>Satisfait ou remboursé 30 jours, sans justification</span><i aria-hidden="true">·</i></div><div class="track" aria-hidden="true"><span><b>Black Friday</b> · Lignes de vie offert pour l'achat d'un livre Mémoire</span><i aria-hidden="true">·</i><span><b>Noël</b> · offrez-le jusqu'au 24 décembre au soir, la carte cadeau s'imprime tout de suite</span><i aria-hidden="true">·</i><span>Livraison offerte partout en Europe</span><i aria-hidden="true">·</i><span>Satisfait ou remboursé 30 jours, sans justification</span><i aria-hidden="true">·</i></div></div></div>
 <header class="site">
   <div class="wrap">
     <a class="logo" href="index.html" aria-label="LifeTold, accueil"><img src="assets/logo.svg" alt="" width="30" height="29">LifeTold</a>
-    <nav class="main" aria-label="Navigation principale"><ul><li><a href="comment-ca-marche.html">Comment ça marche</a></li><li><a href="index.html#livres" aria-current="page">Les livres</a></li><li><a href="carte-cadeau.html">Offrir</a></li><li><a href="faq.html">FAQ</a></li></ul></nav>
+    <nav class="main" aria-label="Navigation principale"><ul><li><a href="comment-ca-marche.html">Comment ça marche</a></li><li><a href="application.html">L'app</a></li><li><a href="index.html#livres" aria-current="page">Les livres</a></li><li><a href="carte-cadeau.html">Offrir</a></li></ul></nav>
     <div class="hdr-right">
-      <a class="btn btn-ink" href="memoire.html">Offrir une histoire</a>
-      <span class="cart" aria-label="Panier (aperçu)"><svg viewBox="0 0 24 24"><path d="M5 8h14l-1.4 11H6.4z"/><path d="M9 8V6.5a3 3 0 0 1 6 0V8"/></svg></span>
-      <button class="menu-btn" type="button" aria-expanded="false" aria-controls="mnav" aria-label="Menu"><svg viewBox="0 0 24 24"><path d="M4 7h16M4 12h16M4 17h16"/></svg></button>
+      <div class="lang hdr-lang" aria-label="Langue"><a href="index.html" aria-current="true" lang="fr">FR</a><a href="es/index.html" lang="es" hreflang="es">ES</a></div>
+      <a class="icon-btn hide-sm" href="aide.html" aria-label="Aide et questions"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><path d="M9.6 9.4a2.5 2.5 0 0 1 4.8.9c0 1.7-2.4 2.2-2.4 3.7"/><path d="M12 17.2h.01"/></svg></a>
+      <a class="icon-btn hide-sm" href="compte.html" aria-label="Mon compte"><svg viewBox="0 0 24 24"><circle cx="12" cy="8.5" r="3.5"/><path d="M5 20c.8-3.6 3.6-5.5 7-5.5s6.2 1.9 7 5.5"/></svg></a>
+      <button class="icon-btn cart-btn" type="button" aria-label="Ouvrir le panier" data-open-cart><svg viewBox="0 0 24 24"><path d="M5 8h14l-1.4 11H6.4z"/><path d="M9 8V6.5a3 3 0 0 1 6 0V8"/></svg><span class="cart-count" hidden>0</span></button>
+      <a class="btn btn-ink hdr-cta" href="memoire.html">Offrir une histoire</a>
+      <button class="icon-btn menu-btn" type="button" aria-expanded="false" aria-controls="mnav" aria-label="Menu"><svg viewBox="0 0 24 24"><path d="M4 7h16M4 12h16M4 17h16"/></svg></button>
     </div>
   </div>
-  <div class="wrap"><nav class="mobile-nav" id="mnav" aria-label="Navigation mobile"><a href="comment-ca-marche.html">Comment ça marche</a><a href="index.html#livres">Les livres</a><a href="carte-cadeau.html">Offrir</a><a href="faq.html">FAQ</a><a href="memoire.html">Offrir une histoire</a></nav></div>
+  <div class="wrap"><nav class="mobile-nav" id="mnav" aria-label="Navigation mobile"><a href="comment-ca-marche.html">Comment ça marche</a><a href="application.html">L'app</a><a href="index.html#livres">Les livres</a><a href="carte-cadeau.html">Offrir</a><a href="aide.html">Aide et questions</a><a href="compte.html">Mon compte</a><a href="memoire.html">Offrir une histoire</a><div class="lang " aria-label="Langue"><a href="index.html" aria-current="true" lang="fr">FR</a><a href="es/index.html" lang="es" hreflang="es">ES</a></div></nav></div>
 </header>
+<div class="drawer-veil" data-close-cart hidden></div>
+<aside class="drawer" id="cart" aria-label="Panier" aria-hidden="true" tabindex="-1">
+  <div class="drawer-head"><h2>Votre panier</h2><button class="icon-btn" type="button" data-close-cart aria-label="Fermer le panier"><svg viewBox="0 0 24 24"><path d="M6 6l12 12M18 6L6 18"/></svg></button></div>
+  <div class="drawer-body" id="cart-body"></div>
+  <div class="drawer-foot" id="cart-foot"></div>
+</aside>
 <main id="top">
 <div class="wrap page-hero">
   <p class="crumbs"><a href="index.html">Accueil</a> › <a href="index.html#livres">Les livres</a> › Ma vie</p>
@@ -101,9 +110,9 @@
         <p class="story"><span class="todo">[Le sens du nom LifeTold, à écrire par Diane]</span></p>
         <p style="color:var(--grey);margin:0">Instagram · TikTok · Facebook · Pinterest <span class="todo">[comptes à créer]</span></p>
       </div>
-      <div><h4>Les livres</h4><ul><li><a href="ma-vie.html">Ma vie</a></li><li><a href="mes-ancetres.html">Mes ancêtres</a></li><li><a href="un-temps-fort.html">Un temps fort</a></li><li><a href="lignes-de-vie.html">Lignes de vie</a></li><li><a href="recit.html">Récit : voyage, EVJF, mariage</a> <span class="tag">Bientôt</span></li><li><a href="chronique.html">Chronique : une année en famille</a> <span class="tag">Bientôt</span></li></ul></div><div><h4>Offrir</h4><ul><li><a href="carte-cadeau.html">La carte cadeau</a></li><li style="color:var(--grey)">Pour Noël</li><li style="color:var(--grey)">Fête des grands-mères</li><li style="color:var(--grey)">Fête des mères</li><li style="color:var(--grey)">Fête des pères</li><li style="color:var(--grey)">Un anniversaire</li></ul></div><div><h4>LifeTold</h4><ul><li style="color:var(--grey)">Notre histoire</li><li><a href="comment-ca-marche.html">Comment ça marche</a></li><li><a href="index.html#prix">Tarifs</a></li><li><a href="faq.html">FAQ</a></li><li><a href="app.html">Télécharger l'app</a></li><li style="color:var(--grey)">Devenir ambassadeur</li><li><a href="contact.html">Contact</a></li></ul></div><div><h4>Légal</h4><ul><li><a href="mentions-legales.html">Mentions légales</a></li><li style="color:var(--grey)">CGV</li><li><a href="confidentialite.html">Confidentialité</a></li><li style="color:var(--grey)">Cookies</li><li><a href="confidentialite.html#suppression">Supprimer mes données</a></li></ul></div>
+      <div><h4>Les livres</h4><ul><li><a href="ma-vie.html">Ma vie</a></li><li><a href="mes-ancetres.html">Mes ancêtres</a></li><li><a href="un-temps-fort.html">Un temps fort</a></li><li><a href="lignes-de-vie.html">Lignes de vie</a></li><li><a href="recit.html">Récit : voyage, EVJF, mariage</a> <span class="tag">Bientôt</span></li><li><a href="chronique.html">Chronique : une année en famille</a> <span class="tag">Bientôt</span></li></ul></div><div><h4>Offrir</h4><ul><li><a href="carte-cadeau.html">La carte cadeau</a></li><li style="color:var(--grey)">Pour Noël</li><li style="color:var(--grey)">Fête des grands-mères</li><li style="color:var(--grey)">Fête des mères</li><li style="color:var(--grey)">Fête des pères</li><li style="color:var(--grey)">Un anniversaire</li></ul></div><div><h4>LifeTold</h4><ul><li><a href="application.html">L'app</a></li><li><a href="comment-ca-marche.html">Comment ça marche</a></li><li><a href="index.html#prix">Tarifs</a></li><li><a href="aide.html">Aide et questions</a></li><li><a href="compte.html">Mon compte</a></li><li><a href="app.html">Télécharger l'app</a></li><li style="color:var(--grey)">Notre histoire</li><li style="color:var(--grey)">Devenir ambassadeur</li></ul></div><div><h4>Légal</h4><ul><li><a href="donnees.html">Vos données, protégées</a></li><li><a href="mentions-legales.html">Mentions légales</a></li><li style="color:var(--grey)">CGV</li><li><a href="confidentialite.html">Confidentialité</a></li><li style="color:var(--grey)">Cookies</li><li><a href="donnees.html#supprimer">Supprimer mes données</a></li></ul></div>
     </div>
-    <div class="fbottom"><span>© 2026 LifeTold · Diane Decléty EI · TVA non applicable, art. 293 B du CGI</span><span class="pay"><span>Visa</span><span>Mastercard</span><span>Apple Pay</span><span>Google Pay</span><span>Shop Pay</span></span></div>
+    <div class="fbottom"><span>© 2026 LifeTold · Diane Decléty EI · TVA non applicable, art. 293 B du CGI</span><div class="lang " aria-label="Langue"><a href="index.html" aria-current="true" lang="fr">FR</a><a href="es/index.html" lang="es" hreflang="es">ES</a></div><span class="pay"><span>Visa</span><span>Mastercard</span><span>Apple Pay</span><span>Google Pay</span><span>Shop Pay</span></span></div>
   </div>
 </footer>
 <script src="assets/site.js" defer></script>

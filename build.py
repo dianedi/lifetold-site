@@ -39,7 +39,7 @@ BANNER = [
 FOOTER = [
     ("Les livres", [("Ma vie", "ma-vie.html"), ("Mes ancêtres", "mes-ancetres.html"), ("Un temps fort", "un-temps-fort.html"),
                     ("Lignes de vie", "lignes-de-vie.html"), ("Un anniversaire : jusqu'à 30 voix", "anniversaire.html"),
-                    ("Récit : voyage, EVJF, mariage", "recit.html"),
+                    ("Récit : voyage, EVJF, mariage", "recit.html"), ("Voyage solo : le carnet de bord", "voyage-solo.html"),
                     ("Chronique : une année en famille", "chronique.html")]),
     ("Offrir", [("La carte cadeau", "carte-cadeau.html"), ("Pour Noël", None), ("Fête des grands-mères", None),
                 ("Fête des mères", None), ("Fête des pères", None), ("Un anniversaire", None)]),

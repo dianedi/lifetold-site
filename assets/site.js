@@ -104,8 +104,9 @@
     lignes: { name: 'Lignes de vie', note: 'Le livre-journal à remplir à la main', price: 39 },
     copie: { name: 'Exemplaire supplémentaire', note: 'Du livre Mémoire, imprimé en même temps', price: 39 },
     recit: { name: 'Récit · un moment à plusieurs voix', note: 'Jusqu\'à 10 voix, jusqu\'à 80 pages', price: 59 },
-    chronique: { name: 'Chronique · une année en famille', note: 'Jusqu\'à 6 voix, jusqu\'à 200 pages', price: 149 },
+    chronique: { name: 'Chronique · une année en famille', note: 'Jusqu\'à 6 voix, jusqu\'à 100 pages', price: 149 },
     anniversaire: { name: 'Un anniversaire', note: 'Jusqu\'à 30 voix, une page par voix', price: 49 },
+    voyageSolo: { name: 'Voyage solo · le carnet de bord', note: 'Jour après jour, jusqu\'à 80 pages', price: 49 },
     voix10: { name: '10 voix de plus', note: 'Pour le livre d\'anniversaire', price: 9 }
   };
   var cart = {};
@@ -134,7 +135,7 @@
       html += '<div class="line"><div class="thumb"><img src="assets/favicon-192.png" alt=""></div><div><b>' + p.name + '</b><small>' + p.note + '</small><div class="mini-qty"><button type="button" data-dec="' + k + '" aria-label="Retirer un">−</button><span>' + cart[k] + '</span><button type="button" data-inc="' + k + '" aria-label="Ajouter un">+</button></div></div><span>' + euro(p.price * cart[k]) + '</span></div>';
     });
     // -10 % dès 2 histoires, tous formats confondus (Mémoire, Récit, Chronique, Anniversaire).
-    var STORIES = ['memoire', 'recit', 'chronique', 'anniversaire'];
+    var STORIES = ['memoire', 'recit', 'chronique', 'anniversaire', 'voyageSolo'];
     var nStories = STORIES.reduce(function (a, k) { return a + (cart[k] || 0); }, 0);
     var multi = nStories >= 2 ? Math.round(STORIES.reduce(function (a, k) { return a + PRODUCTS[k].price * (cart[k] || 0); }, 0) * 0.1 * 100) / 100 : 0;
     if (cart.anniversaire && (cart.voix10 || 0) < 3 * cart.anniversaire) html += '<div class="upsell"><span><b>10 voix de plus</b> · 9 €<br><small style="color:var(--grey)">Pour inviter jusqu\'à 40, 50 ou 60 proches</small></span><button type="button" data-inc="voix10">Ajouter</button></div>';

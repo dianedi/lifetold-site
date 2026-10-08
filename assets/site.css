@@ -697,3 +697,39 @@ header.site nav.main ul{gap:30px;font-size:15px;font-weight:600}
 .cookie-btns .btn::after{display:none}
 .has-hero header.site:not(.scrolled) .btn-cta:hover{background:#fff;color:var(--ink);box-shadow:0 10px 30px rgba(255,255,255,.35)}
 @media (prefers-reduced-motion:reduce){.btn,.btn::after{transition:none}.btn:hover{transform:none}}
+
+/* Tarifs (09/10) : les 5 livres sur une ligne, Mémoire au centre, plus grand et au premier plan ; un comparatif ligne à ligne */
+.tiers{display:grid;grid-template-columns:1fr 1fr 1.28fr 1fr 1fr;gap:14px;margin-top:72px;margin-bottom:28px;align-items:stretch}
+.tier{position:relative;border-radius:24px;padding:22px 18px;background:#fff;box-shadow:inset 0 0 0 1px var(--rule);display:flex;flex-direction:column;min-width:0;transition:transform .25s,box-shadow .25s}
+.tier:hover{transform:translateY(-3px);box-shadow:inset 0 0 0 1px var(--rule),0 14px 30px rgba(28,19,32,.08)}
+.tier .kicker{margin-bottom:8px}
+.tier h3{font-size:21px;line-height:1.1;min-height:2.2em}
+.tier .amount{font:400 44px/1 var(--f-serif);margin:14px 0 4px}
+.cmp{list-style:none;margin:14px 0 0;padding:0;font-size:12.5px;line-height:1.35}
+.cmp li{display:grid;gap:2px;padding:9px 0;border-top:1px solid var(--rule)}
+.cmp li span{font:700 10px/1.2 var(--f-sans);letter-spacing:.1em;text-transform:uppercase;color:var(--grey)}
+.cmp li b{font-weight:600}
+.tier-note{font-size:12.5px;line-height:1.45;color:var(--grey);margin:12px 0 16px;flex:1}
+.tier .btn{align-self:stretch;padding:12px 14px;font-size:13px}
+.tier.featured{background:var(--ink);color:#fff;box-shadow:0 30px 60px rgba(28,19,32,.28);padding:34px 26px;z-index:1;margin-block:-26px}
+.tier.featured .kicker{color:#ffb812}
+.tier.featured h3{font-size:28px}
+.tier.featured .amount{font-size:64px}
+.tier.featured .cmp{font-size:13.5px}
+.tier.featured .cmp li{border-color:rgba(255,255,255,.14)}
+.tier.featured .cmp li span{color:rgba(255,255,255,.55)}
+.tier.featured .tier-note{color:rgba(255,255,255,.75)}
+.tier-badge{position:absolute;top:-13px;left:50%;transform:translateX(-50%);white-space:nowrap;background:var(--wave);color:var(--ink);font:800 11px/1 var(--f-sans);letter-spacing:.08em;text-transform:uppercase;padding:8px 14px;border-radius:999px}
+@media (max-width:1060px){
+  .tiers{display:flex;overflow-x:auto;scroll-snap-type:x mandatory;gap:14px;padding:22px 16px 18px;margin-inline:calc(-1 * clamp(16px,5vw,48px));padding-inline:clamp(16px,5vw,48px);scrollbar-width:none;align-items:stretch}
+  .tier{flex:0 0 min(78vw,290px);scroll-snap-align:center}
+  .tier.featured{flex-basis:min(84vw,330px);margin-block:0}
+}
+.common{margin-top:40px;border-radius:28px;background:var(--soft);padding:clamp(24px,4vw,44px);display:grid;grid-template-columns:minmax(0,.8fr) minmax(0,2.2fr);gap:clamp(24px,4vw,56px)}
+.common h3{font-size:clamp(26px,3vw,34px);line-height:1.08}
+.common ul{list-style:none;margin:0;padding:0;display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:22px 28px}
+.common li b{display:block;font-size:15px;margin-bottom:4px}
+.common li span{display:block;font-size:14px;color:var(--grey);line-height:1.5}
+@media (max-width:900px){.common{grid-template-columns:1fr}.common ul{grid-template-columns:repeat(2,minmax(0,1fr))}}
+@media (max-width:560px){.common ul{grid-template-columns:1fr}}
+.tier:not(.featured) .cmp li:first-child b{min-height:2.7em}

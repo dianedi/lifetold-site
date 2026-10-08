@@ -133,6 +133,10 @@
     });
   }
 
+  // Tarifs sur mobile : la ligne défile, on la centre sur Mémoire au chargement.
+  var tiers = document.querySelector('.tiers'), feat = tiers && tiers.querySelector('.featured');
+  if (tiers && feat && tiers.scrollWidth > tiers.clientWidth) tiers.scrollLeft = feat.offsetLeft - (tiers.clientWidth - feat.offsetWidth) / 2;
+
   // ---- Panier latéral (aperçu : rien n'est vendu, le panier reste dans ce navigateur) ----
   var PRODUCTS = {
     mavie: { name: 'Mémoire · Ma vie', note: 'Une voix, 12 mois pour raconter', price: 99 },

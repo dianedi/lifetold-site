@@ -105,6 +105,34 @@
     setInterval(function () { if (window.innerWidth > 1180) return; ann[ai].classList.remove('on'); ai = (ai + 1) % ann.length; ann[ai].classList.add('on'); }, 3500);
   }
 
+  // FAQ : onglets par thème (data-t sur chaque question) et ouverture au survol sur ordinateur.
+  var FAQ_T = { offrir: 'Avant d\'offrir', raconter: 'Raconter', livre: 'Le livre', voix: 'Les voix et les données', fetes: 'Les dates' };
+  document.querySelectorAll('.faq').forEach(function (faq) {
+    var items = [].slice.call(faq.querySelectorAll('details'));
+    var themes = [];
+    items.forEach(function (d) { var t = d.dataset.t; if (t && FAQ_T[t] && themes.indexOf(t) < 0) themes.push(t); });
+    if (themes.length > 1) {
+      var bar = document.createElement('div'); bar.className = 'faq-tabs'; bar.setAttribute('role', 'group'); bar.setAttribute('aria-label', 'Thèmes');
+      ['all'].concat(themes).forEach(function (t) {
+        var b = document.createElement('button'); b.type = 'button'; b.textContent = t === 'all' ? 'Toutes' : FAQ_T[t]; b.setAttribute('aria-pressed', t === 'all');
+        b.addEventListener('click', function () {
+          [].forEach.call(bar.children, function (x) { x.setAttribute('aria-pressed', x === b); });
+          items.forEach(function (d) { d.hidden = t !== 'all' && d.dataset.t !== t; });
+        });
+        bar.appendChild(b);
+      });
+      items[0].parentNode.insertBefore(bar, items[0]);
+    }
+  });
+  if (window.matchMedia('(hover: hover) and (pointer: fine)').matches) {
+    document.querySelectorAll('.faq details, .faq-group details').forEach(function (d) {
+      var t;
+      d.addEventListener('mouseenter', function () { t = setTimeout(function () { d.open = true; }, 160); });
+      d.addEventListener('mouseleave', function () { clearTimeout(t); if (!d.dataset.pinned) d.open = false; });
+      d.querySelector('summary').addEventListener('click', function (e) { e.preventDefault(); d.dataset.pinned = d.dataset.pinned ? '' : '1'; d.open = !!d.dataset.pinned || !d.open; });
+    });
+  }
+
   // ---- Panier latéral (aperçu : rien n'est vendu, le panier reste dans ce navigateur) ----
   var PRODUCTS = {
     memoire: { name: 'Mémoire · le livre d\'une vie', note: 'Livre choisi après l\'achat, dans l\'app', price: 99 },

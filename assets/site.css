@@ -205,16 +205,26 @@ nav.main a:hover,nav.main a[aria-current]{text-decoration:underline;text-underli
 .warn{display:inline-block;margin-top:14px;font-size:13px;color:var(--danger);background:#fff0f6;padding:8px 12px;border-radius:8px}
 @media (max-width:860px){.examples{grid-template-columns:1fr}}
 
-/* FAQ */
-.faq{display:grid;grid-template-columns:minmax(0,.8fr) minmax(0,1.2fr);gap:56px}
+/* FAQ (09/10, option 2) : une colonne, onglets par thème, grandes questions ; s'ouvre au survol sur ordinateur, au toucher sur mobile */
+:root{interpolate-size:allow-keywords}
+.faq{display:block;max-width:900px}
+.faq-head{margin-bottom:24px}
+.faq-tabs{display:flex;gap:8px;flex-wrap:wrap;margin:0 0 18px}
+.faq-tabs button{border:0;border-radius:999px;padding:10px 16px;font:700 13px var(--f-sans);background:var(--soft);color:var(--ink);cursor:pointer;transition:background .2s,color .2s}
+.faq-tabs button:hover{background:#f3e9ef}
+.faq-tabs button[aria-pressed="true"]{background:var(--ink);color:#fff}
 details{border-top:1px solid var(--rule);padding-block:18px}
 details:last-of-type{border-bottom:1px solid var(--rule)}
-summary{cursor:pointer;font-family:var(--f-serif);font-size:23px;line-height:1.2;list-style:none;display:flex;justify-content:space-between;gap:16px}
+details[hidden]{display:none}
+summary{cursor:pointer;font-family:var(--f-serif);font-size:clamp(21px,2.3vw,25px);line-height:1.2;list-style:none;display:flex;justify-content:space-between;gap:16px;transition:color .2s}
 summary::-webkit-details-marker{display:none}
-summary::after{content:"+";font-family:var(--f-sans);color:var(--grey);flex:none}
-details[open] summary::after{content:"–"}
-details p,details ul{margin:10px 0 0;color:var(--grey);font-size:15px;max-width:640px}
-@media (max-width:860px){.faq{grid-template-columns:1fr;gap:24px}}
+summary::after{content:"↓";font:400 16px/1.6 var(--f-sans);color:var(--rose);flex:none;transition:transform .3s}
+details[open] summary::after{transform:rotate(180deg)}
+details:hover summary{color:var(--prune)}
+details::details-content{height:0;overflow:clip;transition:height .35s ease,content-visibility .35s allow-discrete}
+details[open]::details-content{height:auto}
+details p,details ul{margin:10px 0 0;color:var(--grey);font-size:15px;max-width:680px}
+@media (prefers-reduced-motion:reduce){details::details-content{transition:none}}
 .faq-group{margin-top:56px}
 .faq-group:first-of-type{margin-top:0}
 .faq-group h2{font-size:clamp(26px,3.4vw,36px);margin-bottom:16px}

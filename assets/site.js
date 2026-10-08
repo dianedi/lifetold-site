@@ -82,7 +82,7 @@
     var keys = Object.keys(cart).filter(function (k) { return cart[k] > 0 && PRODUCTS[k]; });
     if (!keys.length) {
       body.innerHTML = '<p class="empty">Votre panier est vide.</p>';
-      foot.innerHTML = '<a class="btn btn-ink" href="memoire.html">Offrir une histoire · 99 €</a>';
+      foot.innerHTML = '<a class="btn btn-ink" href="memoire.html">Commencer une histoire · 99 €</a>';
       return;
     }
     var html = '', sub = 0;

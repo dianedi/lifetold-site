@@ -91,11 +91,11 @@ def header(active: str) -> str:
       <a class="icon-btn hide-sm" href="aide.html" aria-label="Aide et questions"{current if active == "aide" else ""}>{ICON_HELP}</a>
       <a class="icon-btn hide-sm" href="compte.html" aria-label="Mon compte">{ICON_USER}</a>
       <button class="icon-btn cart-btn" type="button" aria-label="Ouvrir le panier" data-open-cart>{ICON_BAG}<span class="cart-count" hidden>0</span></button>
-      <a class="btn btn-grad hdr-cta" href="memoire.html">Offrir une histoire</a>
+      <a class="btn btn-grad hdr-cta" href="memoire.html">Commencer une histoire</a>
       <button class="icon-btn menu-btn" type="button" aria-expanded="false" aria-controls="mnav" aria-label="Menu"><svg viewBox="0 0 24 24"><path d="M4 7h16M4 12h16M4 17h16"/></svg></button>
     </div>
   </div>
-  <div class="wrap"><nav class="mobile-nav" id="mnav" aria-label="Navigation mobile">{mobile}<a href="aide.html">Aide et questions</a><a href="compte.html">Mon compte</a><a href="memoire.html">Offrir une histoire</a></nav></div>
+  <div class="wrap"><nav class="mobile-nav" id="mnav" aria-label="Navigation mobile">{mobile}<a href="aide.html">Aide et questions</a><a href="compte.html">Mon compte</a><a href="memoire.html">Commencer une histoire</a></nav></div>
 </header>
 <div class="drawer-veil" data-close-cart hidden></div>
 <aside class="drawer" id="cart" aria-label="Panier" aria-hidden="true" tabindex="-1">

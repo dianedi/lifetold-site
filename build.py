@@ -27,7 +27,7 @@ NAV = [
     ("offrir", "carte-cadeau.html", "Offrir"),
 ]
 
-# Messages du bandeau défilant (validés le 08/10). Alma : à installer sur la boutique avant la mise en ligne.
+# Messages du bandeau (validés le 08/10), fixes : tous visibles sur grand écran, un à la fois en fondu sur mobile. Alma : à installer sur la boutique avant la mise en ligne.
 BANNER = [
     "<b>Black Friday</b> · Lignes de vie offert pour l'achat d'un livre Mémoire",
     "Livraison offerte en Europe",
@@ -38,7 +38,7 @@ BANNER = [
 # Pages existantes : les liens du pied de page vers une page pas encore écrite restent du texte simple.
 FOOTER = [
     ("Les livres", [("Ma vie", "ma-vie.html"), ("Mes ancêtres", "mes-ancetres.html"), ("Un temps fort", "un-temps-fort.html"),
-                    ("Lignes de vie", "lignes-de-vie.html"), ("Un anniversaire : jusqu'à 30 voix", "anniversaire.html"),
+                    ("Un anniversaire : jusqu'à 30 voix", "anniversaire.html"),
                     ("Récit : voyage, EVJF, mariage", "recit.html"), ("Voyage solo : le carnet de bord", "voyage-solo.html"),
                     ("Chronique : une année en famille", "chronique.html")]),
     ("Offrir", [("La carte cadeau", "carte-cadeau.html"), ("Pour Noël", "offrir-noel.html"), ("Fête des grands-mères", "fete-des-grands-meres.html"),
@@ -105,8 +105,8 @@ ICON_BAG = '<svg viewBox="0 0 24 24"><path d="M5 8h14l-1.4 11H6.4z"/><path d="M9
 
 
 def banner() -> str:
-    items = "".join(f"<span>{m}</span><i aria-hidden=\"true\">·</i>" for m in BANNER)
-    return f"""<div class="annonce" role="region" aria-label="Offres en cours"><div class="marquee"><div class="track">{items}</div><div class="track" aria-hidden="true">{items}</div></div></div>"""
+    items = "".join(('<li class="on">' if i == 0 else "<li>") + m + "</li>" for i, m in enumerate(BANNER))
+    return f"""<div class="annonce" role="region" aria-label="Offres en cours"><ul>{items}</ul></div>"""
 
 
 def lang_switch(cls: str = "") -> str:
@@ -117,8 +117,7 @@ def header(active: str) -> str:
     current = ' aria-current="page"'
     links = "".join(f'<li><a href="{href}"{current if key == active else ""}>{label}</a></li>' for key, href, label in NAV)
     mobile = "".join(f'<a href="{href}">{label}</a>' for _, href, label in NAV)
-    return f"""<div class="preview"><div class="wrap"><span><b>Aperçu du site {BRAND}</b> · version de travail, non officielle</span><span>Textes, visuels et prix à valider · aucune vente possible</span></div></div>
-{banner()}
+    return f"""{banner()}
 <header class="site">
   <div class="bar">
     <a class="logo" href="index.html" aria-label="{BRAND}, accueil">{LOGO}</a>

@@ -98,6 +98,13 @@
     } else play();
   }
 
+  // Bandeau : sur mobile, un message à la fois, en fondu (pas de défilement).
+  var ann = document.querySelectorAll('.annonce li');
+  if (ann.length > 1) {
+    var ai = 0;
+    setInterval(function () { if (window.innerWidth > 1180) return; ann[ai].classList.remove('on'); ai = (ai + 1) % ann.length; ann[ai].classList.add('on'); }, 3500);
+  }
+
   // ---- Panier latéral (aperçu : rien n'est vendu, le panier reste dans ce navigateur) ----
   var PRODUCTS = {
     memoire: { name: 'Mémoire · le livre d\'une vie', note: 'Livre choisi après l\'achat, dans l\'app', price: 99 },
@@ -109,8 +116,13 @@
     voyageSolo: { name: 'Voyage solo · le carnet de bord', note: 'Jour après jour, jusqu\'à 80 pages', price: 49 },
     voix10: { name: '10 voix de plus', note: 'Pour le livre d\'anniversaire', price: 9 }
   };
+  // Les histoires (produits à voix) ne s'achètent qu'une fois par panier : pas de quantité.
+  // Seuls les compléments (exemplaire en plus, voix en plus, Lignes de vie) ont un compteur.
+  var STORIES = ['memoire', 'recit', 'chronique', 'anniversaire', 'voyageSolo'];
+  var isStory = function (k) { return STORIES.indexOf(k) >= 0; };
   var cart = {};
   try { cart = JSON.parse(localStorage.getItem('lt-cart') || '{}') || {}; } catch (e) { cart = {}; }
+  STORIES.forEach(function (k) { if (cart[k] > 1) cart[k] = 1; });
   var save = function () { try { localStorage.setItem('lt-cart', JSON.stringify(cart)); } catch (e) {} };
   var drawer = document.getElementById('cart');
   var veil = document.querySelector('.drawer-veil');
@@ -132,15 +144,15 @@
     var html = '', sub = 0;
     keys.forEach(function (k) {
       var p = PRODUCTS[k]; sub += p.price * cart[k];
-      html += '<div class="line"><div class="thumb"><img src="assets/favicon-192.png" alt=""></div><div><b>' + p.name + '</b><small>' + p.note + '</small><div class="mini-qty"><button type="button" data-dec="' + k + '" aria-label="Retirer un">−</button><span>' + cart[k] + '</span><button type="button" data-inc="' + k + '" aria-label="Ajouter un">+</button></div></div><span>' + euro(p.price * cart[k]) + '</span></div>';
+      html += '<div class="line"><div class="thumb"><img src="assets/favicon-192.png" alt=""></div><div><b>' + p.name + '</b><small>' + p.note + '</small>' + (isStory(k) ? '<button type="button" class="remove" data-dec="' + k + '">Retirer</button>' : '<div class="mini-qty"><button type="button" data-dec="' + k + '" aria-label="Retirer un">−</button><span>' + cart[k] + '</span><button type="button" data-inc="' + k + '" aria-label="Ajouter un">+</button></div>') + '</div><span>' + euro(p.price * cart[k]) + '</span></div>';
     });
     // -10 % dès 2 histoires, tous formats confondus (Mémoire, Récit, Chronique, Anniversaire).
-    var STORIES = ['memoire', 'recit', 'chronique', 'anniversaire', 'voyageSolo'];
     var nStories = STORIES.reduce(function (a, k) { return a + (cart[k] || 0); }, 0);
     var multi = nStories >= 2 ? Math.round(STORIES.reduce(function (a, k) { return a + PRODUCTS[k].price * (cart[k] || 0); }, 0) * 0.1 * 100) / 100 : 0;
     if (cart.anniversaire && (cart.voix10 || 0) < 3 * cart.anniversaire) html += '<div class="upsell"><span><b>10 voix de plus</b> · 9 €<br><small style="color:var(--grey)">Pour inviter jusqu\'à 40, 50 ou 60 proches</small></span><button type="button" data-inc="voix10">Ajouter</button></div>';
     if (cart.memoire && !cart.copie) html += '<div class="upsell"><span><b>Exemplaire supplémentaire</b> · 39 €<br><small style="color:var(--grey)">Un deuxième livre, pour toute la famille</small></span><button type="button" data-inc="copie">Ajouter</button></div>';
-    if (!cart.lignes) html += '<div class="upsell"><span><b>Lignes de vie</b> · 39 €<br><small style="color:var(--grey)">Le livre-journal à remplir à la main</small></span><button type="button" data-inc="lignes">Ajouter</button></div>';
+    // Lignes de vie : seulement en complément discret d'un livre Mémoire.
+    if (cart.memoire && !cart.lignes) html += '<p class="addon">En plus, pour écrire à la main : <b>Lignes de vie</b>, le livre-journal · 39 € <button type="button" data-inc="lignes">Ajouter</button></p>';
     if (nStories === 1) html += '<p style="margin:0;font-size:13px;color:var(--prune)">Ajoutez une 2<sup>e</sup> histoire : -10 % sur le tout.</p>';
     body.innerHTML = html;
     foot.innerHTML = '<form class="promo" onsubmit="event.preventDefault();this.querySelector(\'button\').textContent=\'Aperçu\'"><label for="promo" style="position:absolute;left:-9999px">Code promo</label><input id="promo" placeholder="Code promo" autocomplete="off"><button type="submit">Appliquer</button></form>' +
@@ -161,35 +173,21 @@
     drawer.classList.remove('open'); drawer.setAttribute('aria-hidden', 'true'); veil.hidden = true;
     if (lastFocus) lastFocus.focus();
   }
-  window.ltAddToCart = function (k, n) { cart[k] = (cart[k] || 0) + (n || 1); save(); openCart(); };
+  window.ltAddToCart = function (k, n) { cart[k] = isStory(k) ? 1 : (cart[k] || 0) + (n || 1); save(); openCart(); };
   document.addEventListener('click', function (e) {
     var t = e.target.closest('[data-open-cart],[data-close-cart],[data-inc],[data-dec]');
     if (!t) return;
     if (t.hasAttribute('data-open-cart')) openCart();
     else if (t.hasAttribute('data-close-cart')) closeCart();
-    else if (t.dataset.inc) { cart[t.dataset.inc] = (cart[t.dataset.inc] || 0) + 1; save(); renderCart(); }
+    else if (t.dataset.inc) { cart[t.dataset.inc] = isStory(t.dataset.inc) ? 1 : (cart[t.dataset.inc] || 0) + 1; save(); renderCart(); }
     else if (t.dataset.dec) { cart[t.dataset.dec] = Math.max(0, (cart[t.dataset.dec] || 0) - 1); if (!cart[t.dataset.dec]) delete cart[t.dataset.dec]; save(); renderCart(); }
   });
   document.addEventListener('keydown', function (e) { if (e.key === 'Escape' && drawer && drawer.classList.contains('open')) closeCart(); });
   renderCart();
 
-  // Fiche produit : quantité et remise dès 2 histoires.
-  var qty = document.getElementById('qty');
-  if (qty) {
-    var n = 1;
-    var total = document.getElementById('total');
-    var hint = document.getElementById('multi-hint');
-    var render = function () {
-      qty.value = n;
-      total.textContent = euro(n * 99 * (n >= 2 ? 0.9 : 1));
-      hint.textContent = n >= 2 ? '-10 % appliqués : une histoire par conteur.' : 'Dès 2 histoires : -10 % sur le tout.';
-    };
-    document.getElementById('minus').addEventListener('click', function () { n = Math.max(1, n - 1); render(); });
-    document.getElementById('plus').addEventListener('click', function () { n = Math.min(10, n + 1); render(); });
-    var add = document.getElementById('add-to-cart');
-    if (add) add.addEventListener('click', function () { window.ltAddToCart('memoire', n); });
-    render();
-  }
+  // Fiche produit Mémoire : une histoire par panier.
+  var add = document.getElementById('add-to-cart');
+  if (add) add.addEventListener('click', function () { window.ltAddToCart('memoire'); });
 
   // ---- Assistant de la page Aide (aperçu : réponses tirées de la FAQ, rien n'est envoyé) ----
   var chat = document.getElementById('assistant');

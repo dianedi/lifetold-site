@@ -1,4 +1,4 @@
-"""Assemble le site d'aperçu LifeTold : chaque page de src/ reçoit l'en-tête, le pied de page et les métadonnées communs.
+"""Assemble le site d'aperçu Memoreees : chaque page de src/ reçoit l'en-tête, le pied de page et les métadonnées communs.
 
 Une page de src/ commence par un commentaire de métadonnées :
 <!-- title: Titre de la page | description: Phrase pour Google | nav: comment -->
@@ -11,9 +11,10 @@ from pathlib import Path
 
 ROOT = Path(__file__).resolve().parent
 SRC = ROOT / "src"
-BRAND = "LifeTold"
+BRAND = "Memoreees"
 
-LOGO = '<img src="assets/logo.svg" alt="" width="30" height="29">'
+# Logo : deux versions qui alternent toutes les 3 secondes (le mot seul, puis le mot avec l'onde).
+LOGO = '<span class="brand" role="img" aria-label="Memoreees"><img class="va" src="assets/logo-a.png" alt="" width="929" height="105"><img class="vb" src="assets/logo-b.png" alt="" width="1269" height="250"></span>'
 ONDE = '<span class="onde" aria-hidden="true"><i></i><i></i><i></i><i></i><i></i><i></i><i></i></span>'
 
 NAV = [
@@ -67,10 +68,9 @@ def header(active: str) -> str:
 {banner()}
 <header class="site">
   <div class="wrap">
-    <a class="logo" href="index.html" aria-label="{BRAND}, accueil">{LOGO}{BRAND}</a>
+    <a class="logo" href="index.html" aria-label="{BRAND}, accueil">{LOGO}</a>
     <nav class="main" aria-label="Navigation principale"><ul>{links}</ul></nav>
     <div class="hdr-right">
-      {lang_switch("hdr-lang")}
       <a class="icon-btn hide-sm" href="aide.html" aria-label="Aide et questions"{current if active == "aide" else ""}>{ICON_HELP}</a>
       <a class="icon-btn hide-sm" href="compte.html" aria-label="Mon compte">{ICON_USER}</a>
       <button class="icon-btn cart-btn" type="button" aria-label="Ouvrir le panier" data-open-cart>{ICON_BAG}<span class="cart-count" hidden>0</span></button>
@@ -78,7 +78,7 @@ def header(active: str) -> str:
       <button class="icon-btn menu-btn" type="button" aria-expanded="false" aria-controls="mnav" aria-label="Menu"><svg viewBox="0 0 24 24"><path d="M4 7h16M4 12h16M4 17h16"/></svg></button>
     </div>
   </div>
-  <div class="wrap"><nav class="mobile-nav" id="mnav" aria-label="Navigation mobile">{mobile}<a href="aide.html">Aide et questions</a><a href="compte.html">Mon compte</a><a href="memoire.html">Offrir une histoire</a>{lang_switch()}</nav></div>
+  <div class="wrap"><nav class="mobile-nav" id="mnav" aria-label="Navigation mobile">{mobile}<a href="aide.html">Aide et questions</a><a href="compte.html">Mon compte</a><a href="memoire.html">Offrir une histoire</a></nav></div>
 </header>
 <div class="drawer-veil" data-close-cart hidden></div>
 <aside class="drawer" id="cart" aria-label="Panier" aria-hidden="true" tabindex="-1">
@@ -101,13 +101,17 @@ def footer() -> str:
   <div class="wrap">
     <div class="fcols">
       <div>
-        <a class="logo" href="index.html">{LOGO}{BRAND}</a>
-        <p class="story"><span class="todo">[Le sens du nom {BRAND}, à écrire par Diane]</span></p>
-        <p style="color:var(--grey);margin:0">Instagram · TikTok · Facebook · Pinterest <span class="todo">[comptes à créer]</span></p>
+        <a class="logo" href="index.html" aria-label="{BRAND}, accueil">{LOGO}</a>
+        <p class="story">Vos histoires, de vive voix. <span class="todo">[accroche à choisir]</span></p>
+        <div class="social" aria-label="Réseaux sociaux">
+          <a href="#" aria-label="Instagram (compte à créer)"><svg viewBox="0 0 24 24"><rect x="3" y="3" width="18" height="18" rx="5"/><circle cx="12" cy="12" r="4.2"/><circle cx="17.4" cy="6.6" r="1.1" class="dot"/></svg></a>
+          <a href="#" aria-label="TikTok (compte à créer)"><svg viewBox="0 0 24 24"><path d="M14 3v11.5a3.5 3.5 0 1 1-3.5-3.5"/><path d="M14 3c.4 2.6 2.2 4.4 5 4.6"/></svg></a>
+          <a href="#" aria-label="Facebook (compte à créer)"><svg viewBox="0 0 24 24"><path d="M14.5 21v-7.5h2.6l.4-3h-3V8.6c0-.9.3-1.5 1.5-1.5h1.6V4.4c-.3 0-1.2-.1-2.3-.1-2.3 0-3.8 1.4-3.8 3.9v2.3H9v3h2.5V21"/></svg></a>
+        </div>
       </div>
       {"".join(cols)}
     </div>
-    <div class="fbottom"><span>© 2026 {BRAND} · Diane Decléty EI · TVA non applicable, art. 293 B du CGI</span>{lang_switch()}<span class="pay"><span>Visa</span><span>Mastercard</span><span>Apple Pay</span><span>Google Pay</span><span>Shop Pay</span></span></div>
+    <div class="fbottom"><span>© 2026 {BRAND}. Tous droits réservés.</span>{lang_switch()}<span class="pay"><span>Visa</span><span>Mastercard</span><span>Apple Pay</span><span>Google Pay</span><span>Shop Pay</span></span></div>
   </div>
 </footer>"""
 
@@ -123,8 +127,9 @@ def page(meta: dict, body: str) -> str:
 <meta name="robots" content="noindex, nofollow">
 <title>{full_title}</title>
 <meta name="description" content="{meta.get('description', '')}">
-<link rel="icon" href="assets/icon.svg" type="image/svg+xml">
-<link rel="icon" href="assets/favicon.png" type="image/png" sizes="64x64">
+<link rel="icon" href="assets/favicon-32.png" type="image/png" sizes="32x32">
+<link rel="icon" href="assets/favicon-64.png" type="image/png" sizes="64x64">
+<link rel="icon" href="assets/favicon-192.png" type="image/png" sizes="192x192">
 <link rel="apple-touch-icon" href="assets/apple-touch-icon.png">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>

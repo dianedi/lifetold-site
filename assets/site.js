@@ -101,7 +101,8 @@
   // ---- Panier latéral (aperçu : rien n'est vendu, le panier reste dans ce navigateur) ----
   var PRODUCTS = {
     memoire: { name: 'Mémoire · le livre d\'une vie', note: 'Livre choisi après l\'achat, dans l\'app', price: 99 },
-    lignes: { name: 'Lignes de vie', note: 'Le livre-journal à remplir à la main', price: 39 }
+    lignes: { name: 'Lignes de vie', note: 'Le livre-journal à remplir à la main', price: 39 },
+    copie: { name: 'Exemplaire supplémentaire', note: 'Du livre Mémoire, imprimé en même temps', price: 39 }
   };
   var cart = {};
   try { cart = JSON.parse(localStorage.getItem('lt-cart') || '{}') || {}; } catch (e) { cart = {}; }
@@ -129,6 +130,7 @@
       html += '<div class="line"><div class="thumb"><img src="assets/favicon-192.png" alt=""></div><div><b>' + p.name + '</b><small>' + p.note + '</small><div class="mini-qty"><button type="button" data-dec="' + k + '" aria-label="Retirer un">−</button><span>' + cart[k] + '</span><button type="button" data-inc="' + k + '" aria-label="Ajouter un">+</button></div></div><span>' + euro(p.price * cart[k]) + '</span></div>';
     });
     var multi = (cart.memoire || 0) >= 2 ? Math.round(PRODUCTS.memoire.price * cart.memoire * 0.1 * 100) / 100 : 0;
+    if (cart.memoire && !cart.copie) html += '<div class="upsell"><span><b>Exemplaire supplémentaire</b> · 39 €<br><small style="color:var(--grey)">Un deuxième livre, pour toute la famille</small></span><button type="button" data-inc="copie">Ajouter</button></div>';
     if (!cart.lignes) html += '<div class="upsell"><span><b>Lignes de vie</b> · 39 €<br><small style="color:var(--grey)">Le livre-journal à remplir à la main</small></span><button type="button" data-inc="lignes">Ajouter</button></div>';
     if ((cart.memoire || 0) === 1) html += '<p style="margin:0;font-size:13px;color:var(--prune)">Ajoutez une 2<sup>e</sup> histoire : -10 % sur le tout.</p>';
     body.innerHTML = html;

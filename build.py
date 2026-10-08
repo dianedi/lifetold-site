@@ -27,12 +27,12 @@ NAV = [
     ("offrir", "carte-cadeau.html", "Offrir"),
 ]
 
-# Messages du bandeau défilant (offres validées : B8 Black Friday, C4 Noël, C1 livraison, B7 remboursement).
+# Messages du bandeau défilant (validés le 08/10). Alma : à installer sur la boutique avant la mise en ligne.
 BANNER = [
     "<b>Black Friday</b> · Lignes de vie offert pour l'achat d'un livre Mémoire",
-    "<b>Noël</b> · offrez-le jusqu'au 24 décembre au soir, la carte cadeau s'imprime tout de suite",
-    "Livraison offerte partout en Europe",
-    "Satisfait ou remboursé 30 jours, sans justification",
+    "Livraison offerte en Europe",
+    "Satisfait ou remboursé",
+    "Paiement en 3x avec Alma",
 ]
 
 # Pages existantes : les liens du pied de page vers une page pas encore écrite restent du texte simple.

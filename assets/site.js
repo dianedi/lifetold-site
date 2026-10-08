@@ -102,7 +102,11 @@
   var PRODUCTS = {
     memoire: { name: 'Mémoire · le livre d\'une vie', note: 'Livre choisi après l\'achat, dans l\'app', price: 99 },
     lignes: { name: 'Lignes de vie', note: 'Le livre-journal à remplir à la main', price: 39 },
-    copie: { name: 'Exemplaire supplémentaire', note: 'Du livre Mémoire, imprimé en même temps', price: 39 }
+    copie: { name: 'Exemplaire supplémentaire', note: 'Du livre Mémoire, imprimé en même temps', price: 39 },
+    recit: { name: 'Récit · un moment à plusieurs voix', note: 'Jusqu\'à 10 voix, jusqu\'à 80 pages', price: 59 },
+    chronique: { name: 'Chronique · une année en famille', note: 'Jusqu\'à 6 voix, jusqu\'à 200 pages', price: 149 },
+    anniversaire: { name: 'Un anniversaire', note: 'Jusqu\'à 30 voix, une page par voix', price: 49 },
+    voix10: { name: '10 voix de plus', note: 'Pour le livre d\'anniversaire', price: 9 }
   };
   var cart = {};
   try { cart = JSON.parse(localStorage.getItem('lt-cart') || '{}') || {}; } catch (e) { cart = {}; }
@@ -129,10 +133,14 @@
       var p = PRODUCTS[k]; sub += p.price * cart[k];
       html += '<div class="line"><div class="thumb"><img src="assets/favicon-192.png" alt=""></div><div><b>' + p.name + '</b><small>' + p.note + '</small><div class="mini-qty"><button type="button" data-dec="' + k + '" aria-label="Retirer un">−</button><span>' + cart[k] + '</span><button type="button" data-inc="' + k + '" aria-label="Ajouter un">+</button></div></div><span>' + euro(p.price * cart[k]) + '</span></div>';
     });
-    var multi = (cart.memoire || 0) >= 2 ? Math.round(PRODUCTS.memoire.price * cart.memoire * 0.1 * 100) / 100 : 0;
+    // -10 % dès 2 histoires, tous formats confondus (Mémoire, Récit, Chronique, Anniversaire).
+    var STORIES = ['memoire', 'recit', 'chronique', 'anniversaire'];
+    var nStories = STORIES.reduce(function (a, k) { return a + (cart[k] || 0); }, 0);
+    var multi = nStories >= 2 ? Math.round(STORIES.reduce(function (a, k) { return a + PRODUCTS[k].price * (cart[k] || 0); }, 0) * 0.1 * 100) / 100 : 0;
+    if (cart.anniversaire && (cart.voix10 || 0) < 3 * cart.anniversaire) html += '<div class="upsell"><span><b>10 voix de plus</b> · 9 €<br><small style="color:var(--grey)">Pour inviter jusqu\'à 40, 50 ou 60 proches</small></span><button type="button" data-inc="voix10">Ajouter</button></div>';
     if (cart.memoire && !cart.copie) html += '<div class="upsell"><span><b>Exemplaire supplémentaire</b> · 39 €<br><small style="color:var(--grey)">Un deuxième livre, pour toute la famille</small></span><button type="button" data-inc="copie">Ajouter</button></div>';
     if (!cart.lignes) html += '<div class="upsell"><span><b>Lignes de vie</b> · 39 €<br><small style="color:var(--grey)">Le livre-journal à remplir à la main</small></span><button type="button" data-inc="lignes">Ajouter</button></div>';
-    if ((cart.memoire || 0) === 1) html += '<p style="margin:0;font-size:13px;color:var(--prune)">Ajoutez une 2<sup>e</sup> histoire : -10 % sur le tout.</p>';
+    if (nStories === 1) html += '<p style="margin:0;font-size:13px;color:var(--prune)">Ajoutez une 2<sup>e</sup> histoire : -10 % sur le tout.</p>';
     body.innerHTML = html;
     foot.innerHTML = '<form class="promo" onsubmit="event.preventDefault();this.querySelector(\'button\').textContent=\'Aperçu\'"><label for="promo" style="position:absolute;left:-9999px">Code promo</label><input id="promo" placeholder="Code promo" autocomplete="off"><button type="submit">Appliquer</button></form>' +
       '<div class="sum"><span>Sous-total</span><span>' + euro(sub) + '</span></div>' +

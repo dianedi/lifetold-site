@@ -224,13 +224,13 @@
   </div>
 </div>
 <style>
-.cookie-bar{position:fixed;left:16px;right:16px;bottom:16px;z-index:30;max-width:760px;margin:0 auto;background:#fff;color:var(--ink);border:1px solid var(--rule);border-radius:18px;box-shadow:0 18px 50px rgba(28,19,32,.14);padding:18px 20px;display:grid;gap:14px;font-size:14px;line-height:1.5}
+.cookie-bar{position:fixed;left:50%;top:50%;transform:translate(-50%,-50%);z-index:30;width:min(560px,calc(100% - 32px));background:#fff;color:var(--ink);border:1px solid var(--rule);border-radius:18px;box-shadow:0 0 0 100vmax rgba(28,19,32,.45),0 18px 50px rgba(28,19,32,.14);padding:22px 22px;display:grid;gap:14px;font-size:14px;line-height:1.5}
 .cookie-bar[hidden]{display:none}
 .cookie-bar p{margin:0;color:var(--grey)}
 .cookie-bar a:not(.btn){color:var(--ink)}
 .cookie-btns{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:8px}
 .cookie-btns .btn{padding:12px 10px;font-size:13px;white-space:normal;text-align:center}
-@media (max-width:480px){.cookie-bar{left:8px;right:8px;bottom:8px;padding:14px}.cookie-btns{grid-template-columns:1fr 1fr}.cookie-btns a.btn{grid-column:1 / -1;order:3}}
+@media (max-width:480px){.cookie-bar{padding:16px}.cookie-btns{grid-template-columns:1fr 1fr}.cookie-btns a.btn{grid-column:1 / -1;order:3}}
 </style>
 <script>
 (function(){

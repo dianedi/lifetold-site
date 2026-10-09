@@ -106,7 +106,7 @@
   }
 
   // FAQ : onglets par thème (data-t sur chaque question) et ouverture au survol sur ordinateur.
-  var FAQ_T = { offrir: 'Avant d\'offrir', raconter: 'Raconter', livre: 'Le livre', voix: 'Les voix et les données', fetes: 'Les dates' };
+  var FAQ_T = { app: 'L\'app', offrir: 'Avant d\'offrir', raconter: 'Raconter', livre: 'Le livre', voix: 'Les voix et les données', fetes: 'Les dates' };
   document.querySelectorAll('.faq').forEach(function (faq) {
     var items = [].slice.call(faq.querySelectorAll('details'));
     var themes = [];

@@ -3,7 +3,8 @@
   <p class="kicker">L'app {{BRAND}}</p>
   <h1>Une histoire qui s'écrit <em>à deux</em></h1>
   <p class="lead">Celui qui offre trace le cadre, celui qui raconte choisit où s'attarder. Les questions rebondissent sur ce qui vient d'être raconté, comme le ferait un journaliste. Et le livre se construit, carte après carte.</p>
-  <div class="ctas"><a class="btn btn-ink" href="memoire.html">Commencer une histoire · 99 €</a><a class="btn btn-line" href="app.html">Télécharger l'app</a></div>
+  <div class="ctas"><a class="btn btn-ink" href="memoire.html">Commencer une histoire · 99 €</a></div>
+  {{STORES}}
 </div>
 
 <section>
@@ -73,6 +74,7 @@
       <div class="bar"><div class="fill"></div></div>
       <div class="marks"><span>0 %</span><span>100 % · livre complet</span><span>130 % · jusqu'à 200 pages</span></div>
     </div>
+    <div class="dl-band"><p><b>Vous avez reçu un code ?</b> Téléchargez l'app, touchez « J'ai un code », et la première carte vous attend.</p>{{STORES}}</div>
   </div>
 </section>
 
@@ -102,10 +104,35 @@
   </div>
 </section>
 
-<section>
+<section class="final-photo">
+  <img src="assets/photos/anniversaire-gateau.jpg" alt="" loading="lazy">
   <div class="wrap final">
     {{ONDE}}
-    <h2>Prêt à écrire <em>une histoire à deux ?</em></h2>
-    <a class="btn btn-ink" href="memoire.html">Commencer une histoire · 99 €</a>
+    <h2 aria-label="Prêt à écrire ou à offrir une histoire ?">Prêt à <span class="roll" aria-hidden="true"><span><em>écrire</em><em>offrir</em><em>écrire</em></span></span> <em>une histoire ?</em></h2>
+    <div class="ctas" style="justify-content:center"><a class="btn btn-light" href="index.html#prix">Choisir une histoire</a></div>
+    {{STORES}}
   </div>
 </section>
+
+<section>
+  <div class="wrap faq">
+    <div class="faq-head"><p class="kicker">L'app, en pratique</p><h2>Les questions <em>plus techniques</em></h2></div>
+    <details open data-t="app"><summary>Sur quels téléphones fonctionne l'app ?</summary><p>Sur iPhone et sur Android. Pas besoin de créer un mot de passe : le code de la carte cadeau suffit pour commencer.</p></details>
+    <details data-t="app"><summary>Et sans réseau ?</summary><p>On peut enregistrer sans connexion : la réponse part dès que le téléphone en retrouve une. Pratique en voyage, ou dans une maison de campagne mal couverte.</p></details>
+    <details data-t="app"><summary>Peut-on agrandir le texte ?</summary><p>Inutile : les questions sont déjà écrites en grand, pour tout le monde. Il n'y a aucun réglage à chercher.</p></details>
+    <details data-t="app"><summary>L'app envoie-t-elle des notifications ?</summary><p>Quelques-unes seulement : quand un extrait vous attend, et quand le livre est prêt à être relu. Rien d'autre.</p></details>
+    <details data-t="raconter"><summary>Combien de temps peut durer une réponse ?</summary><p>Jusqu'à 20 minutes. Pour un anniversaire, chaque invité a 2 minutes au total, soit une page du livre.</p></details>
+    <details data-t="raconter"><summary>Un enfant peut-il raconter ?</summary><p>Oui, dans une Chronique : depuis le téléphone d'un parent, sous une voix à son prénom. C'est le parent qui donne l'accord pour l'enregistrer.</p></details>
+    <details data-t="voix"><summary>Que se passe-t-il avant la première réponse ?</summary><p>Un écran explique, en quelques lignes, ce que deviennent la voix et les textes, et demande l'accord de celui qui raconte. L'app demande ensuite l'accès au micro.</p></details>
+    <details data-t="voix"><summary>Comment tout effacer ?</summary><p>Dans l'app, ouvrez les réglages et touchez « Supprimer toutes mes données ». Si vous avez offert, écrivez à rgpd@memoreees.com.</p></details>
+  </div>
+</section>
+
+<div class="wrap">
+  <ul class="reassure-band">
+    <li><b>Satisfait ou remboursé</b><span>30 jours, sans justification</span></li>
+    <li><b>Rien n'est imprimé</b><span>sans votre relecture</span></li>
+    <li><b>Personne n'écoute</b><span>les enregistrements</span></li>
+    <li><b>Livraison offerte</b><span>en Europe</span></li>
+  </ul>
+</div>

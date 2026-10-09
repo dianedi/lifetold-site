@@ -284,11 +284,15 @@ details p,details ul{margin:10px 0 0;color:var(--grey);font-size:15px;max-width:
 @media (max-width:860px){.product{grid-template-columns:1fr}.visual{position:relative;top:0}}
 
 /* page /app */
-.stores{display:flex;flex-wrap:wrap;gap:12px;margin-top:28px}
-.store{display:inline-flex;align-items:center;gap:12px;border-radius:14px;padding:12px 20px;background:var(--ink);color:#fff;text-decoration:none;min-width:200px}
-.store small{display:block;font-size:11px;opacity:.75}
-.store b{font-size:18px;font-weight:600}
-.store svg{width:26px;height:26px;fill:#fff}
+/* Badges des stores, au format classique : fond noir, logo, « Télécharger dans » / « Disponible sur » */
+.stores{display:flex;flex-wrap:wrap;gap:12px;margin-top:24px}
+.store{display:inline-flex;align-items:center;gap:10px;border-radius:12px;padding:9px 18px 9px 14px;background:#000;color:#fff;text-decoration:none;min-width:172px;transition:transform .25s,box-shadow .25s}
+.store:hover{transform:translateY(-2px);box-shadow:0 10px 24px rgba(0,0,0,.25)}
+.store small{display:block;font:500 10.5px/1.1 var(--f-sans)}
+.store.google small{text-transform:uppercase;font-size:9.5px;letter-spacing:.06em}
+.store b{display:block;font:600 19px/1.1 var(--f-sans);letter-spacing:-.01em}
+.store svg{width:26px;height:26px;flex:none}
+.store.apple svg{fill:#fff}
 
 /* footer */
 footer.site{border-top:1px solid var(--rule);padding-block:64px 32px;font-size:14px}
@@ -776,3 +780,26 @@ header.site nav.main ul{gap:30px;font-size:15px;font-weight:600}
 .reco small{display:block;font-size:12px;color:var(--grey);line-height:1.35;margin-top:2px}
 .reco button{border:0;border-radius:999px;background:#fff;box-shadow:inset 0 0 0 1px var(--rule);padding:8px 12px;font:700 12px var(--f-sans);cursor:pointer;color:var(--ink);white-space:nowrap}
 .reco button:hover{background:var(--ink);color:#fff}
+
+/* Page de l'app (09/10) */
+.dl-band{margin-top:40px;border-radius:24px;background:var(--soft);padding:22px 26px;display:flex;flex-wrap:wrap;align-items:center;justify-content:space-between;gap:16px 28px}
+.dl-band p{margin:0;max-width:520px;color:var(--grey)}
+.dl-band p b{color:var(--ink)}
+.dl-band .stores{margin-top:0}
+.final-photo{position:relative;isolation:isolate;overflow:hidden;color:#fff;border-top:0}
+.final-photo > img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;z-index:-2}
+.final-photo::after{content:"";position:absolute;inset:0;z-index:-1;background:linear-gradient(180deg,rgba(20,10,16,.55),rgba(20,10,16,.72))}
+.final-photo .stores{justify-content:center;margin-top:4px}
+.final-photo h2{color:#fff}
+/* Le mot qui tourne, comme une roulette : écrire → offrir → écrire, il disparaît vers le haut et réapparaît par le bas */
+.roll{display:inline-block;height:1.08em;overflow:hidden;vertical-align:bottom;line-height:1.08}
+.roll > span{display:flex;flex-direction:column;animation:roll 6s cubic-bezier(.7,0,.2,1) infinite}
+.roll em{display:block;height:1.08em;font-style:italic;background:var(--wave);-webkit-background-clip:text;background-clip:text;color:transparent;padding-right:.06em}
+@keyframes roll{0%,38%{transform:translateY(0)}50%,88%{transform:translateY(-1.08em)}100%{transform:translateY(-2.16em)}}
+@media (prefers-reduced-motion:reduce){.roll > span{animation:none}}
+.reassure-band{list-style:none;margin:clamp(40px,6vw,72px) 0;padding:22px 0;display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:18px;border-top:1px solid var(--rule);border-bottom:1px solid var(--rule)}
+.reassure-band li{display:flex;flex-direction:column;align-items:center;text-align:center;gap:2px;font-size:13.5px;color:var(--grey)}
+.reassure-band li::before{content:"";width:22px;height:22px;margin-bottom:8px;border-radius:50%;background:var(--wave);-webkit-mask:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Cpath d='M5 12.5l4.5 4.5L19 7.5' fill='none' stroke='black' stroke-width='3' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E") center/contain no-repeat;mask:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Cpath d='M5 12.5l4.5 4.5L19 7.5' fill='none' stroke='black' stroke-width='3' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E") center/contain no-repeat}
+.reassure-band b{color:var(--ink);font-size:15px}
+@media (max-width:760px){.reassure-band{grid-template-columns:repeat(2,minmax(0,1fr))}}
+.final-photo{padding-block:clamp(80px,12vw,150px)}.final-photo h2{font-size:clamp(42px,6.4vw,84px);line-height:1.05}

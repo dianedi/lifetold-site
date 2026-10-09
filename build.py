@@ -20,6 +20,11 @@ LOGO = ('<span class="brand" role="img" aria-label="Memoreees">'
         '<img class="va light" src="assets/logo-a-white.png" alt="" width="929" height="105"><img class="vb light" src="assets/logo-b-white.png" alt="" width="1269" height="250"></span>')
 ONDE = '<span class="onde" aria-hidden="true"><i></i><i></i><i></i><i></i><i></i></span>'
 
+STORES = ('<div class="stores">'
+          '<a class="store apple" href="app.html"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M16.4 12.6c0-2.4 2-3.5 2-3.6-1.1-1.6-2.8-1.8-3.4-1.8-1.4-.2-2.8.8-3.5.8s-1.8-.8-3-.8C7 7.3 5.6 8.2 4.8 9.6c-1.6 2.8-.4 6.9 1.2 9.2.8 1.1 1.7 2.3 2.9 2.3 1.2-.1 1.6-.8 3-.8s1.8.8 3 .7c1.3 0 2.1-1.1 2.8-2.2.9-1.3 1.3-2.5 1.3-2.6-.1 0-2.6-1-2.6-3.6zM14.2 5.6c.6-.8 1.1-1.8 1-2.9-.9 0-2 .6-2.7 1.4-.6.7-1.1 1.8-1 2.8 1 .1 2-.5 2.7-1.3z"/></svg><span><small>Télécharger dans</small><b>l\'App Store</b></span></a>'
+          '<a class="store google" href="app.html"><svg viewBox="0 0 24 24" aria-hidden="true"><path fill="#00d7fe" d="M3.6 2.3c-.3.3-.4.7-.4 1.2v17c0 .5.1.9.4 1.2l9.5-9.7z"/><path fill="#ffce00" d="M16.3 15.2 13.1 12l3.2-3.2 3.8 2.2c1.1.6 1.1 1.6 0 2.2z"/><path fill="#ff3a44" d="M16.3 15.2 13.1 12l-9.5 9.7c.4.4 1 .4 1.7 0z"/><path fill="#00f076" d="M16.3 8.8 5.3 2.3c-.7-.4-1.3-.4-1.7 0l9.5 9.7z"/></svg><span><small>Disponible sur</small><b>Google Play</b></span></a>'
+          '</div>')
+
 NAV = [
     ("comment", "comment-ca-marche.html", "Comment ça marche"),
     ("app", "application.html", "L'app"),
@@ -237,7 +242,7 @@ def main():
                     k, v = part.split(":", 1)
                     meta[k.strip()] = v.strip()
             text = text[m.end():]
-        text = text.replace("{{ONDE}}", ONDE).replace("{{BRAND}}", BRAND).replace("{{REASSURE}}", REASSURE)
+        text = text.replace("{{ONDE}}", ONDE).replace("{{STORES}}", STORES).replace("{{BRAND}}", BRAND).replace("{{REASSURE}}", REASSURE)
         (ROOT / src.name).write_text(page(meta, text), encoding="utf-8")
         print("✓", src.name)
 

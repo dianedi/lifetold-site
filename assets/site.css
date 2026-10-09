@@ -792,10 +792,13 @@ header.site nav.main ul{gap:30px;font-size:15px;font-weight:600}
 .final-photo .stores{justify-content:center;margin-top:4px}
 .final-photo h2{color:#fff}
 /* Le mot qui tourne, comme une roulette : écrire → offrir → écrire, il disparaît vers le haut et réapparaît par le bas */
-.roll{display:inline-block;height:1.08em;overflow:hidden;vertical-align:bottom;line-height:1.08}
+.roll{--rh:1.08em;display:inline-block;height:var(--rh);overflow:hidden;vertical-align:bottom;line-height:var(--rh)}
 .roll > span{display:flex;flex-direction:column;animation:roll 6s cubic-bezier(.7,0,.2,1) infinite}
-.roll em{display:block;height:1.08em;font-style:italic;background:var(--wave);-webkit-background-clip:text;background-clip:text;color:transparent;padding-right:.06em}
-@keyframes roll{0%,38%{transform:translateY(0)}50%,88%{transform:translateY(-1.08em)}100%{transform:translateY(-2.16em)}}
+.roll em{display:block;height:var(--rh);font-style:italic;background:var(--wave);-webkit-background-clip:text;background-clip:text;color:transparent;padding-right:.06em}
+@keyframes roll{0%,38%{transform:translateY(0)}50%,88%{transform:translateY(calc(-1 * var(--rh)))}100%{transform:translateY(calc(-2 * var(--rh)))}}
+/* Dans le bouton du header : même roulette, texte normal */
+.roll.r-btn{--rh:1.25em;vertical-align:-.3em}
+.roll.r-btn em{font-style:normal;background:none;-webkit-text-fill-color:currentColor;color:inherit;padding:0}
 @media (prefers-reduced-motion:reduce){.roll > span{animation:none}}
 .reassure-band{list-style:none;margin:clamp(40px,6vw,72px) 0;padding:22px 0;display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:18px;border-top:1px solid var(--rule);border-bottom:1px solid var(--rule)}
 .reassure-band li{display:flex;flex-direction:column;align-items:center;text-align:center;gap:2px;font-size:13.5px;color:var(--grey)}
@@ -854,3 +857,13 @@ header.site nav.main ul{gap:30px;font-size:15px;font-weight:600}
 @media (max-width:900px){.trust-tiles{grid-template-columns:repeat(2,minmax(0,1fr))}}
 @media (max-width:480px){.trust-tiles{grid-template-columns:1fr}}
 .spread.voices.single .page{font-size:calc(var(--pw)*.031)}
+
+/* Haut de la page de l'app, comme la couverture Android : à droite un fond rose coupé en biais, le téléphone qui dépasse en bas */
+.apphero-sec{position:relative;overflow:hidden;padding:0;border-top:0}
+.app-pink{position:absolute;top:0;right:0;bottom:0;width:46%;background:linear-gradient(160deg,#fde7f1,#f8d6e8);clip-path:polygon(18% 0,100% 0,100% 100%,0 100%)}
+.apphero-sec .app-hero{position:relative;padding-bottom:0;align-items:end}
+.apphero-sec .app-hero > div:first-child{padding-bottom:clamp(48px,7vw,96px)}
+.app-shot{justify-self:center;width:min(330px,70vw);aspect-ratio:1/2;margin-bottom:-28%;border-radius:48px;background:#141016;padding:11px;box-shadow:0 40px 80px rgba(90,36,113,.25);transform:rotate(4deg)}
+.app-shot img{width:100%;height:100%;object-fit:cover;border-radius:38px}
+@media (max-width:860px){.apphero-sec .app-hero{grid-template-columns:1fr}.app-pink{width:100%;top:auto;height:300px;clip-path:polygon(0 18%,100% 0,100% 100%,0 100%)}.app-shot{width:200px;margin-bottom:-40%}}
+.hdr-cta{gap:.32em}

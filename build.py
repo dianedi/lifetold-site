@@ -127,6 +127,10 @@ REASSURE = f"""<div class="trust">
       </div>
     </div>"""
 
+# Accueil : les lauréats seuls en bas du hero (les garanties sont sous les boutons, dans la page)
+PROOF = REASSURE.split('<div class="trust-proof">')[1].rsplit('</div>', 2)[0]
+PROOF = f'<div class="trust trust-only"><div class="trust-proof">{PROOF}</div></div>'
+
 ICON_HELP = '<svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><path d="M9.6 9.4a2.5 2.5 0 0 1 4.8.9c0 1.7-2.4 2.2-2.4 3.7"/><path d="M12 17.2h.01"/></svg>'
 ICON_USER = '<svg viewBox="0 0 24 24"><circle cx="12" cy="8.5" r="3.5"/><path d="M5 20c.8-3.6 3.6-5.5 7-5.5s6.2 1.9 7 5.5"/></svg>'
 ICON_BAG = '<svg viewBox="0 0 24 24"><path d="M5 8h14l-1.4 11H6.4z"/><path d="M9 8V6.5a3 3 0 0 1 6 0V8"/></svg>'
@@ -248,7 +252,7 @@ def main():
                     k, v = part.split(":", 1)
                     meta[k.strip()] = v.strip()
             text = text[m.end():]
-        text = text.replace("{{CTA}}", CTA).replace("{{ONDE}}", ONDE).replace("{{STORES}}", STORES).replace("{{BRAND}}", BRAND).replace("{{REASSURE}}", REASSURE)
+        text = text.replace("{{CTA}}", CTA).replace("{{PROOF}}", PROOF).replace("{{ONDE}}", ONDE).replace("{{STORES}}", STORES).replace("{{BRAND}}", BRAND).replace("{{REASSURE}}", REASSURE)
         (ROOT / src.name).write_text(page(meta, text), encoding="utf-8")
         print("✓", src.name)
 

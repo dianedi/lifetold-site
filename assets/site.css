@@ -995,3 +995,9 @@ header.site nav.main ul{gap:30px;font-size:15px;font-weight:600}
 .fprivacy nav a{text-decoration:none}.fprivacy nav a:hover{text-decoration:underline}
 @media (max-width:860px){.fprivacy{grid-template-columns:auto minmax(0,1fr)}.fprivacy nav{grid-column:1/-1}}
 .fprivacy + .fbottom{margin-top:24px}
+
+/* Accueil : les deux garanties juste sous les boutons, sur la ligne blanche ; les lauréats restent en bas du hero */
+.hero-top .hero-assure{margin-top:28px;padding-top:18px;border-top:1px solid rgba(255,255,255,.22);color:rgba(255,255,255,.9);max-width:560px}
+.hero-top .trust-only{border-top:0;padding-top:0;justify-content:flex-start}
+.hero-top .hero-grid:has(.hero-assure){padding-bottom:28px}
+.hero-top .trust-only{padding-bottom:28px}

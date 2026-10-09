@@ -189,9 +189,8 @@ def footer() -> str:
         <a class="logo" href="index.html" aria-label="{BRAND}, accueil">{LOGO}</a>
         <p class="story">Vos histoires, de vive voix.</p>
         <div class="social" aria-label="Réseaux sociaux">
-          <a href="#" aria-label="Instagram (compte à créer)"><svg viewBox="0 0 24 24"><rect x="3" y="3" width="18" height="18" rx="5"/><circle cx="12" cy="12" r="4.2"/><circle cx="17.4" cy="6.6" r="1.1" class="dot"/></svg></a>
-          <a href="#" aria-label="TikTok (compte à créer)"><svg viewBox="0 0 24 24"><path d="M14 3v11.5a3.5 3.5 0 1 1-3.5-3.5"/><path d="M14 3c.4 2.6 2.2 4.4 5 4.6"/></svg></a>
-          <a href="#" aria-label="Facebook (compte à créer)"><svg viewBox="0 0 24 24"><path d="M14.5 21v-7.5h2.6l.4-3h-3V8.6c0-.9.3-1.5 1.5-1.5h1.6V4.4c-.3 0-1.2-.1-2.3-.1-2.3 0-3.8 1.4-3.8 3.9v2.3H9v3h2.5V21"/></svg></a>
+          <a href="https://www.instagram.com/memoreees_fr/" target="_blank" rel="noopener" aria-label="Memoreees sur Instagram"><svg viewBox="0 0 24 24"><rect x="3" y="3" width="18" height="18" rx="5"/><circle cx="12" cy="12" r="4.2"/><circle cx="17.4" cy="6.6" r="1.1" class="dot"/></svg></a>
+          <a href="https://www.facebook.com/profile.php?id=61594907264943" target="_blank" rel="noopener" aria-label="Memoreees sur Facebook"><svg viewBox="0 0 24 24"><path d="M14.5 21v-7.5h2.6l.4-3h-3V8.6c0-.9.3-1.5 1.5-1.5h1.6V4.4c-.3 0-1.2-.1-2.3-.1-2.3 0-3.8 1.4-3.8 3.9v2.3H9v3h2.5V21"/></svg></a>
         </div>
       </div>
       {"".join(cols)}

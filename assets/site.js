@@ -183,6 +183,9 @@
   var isStory = function (k) { var b = baseOf(k), o = k.split(':')[1]; return !!BASE[b] && (!OCC[b] || !!OCC[b][o]); };
   var prod = function (k) {
     if (k === 'lignes') return { name: 'Lignes de vie', note: 'Le livre-journal à remplir à la main · livré en 72 h', price: 39, alone: true };
+    // Voix ajoutées à un livre Vœux déjà en cours (lien de l'app ou des emails) : la ligne Shopify portera la propriété « Projet ».
+    var pj = /^ajoutvoix:([A-Z0-9]{4}-[A-Z0-9]{4})$/.exec(k);
+    if (pj) return { name: '10 voix de plus', note: 'Pour votre livre Vœux en cours · projet ' + pj[1], price: 15, max: 12, kind: 'voix', alone: true, props: { Projet: pj[1] } };
     var m = /^(carte|copie|voix10)_(.+)$/.exec(k);
     if (m) {
       var p = isStory(m[2]) && prod(m[2]);
@@ -241,7 +244,8 @@
     var badge = document.querySelector('.cart-count');
     if (badge) { badge.hidden = count() === 0; badge.textContent = count(); }
     var stories = Object.keys(cart).filter(isStory);
-    if (!stories.length && !cart.lignes) {
+    var topups = Object.keys(cart).filter(function (k) { return k.indexOf('ajoutvoix:') === 0; });
+    if (!stories.length && !cart.lignes && !topups.length) {
       body.innerHTML = '<p class="empty">Votre panier est vide.</p>';
       foot.innerHTML = '<a class="btn btn-ink" href="index.html#prix">Choisir un livre</a>';
       return;
@@ -273,6 +277,11 @@
       sub += 39 * cart.lignes;
       html += '<div class="group"><div class="line">' + thumb('lignes') + '<div><b>Lignes de vie</b><small>' + prod('lignes').note + '</small>' + qty('lignes') + '</div><span class="price">' + euro(39 * cart.lignes) + '</span></div></div>';
     }
+    // Voix pour un livre déjà en cours : seules, avec leur quantité (150 voix au plus en tout, vérifié par le serveur).
+    topups.forEach(function (k) {
+      var p = prod(k); sub += p.price * cart[k];
+      html += '<div class="group"><div class="line">' + thumb(k) + '<div><b>' + p.name + '</b><small>' + p.note + '</small>' + qty(k) + '</div><span class="price">' + euro(p.price * cart[k]) + '</span></div></div>';
+    });
     body.innerHTML = html;
     var inBase = stories.map(baseOf).concat(stories);
     var reco = DEFAULTS.filter(function (k) { return inBase.indexOf(k) < 0 && inBase.indexOf(baseOf(k)) < 0; });
@@ -361,4 +370,20 @@
     hero.style.marginTop = (m - delta) + 'px'; hero.style.paddingTop = (-(m - delta)) + 'px';
   };
   fit(); addEventListener('resize', fit); addEventListener('load', fit);
+})();
+
+// Page Vœux ouverte depuis l'app ou un email (?ajout=voix&projet=CODE) : on propose tout de suite d'ajouter des voix à ce projet.
+(function () {
+  var q = new URLSearchParams(location.search), code = String(q.get('projet') || '').trim().toUpperCase();
+  if (q.get('ajout') !== 'voix' || !/^[A-Z0-9]{4}-[A-Z0-9]{4}$/.test(code) || !window.ltAddToCart) return;
+  var box = document.createElement('section');
+  box.className = 'addvoices';
+  box.innerHTML = '<div class="wrap"><div class="addvoices-card"><div><p class="kicker">Votre livre Vœux · projet ' + code + '</p>' +
+    '<h2>Plus de proches veulent <em>laisser leur voix</em></h2>' +
+    '<p>Ajoutez 10 voix à votre livre, autant de fois que nécessaire, jusqu\'à 150 voix en tout. Les invités en attente reçoivent aussitôt leur lien.</p></div>' +
+    '<div class="addvoices-act"><b>15 €</b><span>les 10 voix</span><button class="btn btn-ink" type="button">Ajouter 10 voix</button></div></div></div>';
+  box.querySelector('button').addEventListener('click', function () { window.ltAddToCart('ajoutvoix:' + code); });
+  var main = document.querySelector('main') || document.body, hero = main.querySelector('.hero-top, .page-hero');
+  if (hero && hero.parentNode) hero.parentNode.insertBefore(box, hero.nextSibling); else main.insertBefore(box, main.firstChild);
+  setTimeout(function () { box.scrollIntoView({ behavior: 'smooth', block: 'center' }); }, 300);
 })();

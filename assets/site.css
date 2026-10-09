@@ -1010,3 +1010,13 @@ header.site nav.main ul{gap:30px;font-size:15px;font-weight:600}
 .hero-top .lead-wide{max-width:900px}
 .hero-top .hero-assure{max-width:900px}
 .hero-top .trust-only{padding-bottom:clamp(36px,5vw,56px)}
+
+/* Page Vœux ouverte depuis l'app : ajouter 10 voix à un projet en cours */
+.addvoices{padding-block:clamp(32px,5vw,56px);border-top:0}
+.addvoices-card{display:grid;grid-template-columns:minmax(0,1fr) auto;gap:24px 40px;align-items:center;padding:clamp(24px,4vw,40px);border-radius:28px;background:var(--soft);box-shadow:inset 0 0 0 2px #ffd9b8}
+.addvoices-card h2{font-size:clamp(28px,3.4vw,40px)}
+.addvoices-card p:not(.kicker){margin:10px 0 0;color:var(--grey);max-width:620px}
+.addvoices-act{display:grid;justify-items:center;gap:4px;text-align:center}
+.addvoices-act b{font:400 48px/1 var(--f-serif)}
+.addvoices-act span{font-size:13px;color:var(--grey);margin-bottom:10px}
+@media (max-width:760px){.addvoices-card{grid-template-columns:1fr}.addvoices-act{justify-items:start;text-align:left}}

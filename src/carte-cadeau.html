@@ -1,42 +1,161 @@
-<!-- title: La carte cadeau · à imprimer tout de suite | description: Après l'achat, imprimez une carte cadeau illustrée avec son code, ou envoyez-la par message. Même le 24 décembre au soir. | nav: offrir -->
-<div class="wrap page-hero gift">
+<!-- title: Offrir · la carte cadeau à imprimer tout de suite | description: Choisissez le livre selon la personne à qui vous l'offrez, imprimez la carte cadeau tout de suite ou envoyez-la par message. Même le 24 décembre au soir. | nav: offrir -->
+<style>
+/* Page Offrir (09/10) : un éventail de cartes, une mosaïque par destinataire, une frise du clic au jour J, des cartes postales */
+.of-hero{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:clamp(32px,6vw,80px);align-items:center;padding-block:clamp(40px,7vw,96px) clamp(48px,7vw,96px)}
+.of-hero h1{font-size:clamp(46px,6.4vw,84px)}
+.of-promises{list-style:none;margin:26px 0 30px;padding:0;display:flex;flex-wrap:wrap;gap:8px}
+.of-promises li{border-radius:999px;padding:9px 14px;background:var(--soft);font:600 13.5px var(--f-sans)}
+.of-fan{position:relative;height:clamp(340px,40vw,470px)}
+.of-card{position:absolute;top:50%;left:50%;width:clamp(190px,21vw,250px);aspect-ratio:105/148;border-radius:10px;padding:20px 18px;display:flex;flex-direction:column;justify-content:space-between;box-shadow:0 0 0 1px rgba(28,19,32,.06),0 30px 60px rgba(28,19,32,.16);transition:transform .5s cubic-bezier(.3,.7,.4,1)}
+.of-card .onde{height:26px}
+.of-card .t{font:400 clamp(24px,2.4vw,30px)/1 var(--f-serif)}
+.of-card .f{font-size:11.5px;color:var(--grey);margin-top:8px}
+.of-card .k{font:700 9.5px/1 var(--f-sans);letter-spacing:.16em;text-transform:uppercase;color:var(--prune)}
+.of-card.c1{background:linear-gradient(160deg,#fff0e4,#ffe0cc);transform:translate(-128%,-44%) rotate(-12deg)}
+.of-card.c2{background:linear-gradient(160deg,#fde7f1,#f7d2ea);transform:translate(28%,-56%) rotate(10deg)}
+.of-card.c3{background:#fff;transform:translate(-50%,-50%) rotate(-1deg);z-index:1}
+.of-fan:hover .c1{transform:translate(-136%,-46%) rotate(-15deg)}
+.of-fan:hover .c2{transform:translate(36%,-58%) rotate(13deg)}
+.of-fan:hover .c3{transform:translate(-50%,-53%) rotate(0)}
+
+.of-bento{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));grid-template-rows:repeat(2,minmax(260px,auto));gap:14px;margin-top:40px}
+.of-tile{position:relative;border-radius:28px;overflow:hidden;color:#fff;isolation:isolate;display:flex;flex-direction:column;justify-content:space-between;padding:clamp(20px,2.4vw,30px);min-height:260px}
+.of-tile img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;z-index:-2;transition:transform .7s ease}
+.of-tile::after{content:"";position:absolute;inset:0;z-index:-1;background:linear-gradient(180deg,rgba(20,10,16,.55) 0%,rgba(20,10,16,.05) 40%,rgba(20,10,16,.8) 100%)}
+.of-tile:hover img{transform:scale(1.05)}
+.of-tile .for{font:400 clamp(28px,2.8vw,40px)/1 var(--f-serif);margin:0;max-width:16ch}
+.of-tile .for em{font-style:italic}
+.of-tile .bottom{display:grid;gap:10px}
+.of-tile .name{font:800 11px/1 var(--f-sans);letter-spacing:.16em;text-transform:uppercase;color:#ffcf6b}
+.of-tile .desc{margin:0;font-size:14px;line-height:1.45;color:rgba(255,255,255,.88);max-width:42ch}
+.of-tile .row{display:flex;align-items:center;justify-content:space-between;gap:12px;flex-wrap:wrap}
+.of-tile .price{font:400 34px/1 var(--f-serif)}
+.of-tile .btn{padding:12px 18px;font-size:13.5px}
+.of-tile.big{grid-column:span 2;grid-row:span 2}
+.of-tile.big .for{font-size:clamp(40px,4.6vw,64px)}
+.of-tile.big .price{font-size:52px}
+.of-tile.big .desc{font-size:15.5px}
+.of-tile.wide{grid-column:span 2}
+
+.of-line{position:relative;display:grid;grid-template-columns:repeat(5,minmax(0,1fr));gap:20px;margin-top:44px}
+.of-line::before{content:"";position:absolute;left:0;right:0;top:9px;height:2px;background:linear-gradient(90deg,#f4432f,#fa8216,#ffb812 60%,var(--rule) 60.1%)}
+.of-line li{list-style:none;position:relative;padding-top:34px}
+.of-line li::before{content:"";position:absolute;top:0;left:0;width:20px;height:20px;border-radius:50%;background:#fff;box-shadow:inset 0 0 0 5px #fa8216}
+.of-line li.later::before{box-shadow:inset 0 0 0 2px var(--rule)}
+.of-line time{display:block;font:700 11px/1.3 var(--f-sans);letter-spacing:.14em;text-transform:uppercase;color:var(--prune);margin-bottom:8px}
+.of-line b{display:block;font:400 22px/1.15 var(--f-serif);margin-bottom:6px}
+.of-line p{margin:0;font-size:14px;color:var(--grey)}
+.of-line-wrap{margin:0;padding:0}
+
+.of-posts{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:22px;margin-top:40px;align-items:start}
+.of-post{position:relative;margin:0;background:#fffdf9;border-radius:6px;padding:26px 24px 20px;box-shadow:0 0 0 1px #efe6e0,0 18px 36px rgba(28,19,32,.07)}
+.of-post:nth-child(1){transform:rotate(-1.2deg)}.of-post:nth-child(2){transform:rotate(.8deg);margin-top:26px}.of-post:nth-child(3){transform:rotate(-.5deg)}
+.of-post blockquote{margin:0 0 18px;font:italic 400 22px/1.3 var(--f-serif);padding-right:84px;min-height:96px}
+.of-post .of-stamp{position:absolute;top:22px;right:22px;width:62px;height:74px;overflow:hidden;display:grid;place-items:center;border-radius:4px;background:linear-gradient(160deg,#fde7f1,#ffe0cc);outline:2px dashed #fff;outline-offset:-6px;display:grid;place-items:center}
+.of-post .of-stamp .onde{position:static;height:22px;width:auto;transform:none}
+.of-post figcaption{font-size:13px;color:var(--grey);border-top:1px solid #efe6e0;padding-top:12px}
+.of-post figcaption b{color:var(--ink)}
+
+@media (max-width:1000px){.of-bento{grid-template-columns:repeat(2,minmax(0,1fr));grid-template-rows:none}.of-tile.big{grid-row:auto;min-height:420px}.of-line{grid-template-columns:1fr;gap:0}.of-line::before{left:9px;right:auto;top:0;bottom:0;width:2px;height:auto;background:linear-gradient(180deg,#f4432f,#ffb812 60%,var(--rule) 60.1%)}.of-line li{padding:0 0 26px 40px}.of-posts{grid-template-columns:1fr}.of-post:nth-child(2){margin-top:0}}
+@media (max-width:860px){.of-hero{grid-template-columns:1fr}.of-fan{height:340px;overflow:hidden;margin-inline:calc(-1 * clamp(16px,5vw,48px))}.of-card{width:min(42vw,200px)}}
+@media (max-width:600px){.of-bento{grid-template-columns:1fr}.of-tile.big,.of-tile.wide{grid-column:auto}}
+@media (prefers-reduced-motion:reduce){.of-card,.of-tile img{transition:none}}
+</style>
+
+<div class="wrap of-hero">
   <div>
     <p class="kicker">Offrir</p>
-    <h1>Même le 24 décembre <em>au soir</em></h1>
-    <p class="lead">Juste après l'achat, vous préparez l'histoire dans l'app, puis vous obtenez la carte cadeau et son code. Vous l'imprimez chez vous, ou vous l'envoyez par message si vous êtes loin.</p>
-    <div class="ctas"><a class="btn btn-ink" href="memoire.html">Commencer une histoire · 99 €</a></div>
+    <h1>Un cadeau qui se raconte, <em>même le 24 au soir</em></h1>
+    <p class="lead">Juste après l'achat, vous obtenez la carte cadeau et son code. Vous l'imprimez chez vous, ou vous l'envoyez par message si vous êtes loin. L'histoire, elle, commence le jour où il ouvre la carte.</p>
+    <ul class="of-promises">
+      <li>Imprimée tout de suite</li>
+      <li>Ou envoyée par message</li>
+      <li>Votre mot, écrit à la main</li>
+    </ul>
+    <div class="ctas"><a class="btn btn-ink" href="#choisir">Choisir le cadeau</a><a class="btn btn-line" href="#jour-j">Comment ça se passe</a></div>
   </div>
-  <div class="card-mock" aria-label="Aperçu de la carte cadeau">
-    <div class="card-front">{{ONDE}}<div><div class="t">L'histoire de Mamie</div><div class="f" style="margin-top:8px">De la part de Sophie</div></div></div>
-    <div class="card-in"><small>Votre mot, à la main</small><div class="hand"></div><small>Code : K7Q2-M9TA</small></div>
+  <div class="of-fan" aria-hidden="true">
+    <div class="of-card c1"><span class="k">Un anniversaire</span><div><div class="t">Les 60 ans de Sophie</div><div class="f">De la part de toute la famille</div></div></div>
+    <div class="of-card c2"><span class="k">Récit</span><div><div class="t">Notre mariage</div><div class="f">Pour Léa et Hugo</div></div></div>
+    <div class="of-card c3">{{ONDE}}<div><div class="t">L'histoire de Mamie</div><div class="f">De la part de Sophie</div></div></div>
   </div>
 </div>
 
-<section>
-  <div class="wrap">
-    <p class="kicker">Comment ça se passe</p>
-    <h2>Une feuille A4, <em>pliée en quatre</em></h2>
-    <div class="steps">
-      <div><span class="n">1 · VOUS CHOISISSEZ</span><h3>L'illustration et votre mot</h3><p>Plusieurs illustrations au choix. Votre mot s'affichera aussi dans l'app, à la toute première ouverture.</p></div>
-      <div><span class="n">2 · VOUS IMPRIMEZ</span><h3>Chez vous, tout de suite</h3><p>Un seul côté, sur du papier épais (160 à 200 g) si possible. Pliez en quatre : la carte fait la taille d'une carte postale.</p></div>
-      <div><span class="n">3 · VOUS ÉCRIVEZ</span><h3>À la main, à l'intérieur</h3><p>Une page reste blanche pour votre mot. Le code et la marche à suivre sont imprimés en face.</p></div>
-    </div>
-    <p class="note"><span class="todo">[Illustrations définitives en aquarelle à venir.]</span></p>
-  </div>
-</section>
-
-<section>
+<section id="choisir">
   <div class="wrap">
     <p class="kicker">Choisir le cadeau</p>
-    <h2>À qui l'offrez-vous ?</h2>
-    <div class="gifts">
-      <a class="gift-pick" href="anniversaire.html"><span class="for">Pour un anniversaire</span><b>Un anniversaire</b><span class="what">Les vœux de 30 proches, de vive voix.</span><span class="price">49 €</span></a>
-      <a class="gift-pick" href="voyage-solo.html"><span class="for">Pour un voyageur</span><b>Voyage solo</b><span class="what">Son carnet de bord, jour après jour.</span><span class="price">49 €</span></a>
-      <a class="gift-pick main" href="memoire.html"><span class="for">Pour un parent, un grand-parent</span><b>Mémoire</b><span class="what">Toute une vie racontée de sa voix, en 12 mois.</span><span class="price">99 €</span></a>
-      <a class="gift-pick" href="recit.html"><span class="for">Pour des mariés, un EVJF</span><b>Récit</b><span class="what">Le moment raconté par tous, jusqu'à 10 voix.</span><span class="price">59 €</span></a>
-      <a class="gift-pick" href="chronique.html"><span class="for">Pour toute la famille</span><b>Chronique</b><span class="what">Une année racontée par chacun.</span><span class="price">149 €</span></a>
+    <h2>À qui <em>l'offrez-vous ?</em></h2>
+    <div class="of-bento">
+      <article class="of-tile big">
+        <img src="assets/photos/hero-1.jpg" alt="" loading="lazy">
+        <p class="for">Pour un parent, <em>un grand-parent</em></p>
+        <div class="bottom">
+          <span class="name">Mémoire · Ma vie, Mes ancêtres ou Un temps fort</span>
+          <p class="desc">Une question à la fois, pendant un an, de sa voix. Puis le livre de toute une vie, avec ses QR codes pour l'entendre encore.</p>
+          <div class="row"><span class="price">99 €</span><a class="btn btn-light" href="memoire.html">Offrir un livre Mémoire</a></div>
+        </div>
+      </article>
+      <article class="of-tile">
+        <img src="assets/photos/anniversaire-gateau.jpg" alt="" loading="lazy">
+        <p class="for">Pour ses 30, 60 <em>ou 80 ans</em></p>
+        <div class="bottom">
+          <span class="name">Un anniversaire</span>
+          <div class="row"><span class="price">49 €</span><button class="btn btn-light" type="button" onclick="ltAddToCart('anniversaire')">Offrir</button></div>
+        </div>
+      </article>
+      <article class="of-tile">
+        <img src="assets/photos/hero-3.jpg" alt="" loading="lazy">
+        <p class="for">Pour celui <em>qui part seul</em></p>
+        <div class="bottom">
+          <span class="name">Voyage solo</span>
+          <div class="row"><span class="price">49 €</span><button class="btn btn-light" type="button" onclick="ltAddToCart('voyageSolo')">Offrir</button></div>
+        </div>
+      </article>
+      <article class="of-tile">
+        <img src="assets/photos/mariage-couple.jpg" alt="" loading="lazy">
+        <p class="for">Pour des mariés, <em>un EVJF</em></p>
+        <div class="bottom">
+          <span class="name">Récit</span>
+          <div class="row"><span class="price">59 €</span><button class="btn btn-light" type="button" onclick="ltAddToCart('recit')">Offrir</button></div>
+        </div>
+      </article>
+      <article class="of-tile">
+        <img src="assets/photos/famille-canape.jpg" alt="" loading="lazy">
+        <p class="for">Pour toute <em>la famille</em></p>
+        <div class="bottom">
+          <span class="name">Chronique</span>
+          <div class="row"><span class="price">149 €</span><button class="btn btn-light" type="button" onclick="ltAddToCart('chronique')">Offrir</button></div>
+        </div>
+      </article>
     </div>
-    <p class="note" style="margin-top:18px"><a href="index.html#prix">Comparer les formats en détail</a> · la carte cadeau est comprise dans chaque livre.</p>
+    <p class="note" style="margin-top:18px">La carte cadeau est comprise dans chaque livre. <a href="index.html#prix">Comparer les formats en détail</a></p>
   </div>
 </section>
 
+<section id="jour-j">
+  <div class="wrap">
+    <p class="kicker">Du clic au jour J</p>
+    <h2>Commandé à 21 h, <em>offert à minuit</em></h2>
+    <ol class="of-line of-line-wrap">
+      <li><time>21 h 12</time><b>Vous choisissez</b><p>Le livre, l'illustration de la carte, et le mot qui s'affichera dans l'app à sa toute première ouverture.</p></li>
+      <li><time>21 h 15</time><b>Vous imprimez</b><p>Une feuille A4, un seul côté, pliée en quatre : la taille d'une carte postale. Ou vous l'envoyez par message.</p></li>
+      <li><time>Le soir même</time><b>Vous écrivez, vous offrez</b><p>Une page reste blanche pour votre mot à la main. Le code et la marche à suivre sont imprimés en face.</p></li>
+      <li class="later"><time>Les semaines suivantes</time><b>Il raconte, vous suivez</b><p>Il répond à son rythme. Vous voyez le livre avancer et recevez quelques extraits.</p></li>
+      <li class="later"><time>Après la relecture</time><b>Le livre arrive</b><p>Environ 3 semaines après la validation, livré chez vous, offert en Europe.</p></li>
+    </ol>
+    <p class="note" style="margin-top:8px"><span class="todo">[Illustrations définitives des cartes, en aquarelle, à venir.]</span></p>
+  </div>
+</section>
+
+<section>
+  <div class="wrap">
+    <p class="kicker">Ils l'ont offert</p>
+    <h2>Le moment où <em>on ouvre la carte</em></h2>
+    <span class="warn">Exemples rédigés par nous : jamais publiés. La section reste masquée sur le site officiel jusqu'aux vrais témoignages.</span>
+    <div class="of-posts">
+      <figure class="of-post"><blockquote>« Acheté le 24 à 22 h, imprimé dans la foulée. À minuit, ma mère lisait la carte à voix haute. »</blockquote><span class="of-stamp">{{ONDE}}</span><figcaption><b>Exemple</b> · Mémoire, pour sa mère</figcaption></figure>
+      <figure class="of-post"><blockquote>« J'habite à Montréal. Je lui ai envoyé la carte par message le matin de son anniversaire. Il m'a rappelé en pleurant. »</blockquote><span class="of-stamp">{{ONDE}}</span><figcaption><b>Exemple</b> · Ma vie, pour son père, à distance</figcaption></figure>
+      <figure class="of-post"><blockquote>« La carte a fait le tour de la table avant le gâteau. Chacun voulait savoir qui avait dit quoi. »</blockquote><span class="of-stamp">{{ONDE}}</span><figcaption><b>Exemple</b> · Un anniversaire, pour ses 40 ans</figcaption></figure>
+    </div>
+  </div>
+</section>

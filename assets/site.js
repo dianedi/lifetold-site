@@ -179,8 +179,17 @@
   var count = function () { return Object.keys(cart).reduce(function (a, k) { return a + cart[k]; }, 0); };
   var lastFocus = null;
   var parentOf = function (k) { return k === 'lignes' ? firstMemoire() : PRODUCTS[k] && PRODUCTS[k].parent; };
+  // Une image propre à chaque complément : la carte, le livre en deux exemplaires, la bulle « +10 », le carnet à lignes.
+  var ACC = {
+    card: '<svg viewBox="0 0 40 48"><rect x="6" y="4" width="28" height="40" rx="3" fill="url(#gcg)"/><defs><linearGradient id="gcg" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#fde7f1"/><stop offset="1" stop-color="#ffe0cc"/></linearGradient></defs><g fill="#fa8216"><rect x="13" y="22" width="2.4" height="5" rx="1.2"/><rect x="16.6" y="19" width="2.4" height="11" rx="1.2"/><rect x="20.2" y="17.5" width="2.4" height="14" rx="1.2"/><rect x="23.8" y="21" width="2.4" height="7" rx="1.2"/><rect x="27.4" y="19.5" width="2.4" height="10" rx="1.2"/></g><path d="M6 36h28" stroke="#fff" stroke-dasharray="2 2"/></svg>',
+    copy: '<svg viewBox="0 0 40 48"><rect x="12" y="8" width="24" height="24" rx="2" fill="#e8ddd2"/><rect x="5" y="15" width="24" height="24" rx="2" fill="#f4ede6" stroke="#d6cabe"/><rect x="5" y="15" width="3" height="24" fill="#d6cabe"/><text x="17" y="31" font-size="9" font-family="Manrope,sans-serif" font-weight="800" fill="#5a2471" text-anchor="middle">×2</text></svg>',
+    voix: '<svg viewBox="0 0 40 48"><path d="M6 12h28a3 3 0 0 1 3 3v15a3 3 0 0 1-3 3H17l-7 6v-6H6a3 3 0 0 1-3-3V15a3 3 0 0 1 3-3z" fill="#fde7f1"/><text x="20" y="27" font-size="11" font-family="Manrope,sans-serif" font-weight="800" fill="#5a2471" text-anchor="middle">+10</text></svg>',
+    lignes: '<svg viewBox="0 0 40 48"><rect x="8" y="5" width="26" height="38" rx="2" fill="#fff" stroke="#d6cabe"/><path d="M13 14h16M13 19h16M13 24h16M13 29h16M13 34h11" stroke="#e2d6dd" stroke-width="1.4"/><path d="M8 5v38" stroke="#ff2e7e" stroke-width="2"/></svg>'
+  };
+  var accKind = function (k) { return PRODUCTS[k].card ? 'card' : k.indexOf('copie_') === 0 ? 'copy' : k === 'voix10' ? 'voix' : k === 'lignes' ? 'lignes' : ''; };
   var thumb = function (k, small) {
-    if (PRODUCTS[k].card) return '<div class="thumb small card-thumb"><span class="onde"><i></i><i></i><i></i><i></i><i></i></span></div>';
+    var kind = accKind(k);
+    if (kind) return '<div class="thumb small acc-ico">' + ACC[kind] + '</div>';
     var img = PRODUCTS[k].img || (PRODUCTS[parentOf(k)] || {}).img;
     return '<div class="thumb' + (small ? ' small' : '') + '">' + (img ? '<img class="bg" src="' + PH + img + '" alt="">' : '') + '<img class="logo" src="assets/favicon-192.png" alt=""></div>';
   };
@@ -210,12 +219,16 @@
         var ctl = q.max === 1 ? '<button type="button" class="remove" data-dec="' + c + '">Retirer</button>' : qty(c);
         html += '<div class="line sub">' + thumb(c, true) + '<div><b>' + q.name + '</b><small>' + q.note + '</small>' + ctl + '</div><span class="price' + (q.price ? '' : ' free') + '">' + (q.price ? euro(q.price * cart[c]) : 'Offerte') + '</span></div>';
       });
+      // Les options pas encore choisies : une ligne claire, avec un vrai bouton « Ajouter ».
+      var opt = function (c, title, sub, price) {
+        return '<div class="opt">' + thumb(c, true) + '<div><b>' + title + '</b><small>' + sub + '</small></div><button type="button" class="opt-add" data-inc="' + c + '"><span>' + price + '</span>Ajouter</button></div>';
+      };
       var offers = [];
-      if (!cart['carte_' + k]) offers.push('<button type="button" data-inc="carte_' + k + '">+ La carte cadeau à offrir le jour même · <span class="free">offerte</span></button>');
-      if (!cart['copie_' + k]) offers.push('<button type="button" data-inc="copie_' + k + '">+ Un exemplaire en plus · ' + euro(p.copy) + '</button>');
-      if (k === 'anniversaire' && (cart.voix10 || 0) < 3) offers.push('<button type="button" data-inc="voix10">+ 10 voix de plus · 9 €</button>');
-      if (k === firstMemoire() && !cart.lignes) offers.push('<button type="button" data-inc="lignes">+ Lignes de vie, le livre-journal à remplir à la main · 39 €</button>');
-      if (offers.length) html += '<div class="offers-sub">' + offers.join('') + '</div>';
+      if (!cart['carte_' + k]) offers.push(opt('carte_' + k, 'La carte cadeau', 'À imprimer ou à envoyer le jour même. Ajoutez-la pour la recevoir.', 'Offerte'));
+      if (!cart['copie_' + k]) offers.push(opt('copie_' + k, 'Un exemplaire en plus', 'Le même livre, pour un autre membre de la famille.', euro(p.copy)));
+      if (k === 'anniversaire' && (cart.voix10 || 0) < 3) offers.push(opt('voix10', '10 voix de plus', 'Pour inviter jusqu\'à 40, 50 ou 60 proches.', '9 €'));
+      if (k === firstMemoire() && !cart.lignes) offers.push(opt('lignes', 'Lignes de vie', 'Le livre-journal à remplir à la main.', '39 €'));
+      if (offers.length) html += '<div class="opts"><p class="opts-k">À ajouter si vous le souhaitez</p>' + offers.join('') + '</div>';
       html += '</div>';
     });
     body.innerHTML = html;

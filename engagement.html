@@ -4,8 +4,8 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <meta name="robots" content="noindex, nofollow">
-<title>Notre engagement · 5 € par livre Mémoire pour les familles touchées par Alzheimer · Memoreees</title>
-<meta name="description" content="Pour chaque livre Mémoire, Memoreees reverse 5 € à une association qui accompagne les familles et les aidants face à la maladie d'Alzheimer.">
+<title>Notre engagement · 5 € par livre Mémoire pour France Alzheimer · Memoreees</title>
+<meta name="description" content="Pour chaque livre Mémoire, Memoreees reverse 5 € à France Alzheimer, l'association qui accompagne depuis 1985 les malades et leurs familles.">
 <link rel="icon" href="assets/favicon-32.png" type="image/png" sizes="32x32">
 <link rel="icon" href="assets/favicon-64.png" type="image/png" sizes="64x64">
 <link rel="icon" href="assets/favicon-192.png" type="image/png" sizes="192x192">
@@ -38,60 +38,89 @@
   <div class="drawer-foot" id="cart-foot"></div>
 </aside>
 <main id="top">
-<div class="wrap page-hero narrow">
-  <p class="crumbs"><a href="index.html">Accueil</a> › Notre engagement</p>
-  <p class="kicker">Notre engagement</p>
-  <h1>5 € par livre Mémoire, <em>pour les familles</em></h1>
-  <p class="lead">Nos livres gardent les souvenirs d'une vie. La maladie d'Alzheimer, elle, les efface. Pour chaque livre Mémoire, nous reversons 5 € à une association qui accompagne les malades, leurs familles et ceux qui les aident au quotidien.</p>
+<style>
+.eg-hero{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1.1fr);gap:clamp(28px,6vw,96px);align-items:center;padding-block:clamp(40px,7vw,96px) clamp(32px,5vw,64px)}
+.eg-big{font:400 clamp(150px,22vw,300px)/.8 var(--f-serif);letter-spacing:-.04em;background:var(--wave);-webkit-background-clip:text;background-clip:text;color:transparent;margin:0}
+.eg-big small{display:block;font:700 13px/1.3 var(--f-sans);letter-spacing:.2em;text-transform:uppercase;color:var(--grey);-webkit-text-fill-color:var(--grey);margin-top:22px}
+.eg-hero h1{font-size:clamp(38px,5vw,60px)}
+.eg-ticket{max-width:430px;margin-top:28px;background:var(--soft);border-radius:20px;padding:22px 24px;font-size:14.5px;position:relative}
+.eg-ticket::before,.eg-ticket::after{content:"";position:absolute;top:50%;width:22px;height:22px;border-radius:50%;background:#fff;transform:translateY(-50%)}
+.eg-ticket::before{left:-11px}.eg-ticket::after{right:-11px}
+.eg-ticket div{display:flex;justify-content:space-between;gap:16px;padding:7px 0}
+.eg-ticket div + div{border-top:1px dashed #e2d6dd}
+.eg-ticket b{font-weight:700}
+.eg-ticket .eg-don b{background:var(--wave);-webkit-background-clip:text;background-clip:text;color:transparent}
+.eg-asso{border-radius:32px;background:linear-gradient(160deg,#fff 0%,#faf6f8 45%,#fde7f1 100%);box-shadow:0 0 0 1px var(--rule);padding:clamp(28px,5vw,64px);display:grid;grid-template-columns:minmax(0,.9fr) minmax(0,1.4fr);gap:clamp(28px,5vw,72px)}
+.eg-logo{aspect-ratio:3/2;border-radius:22px;background:#fff;box-shadow:0 0 0 1px var(--rule),0 18px 40px rgba(90,36,113,.08);display:grid;place-items:center;text-align:center;padding:20px;color:var(--grey);font-size:13px}
+.eg-since{display:flex;align-items:baseline;gap:14px;margin-top:22px}
+.eg-since b{font:400 64px/1 var(--f-serif)}
+.eg-since span{font-size:14px;color:var(--grey);line-height:1.4}
+.eg-missions{list-style:none;margin:24px 0 0;padding:0;display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:18px 28px}
+.eg-missions li{border-top:2px solid var(--ink);padding-top:12px}
+.eg-missions b{display:block;font:400 22px/1.15 var(--f-serif);margin-bottom:4px}
+.eg-missions span{font-size:14px;color:var(--grey)}
+.eg-notes{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:clamp(20px,4vw,48px)}
+.eg-notes h3{font-size:24px;margin-bottom:8px}
+.eg-notes p{margin:0;color:var(--grey);font-size:15px}
+.eg-soon{display:flex;flex-wrap:wrap;align-items:center;justify-content:space-between;gap:16px 32px;border-radius:999px;padding:18px 28px;box-shadow:inset 0 0 0 1px var(--rule)}
+.eg-soon p{margin:0;font-size:15px}
+.eg-soon .tag{font:800 11px/1 var(--f-sans);letter-spacing:.12em;text-transform:uppercase;color:var(--prune);background:var(--soft);border-radius:999px;padding:8px 12px;margin-right:10px}
+@media (max-width:860px){.eg-hero,.eg-asso{grid-template-columns:1fr}.eg-notes{grid-template-columns:1fr}.eg-soon{border-radius:24px}}
+@media (max-width:480px){.eg-missions{grid-template-columns:1fr}}
+</style>
+
+<div class="wrap">
+  <p class="crumbs" style="margin-top:28px"><a href="index.html">Accueil</a> › Notre engagement</p>
+  <div class="eg-hero">
+    <p class="eg-big">5&nbsp;€<small>par livre Mémoire</small></p>
+    <div>
+      <p class="kicker">Notre engagement</p>
+      <h1>Garder les souvenirs, <em>et aider ceux qui les voient s'effacer</em></h1>
+      <p class="lead">Pour chaque livre Mémoire (Ma vie, Mes ancêtres, Un temps fort), nous reversons 5 € à France Alzheimer, qui accompagne les malades et leurs familles.</p>
+      <div class="eg-ticket" aria-label="Ce que devient votre achat">
+        <div><span>Votre livre Mémoire</span><b>99 €</b></div>
+        <div class="eg-don"><span>Reversé à France Alzheimer</span><b>5 €</b></div>
+        <div><span>Ce que ça change pour vous</span><b>rien</b></div>
+      </div>
+      <p class="note" style="margin-top:12px">Les 5 € sont pris sur notre marge, même quand une remise s'applique.</p>
+    </div>
+  </div>
 </div>
 
 <section>
   <div class="wrap">
-    <p class="kicker">Pourquoi</p>
-    <h2>Ceux qui racontent, <em>ceux qui aident</em></h2>
-    <div class="moments">
-      <div><b>Un sujet qui nous touche</b><p>Beaucoup d'entre nous offrent un livre Mémoire parce qu'un parent vieillit, parce qu'on a peur que ses histoires se perdent. Les familles qui vivent avec Alzheimer connaissent cette peur mieux que personne.</p></div>
-      <div><b>Aider là où ça compte</b><p>Nous avons choisi d'aider d'abord les familles et les aidants : groupes de parole, formation, moments de répit. C'est souvent eux qui portent tout, et qui sont le moins aidés.</p></div>
-      <div><b>Un montant clair</b><p>Pas un pourcentage flou : 5 € par livre, sur chaque livre Mémoire vendu, quel que soit le prix payé après une remise.</p></div>
+    <div class="eg-asso">
+      <div>
+        <div class="eg-logo">Logo de France Alzheimer<br><span class="todo">[à ajouter avec l'accord de l'association]</span></div>
+        <div class="eg-since"><b>1985</b><span>L'année de sa création.<br>Reconnue d'utilité publique.</span></div>
+      </div>
+      <div>
+        <p class="kicker">L'association</p>
+        <h2>France Alzheimer, <em>aux côtés des familles</em></h2>
+        <p class="lead">La seule association nationale de familles reconnue d'utilité publique dans ce domaine. Elle agit partout en France grâce à une centaine d'associations départementales, portées par des bénévoles, souvent passés eux-mêmes par la maladie d'un proche.</p>
+        <ul class="eg-missions">
+          <li><b>Accompagner</b><span>Groupes de parole, ateliers, séjours de répit pour les malades et ceux qui les aident.</span></li>
+          <li><b>Former</b><span>Les aidants, les bénévoles et les professionnels.</span></li>
+          <li><b>Faire avancer la recherche</b><span>En finançant des projets de recherche.</span></li>
+          <li><b>Faire entendre les familles</b><span>Auprès du public et des pouvoirs publics.</span></li>
+        </ul>
+        <p class="note" style="margin-top:22px">Nos dons financent ces missions. <span class="todo">[affectation précise à définir dans la convention avec l'association]</span> <a href="https://www.francealzheimer.org/" rel="noopener">francealzheimer.org</a></p>
+      </div>
     </div>
   </div>
 </section>
 
 <section>
-  <div class="wrap fiche">
-    <div>
-      <p class="kicker">Les associations</p>
-      <h2>Avec qui, <em>et comment</em></h2>
-      <p class="lead">Un don par pays, à une association de familles reconnue dans son pays.</p>
-      <p class="note"><span class="todo">[noms cités sous réserve de la signature d'une convention avec chaque association]</span></p>
-    </div>
-    <dl>
-      <dt>En France</dt><dd><b>France Alzheimer et maladies apparentées</b>. Une association nationale de familles, présente partout en France par ses associations départementales : groupes de parole, formation des aidants, ateliers, séjours de répit. Elle finance aussi la recherche.</dd>
-      <dt>En Espagne</dt><dd><b>CEAFA</b>, la Confédération espagnole d'Alzheimer. Elle réunit des centaines d'associations locales qui informent et accompagnent les familles.</dd>
-      <dt>Les livres concernés</dt><dd>Tous les livres Mémoire : Ma vie, Mes ancêtres, Un temps fort.</dd>
-      <dt>Le montant</dt><dd>5 € par livre, prélevés sur notre marge : le prix du livre ne change pas.</dd>
-      <dt>Les versements</dt><dd>Regroupés et versés directement à l'association. <span class="todo">[rythme des versements à fixer dans la convention]</span></dd>
-      <dt>La transparence</dt><dd>Chaque année, nous publions ici le nombre de livres vendus et le montant reversé.</dd>
-    </dl>
+  <div class="wrap eg-notes">
+    <div><h3>Pourquoi Mémoire</h3><p>Ce sont les livres d'une vie, souvent offerts à un parent qui vieillit, parce qu'on a peur que ses histoires se perdent. Les familles qui vivent avec Alzheimer connaissent cette peur mieux que personne.</p></div>
+    <div><h3>En toute transparence</h3><p>Chaque année, nous publions ici le nombre de livres Mémoire vendus et le montant versé à l'association.</p></div>
+    <div><h3>Rien d'autre ne part</h3><p>L'association reçoit un don, et c'est tout : aucune voix, aucun texte, aucune donnée personnelle ne lui est transmise.</p></div>
   </div>
 </section>
 
-<section>
-  <div class="wrap faq">
-    <div class="faq-head"><p class="kicker">Questions</p><h2>Ce qu'on nous <em>demande</em></h2></div>
-    <details open data-t="offrir"><summary>Est-ce que je paie plus cher pour ce don ?</summary><p>Non. Les 5 € sont pris sur notre marge, le prix du livre reste le même. Avec la remise dès 2 histoires différentes, le don reste de 5 € par livre Mémoire.</p></details>
-    <details data-t="offrir"><summary>Pourquoi seulement les livres Mémoire ?</summary><p>Parce que ce sont les livres d'une vie, souvent offerts à un parent ou à un grand-parent : ceux qui parlent le plus directement de mémoire. Les autres livres (anniversaire, voyage, famille) ne sont pas concernés pour l'instant.</p></details>
-    <details data-t="offrir"><summary>Puis-je savoir où va l'argent ?</summary><p>Oui : le montant total reversé est publié sur cette page chaque année, avec le nombre de livres concernés.</p></details>
-    <details data-t="raconter"><summary>Mon père a des troubles de la mémoire. Peut-il quand même raconter ?</summary><p>Tant qu'il a envie de parler, oui. Une question à la fois, quand il veut, à son rythme : il n'y a ni minimum ni rendez-vous. Un proche peut l'aider à enregistrer, et le livre garde ses mots, mis en forme sans les trahir.</p></details>
-    <details data-t="voix"><summary>Ses enregistrements sont-ils transmis à l'association ?</summary><p>Non, jamais. L'association reçoit un don, rien d'autre : aucune voix, aucun texte, aucune donnée personnelle ne lui est transmise.</p></details>
-  </div>
-</section>
-
-<section>
-  <div class="wrap final">
-    <span class="onde" aria-hidden="true"><i></i><i></i><i></i><i></i><i></i><i></i><i></i></span>
-    <h2>Raconter une vie, <em>et aider d'autres familles</em></h2>
-    <a class="btn btn-ink" href="memoire.html">Offrir un livre Mémoire · 99 €</a>
+<section style="padding-top:0;border-top:0">
+  <div class="wrap">
+    <div class="eg-soon"><p><span class="tag">En préparation</span>Une journée de solidarité avec France Alzheimer. On vous en reparle.</p><a class="btn btn-ink" href="memoire.html">Offrir un livre Mémoire · 99 €</a></div>
   </div>
 </section>
 </main>

@@ -170,9 +170,9 @@
     ancetres: { name: 'Mémoire · Mes ancêtres', note: 'Une voix, 12 mois pour raconter', price: 119, img: 'anciennes-photos.jpg', copy: 39, pitch: 'Les origines de la famille, avant qu\'elles se perdent.' },
     tempsfort: { name: 'Mémoire · Un temps fort', note: 'Une voix, 12 mois pour raconter', price: 119, img: 'commerce-ancien.jpg', copy: 39, pitch: 'Une époque vécue de l\'intérieur.' },
     voeux: { name: 'Vœux', note: 'Jusqu\'à 30 voix, une page par voix', price: 59, img: 'anniversaire-gateau.jpg', copy: 29, pitch: 'Les mots de 30 proches, de vive voix, dans un livre.' },
-    recit: { name: 'Récit', note: 'Jusqu\'à 10 voix, jusqu\'à 80 pages', price: 59, img: 'plage-feu.jpg', copy: 29, pitch: 'Le voyage ou l\'EVJF, raconté par tous.' },
-    chronique: { name: 'Chronique', note: 'Jusqu\'à 6 voix, jusqu\'à 100 pages', price: 149, img: 'famille-allee.jpg', copy: 39, pitch: 'Une année en famille, racontée par chacun.' },
-    voyageSolo: { name: 'Voyage solo', note: 'Le carnet de bord, jusqu\'à 80 pages', price: 49, img: 'hero-3.jpg', copy: 29, pitch: 'Le carnet de bord de celui qui part seul.' }
+    recit: { name: 'Récit', note: 'Jusqu\'à 10 voix, jusqu\'à 80 pages', price: 69, img: 'plage-feu.jpg', copy: 29, pitch: 'Le voyage ou l\'EVJF, raconté par tous.' },
+    chronique: { name: 'Chronique · 2027', note: 'Jusqu\'à 6 voix, jusqu\'à 100 pages', price: 149, img: 'famille-allee.jpg', copy: 39, pitch: 'Une année en famille, racontée par chacun.' },
+    voyageSolo: { name: 'Carnet de bord · Voyage en solitaire', note: 'Une voix, jusqu\'à 80 pages', price: 49, img: 'hero-3.jpg', copy: 29, pitch: 'Le carnet de bord de celui qui part seul.' }
   };
   var OCC = {
     voeux: { anniversaire: 'Anniversaire', mariage: 'Mariage', retraite: 'Départ à la retraite', naissance: 'Naissance', depart: 'Pot de départ' },

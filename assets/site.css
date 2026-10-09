@@ -963,3 +963,35 @@ header.site nav.main ul{gap:30px;font-size:15px;font-weight:600}
 .ldv-book.b2{left:20%;top:17%;transform:rotate(2deg)}
 .ldv-book.b3{left:34%;top:34%;transform:rotate(-2deg)}
 .ldv-book.b4{left:48%;top:51%;transform:rotate(3deg)}
+
+/* Accueil : la photo du hero remonte jusqu'au bandeau promo (plus de bande blanche sous le bandeau) */
+.has-hero .hero-top{margin-top:-77px;padding-top:77px}
+
+/* Notes internes [à venir] : plus discrètes, et sorties du flux dans les lauréats pour ne pas les déformer */
+.todo{background:rgba(255,236,190,.55);color:#9a7a3a;font-size:.72em;padding:0 3px;border-radius:3px;opacity:.85}
+.award{position:relative}
+.award .todo{position:absolute;top:100%;left:50%;transform:translateX(-50%);margin-top:2px;white-space:nowrap;font-size:9px;line-height:1.3}
+
+/* Lauréats Trustpilot et presse, plus visibles */
+.trust-proof{gap:16px 44px;padding-bottom:10px}
+.award{gap:10px}
+.award > div{gap:4px}
+.laurel{width:22px;height:48px;stroke-width:1.3}
+.stars{font-size:20px;letter-spacing:3px}
+.award small{font-size:12.5px}
+.press{font-size:22px;letter-spacing:.07em}
+
+/* « Écrire / Offrir » : jamais de ton sur ton. Orange foncé sur fond blanc, orange clair sur fond encre, tout en encre au survol (fond orange) */
+.has-hero header.site:not(.scrolled) .btn-cta .roll.r-btn em.o,.btn-light .roll.r-btn em.o{color:#d9530a;-webkit-text-fill-color:#d9530a}
+.btn-ink:hover .roll.r-btn em.o,.btn-cta:hover .roll.r-btn em.o,.has-hero header.site:not(.scrolled) .btn-cta:hover .roll.r-btn em.o{color:var(--ink);-webkit-text-fill-color:var(--ink)}
+
+/* Pied de page : un seul encart pour les données personnelles, et seulement trois liens légaux en bas */
+.fprivacy{display:grid;grid-template-columns:auto minmax(0,1fr) auto;gap:14px 20px;align-items:center;margin-top:44px;padding:18px 22px;border-radius:20px;background:var(--soft)}
+.fp-ico{width:40px;height:40px;border-radius:50%;background:#fff;display:grid;place-items:center;box-shadow:inset 0 0 0 1px var(--rule)}
+.fp-ico svg{width:20px;height:20px;fill:none;stroke:var(--ink);stroke-width:1.6;stroke-linecap:round}
+.fprivacy b{font-size:15px}
+.fprivacy p{margin:2px 0 0;font-size:13px;color:var(--grey)}
+.fprivacy nav{display:flex;flex-wrap:wrap;gap:6px 18px;font-size:13px;font-weight:600}
+.fprivacy nav a{text-decoration:none}.fprivacy nav a:hover{text-decoration:underline}
+@media (max-width:860px){.fprivacy{grid-template-columns:auto minmax(0,1fr)}.fprivacy nav{grid-column:1/-1}}
+.fprivacy + .fbottom{margin-top:24px}

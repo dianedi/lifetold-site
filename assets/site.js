@@ -349,3 +349,16 @@
     chat.querySelectorAll('.suggest button').forEach(function (b) { b.addEventListener('click', function () { ask(b.textContent); }); });
   }
 })();
+
+// Hero d'accueil : la photo remonte exactement jusqu'au bandeau promo, quelle que soit la hauteur de l'en-tête.
+(function () {
+  var hero = document.querySelector('.has-hero .hero-top'), ann = document.querySelector('.annonce');
+  if (!hero || !ann) return;
+  var fit = function () {
+    var m = parseFloat(getComputedStyle(hero).marginTop) || 0;
+    var delta = hero.getBoundingClientRect().top - ann.getBoundingClientRect().bottom;
+    if (Math.abs(delta) < 0.5) return;
+    hero.style.marginTop = (m - delta) + 'px'; hero.style.paddingTop = (-(m - delta)) + 'px';
+  };
+  fit(); addEventListener('resize', fit); addEventListener('load', fit);
+})();

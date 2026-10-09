@@ -193,7 +193,7 @@
       if (m[1] === 'carte') return { name: 'La carte cadeau', note: 'À personnaliser juste après le paiement, à imprimer ou à envoyer', price: 0, parent: m[2], max: 1, kind: 'card' };
       if (m[1] === 'copie') return { name: 'Exemplaire en plus', note: 'Imprimé en même temps, livré ensemble', price: p.copy, parent: m[2], kind: 'copy' };
       if (baseOf(m[2]) !== 'voeux') return null;
-      return { name: '10 voix de plus', note: 'Jusqu\'à 60 voix au total', price: 15, parent: m[2], max: 3, kind: 'voix' };
+      return { name: '10 voix de plus', note: 'Jusqu\'à 150 voix au total', price: 15, parent: m[2], max: 12, kind: 'voix' };
     }
     if (!isStory(k)) return null;
     var b = BASE[baseOf(k)], o = k.split(':')[1], r = {};
@@ -268,7 +268,7 @@
       var offers = [];
       if (!cart['carte_' + k]) offers.push(opt('carte_' + k, 'La carte cadeau', 'À imprimer ou à envoyer le jour même. Ajoutez-la pour la recevoir.', 'Offerte'));
       if (!cart['copie_' + k]) offers.push(opt('copie_' + k, 'Un exemplaire en plus', 'Le même livre, pour un autre membre de la famille.', euro(p.copy)));
-      if (baseOf(k) === 'voeux' && (cart['voix10_' + k] || 0) < 3) offers.push(opt('voix10_' + k, '10 voix de plus', 'Pour inviter jusqu\'à 40, 50 ou 60 proches.', '15 €'));
+      if (baseOf(k) === 'voeux' && (cart['voix10_' + k] || 0) < 12) offers.push(opt('voix10_' + k, '10 voix de plus', 'Par tranche de 10, jusqu\'à 150 proches.', '15 €'));
       if (offers.length) html += '<div class="opts"><p class="opts-k">À ajouter si vous le souhaitez</p>' + offers.join('') + '</div>';
       html += '</div>';
     });

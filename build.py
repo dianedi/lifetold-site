@@ -41,14 +41,14 @@ BANNER = [
 # Pages existantes : les liens du pied de page vers une page pas encore écrite restent du texte simple.
 FOOTER = [
     ("Les livres", [("Ma vie", "ma-vie.html"), ("Mes ancêtres", "mes-ancetres.html"), ("Un temps fort", "un-temps-fort.html"),
-                    ("Un anniversaire : jusqu'à 30 voix", "anniversaire.html"),
-                    ("Récit : voyage, EVJF, mariage", "recit.html"), ("Voyage solo : le carnet de bord", "voyage-solo.html"),
+                    ("Vœux : anniversaire, mariage, retraite…", "anniversaire.html"),
+                    ("Récit : voyage, EVJF, EVG", "recit.html"), ("Voyage solo : le carnet de bord", "voyage-solo.html"),
                     ("Chronique : une année en famille", "chronique.html")]),
     ("Offrir", [("La carte cadeau", "carte-cadeau.html"), ("Pour Noël", "offrir-noel.html"), ("Fête des grands-mères", "fete-des-grands-meres.html"),
                 ("Fête des mères", None), ("Fête des pères", None), ("Un anniversaire", None)]),
     (BRAND, [("L'app", "application.html"), ("Comment ça marche", "comment-ca-marche.html"), ("Tarifs", "index.html#prix"),
              ("Aide et questions", "aide.html"), ("Mon compte", "compte.html"), ("Télécharger l'app", "app.html"),
-             ("Notre engagement : 5 € par livre Mémoire", "engagement.html"), ("Devenir ambassadeur", "devenir-ambassadeur.html"), ("Notre histoire", None)]),
+             ("Notre engagement : 25 € par livre Mémoire", "engagement.html"), ("Devenir ambassadeur", "devenir-ambassadeur.html"), ("Notre histoire", None)]),
 ]
 
 LEGAL = [("Vos données, protégées", "donnees.html"), ("Mentions légales", "mentions-legales.html"), ("CGV", "cgv.html"),
@@ -151,7 +151,7 @@ def header(active: str) -> str:
       <button class="icon-btn menu-btn" type="button" aria-expanded="false" aria-controls="mnav" aria-label="Menu"><svg viewBox="0 0 24 24"><path d="M4 7h16M4 12h16M4 17h16"/></svg></button>
     </div>
   </div>
-  <div class="mnav-wrap"><nav class="mobile-nav" id="mnav" aria-label="Navigation mobile">{mobile}<a href="aide.html">Aide et questions</a><a href="compte.html">Mon compte</a><a href="memoire.html">Commencer une histoire</a></nav></div>
+  <div class="mnav-wrap"><nav class="mobile-nav" id="mnav" aria-label="Navigation mobile">{mobile}<a href="aide.html">Aide et questions</a><a href="compte.html">Mon compte</a><a href="index.html#prix">Commencer une histoire</a></nav></div>
 </header>
 <div class="drawer-veil" data-close-cart hidden></div>
 <aside class="drawer" id="cart" aria-label="Panier" aria-hidden="true" tabindex="-1">

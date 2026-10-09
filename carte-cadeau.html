@@ -13,7 +13,7 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=Manrope:wght@400;500;600;700;800&display=swap">
-<link rel="stylesheet" href="assets/site.css?v=bb2c4485">
+<link rel="stylesheet" href="assets/site.css?v=b9b6c209">
 </head>
 <body>
 <div class="annonce" role="region" aria-label="Offres en cours"><ul><li class="on">Livraison offerte en Europe</li><li>Satisfait ou remboursé</li><li>Paiement en 3x avec Alma</li></ul></div>
@@ -29,7 +29,7 @@
       <button class="icon-btn menu-btn" type="button" aria-expanded="false" aria-controls="mnav" aria-label="Menu"><svg viewBox="0 0 24 24"><path d="M4 7h16M4 12h16M4 17h16"/></svg></button>
     </div>
   </div>
-  <div class="mnav-wrap"><nav class="mobile-nav" id="mnav" aria-label="Navigation mobile"><a href="comment-ca-marche.html">Comment ça marche</a><a href="application.html">L'app</a><a href="index.html#livres">Les livres</a><a href="aide.html">Aide et questions</a><a href="compte.html">Mon compte</a><a href="memoire.html">Commencer une histoire</a></nav></div>
+  <div class="mnav-wrap"><nav class="mobile-nav" id="mnav" aria-label="Navigation mobile"><a href="comment-ca-marche.html">Comment ça marche</a><a href="application.html">L'app</a><a href="index.html#livres">Les livres</a><a href="aide.html">Aide et questions</a><a href="compte.html">Mon compte</a><a href="index.html#prix">Commencer une histoire</a></nav></div>
 </header>
 <div class="drawer-veil" data-close-cart hidden></div>
 <aside class="drawer" id="cart" aria-label="Panier" aria-hidden="true" tabindex="-1">
@@ -177,13 +177,13 @@
         <div class="bottom">
           <span class="name">Mémoire · Ma vie, Mes ancêtres ou Un temps fort</span>
           <p class="desc">Une question à la fois, pendant un an, de sa voix. Puis le livre de toute une vie, avec ses QR codes pour l'entendre encore.</p>
-          <div class="row"><span class="price">99 €</span><a class="btn btn-light" href="memoire.html">Offrir un livre Mémoire</a></div>
+          <div class="row"><span class="price">119 €</span><a class="btn btn-light" href="index.html#prix">Offrir un livre Mémoire</a></div>
         </div>
       </article>
       <article class="of-tile">
         <img src="assets/photos/anniversaire-gateau.jpg" alt="" loading="lazy">
-        <p class="for">Pour ses 30, 60 <em>ou 80 ans</em></p>
-        <div class="bottom"><span class="name">Un anniversaire</span><div class="row"><span class="price">49 €</span><button class="btn btn-light" type="button" onclick="ltAddToCart('anniversaire')">Offrir</button></div></div>
+        <p class="for">Pour ses 60 ans, <em>un mariage, un départ</em></p>
+        <div class="bottom"><span class="name">Vœux</span><div class="row"><span class="price">59 €</span><button class="btn btn-light" type="button" onclick="ltAddToCart('voeux:anniversaire')">Offrir</button></div></div>
       </article>
       <article class="of-tile">
         <img src="assets/photos/hero-3.jpg" alt="" loading="lazy">
@@ -191,9 +191,9 @@
         <div class="bottom"><span class="name">Voyage solo</span><div class="row"><span class="price">49 €</span><button class="btn btn-light" type="button" onclick="ltAddToCart('voyageSolo')">Offrir</button></div></div>
       </article>
       <article class="of-tile">
-        <img src="assets/photos/mariage-couple.jpg" alt="" loading="lazy">
-        <p class="for">Pour des mariés, <em>un EVJF</em></p>
-        <div class="bottom"><span class="name">Récit</span><div class="row"><span class="price">59 €</span><button class="btn btn-light" type="button" onclick="ltAddToCart('recit')">Offrir</button></div></div>
+        <img src="assets/photos/hero-2.jpg" alt="" loading="lazy">
+        <p class="for">Pour un EVJF, <em>un voyage entre amis</em></p>
+        <div class="bottom"><span class="name">Récit</span><div class="row"><span class="price">59 €</span><button class="btn btn-light" type="button" onclick="ltAddToCart('recit:evjf')">Offrir</button></div></div>
       </article>
       <article class="of-tile">
         <img src="assets/photos/famille-canape.jpg" alt="" loading="lazy">
@@ -272,7 +272,7 @@
 
       <div class="gc-by">
         <div><b>Mémoire</b><span>Le code pour commencer à raconter, à la personne qui racontera sa vie.</span></div>
-        <div><b>Un anniversaire</b><span>Offerte le jour J : la promesse du livre, avec les vœux de ses proches.</span></div>
+        <div><b>Vœux</b><span>Offerte le jour J : la promesse du livre, avec les vœux de ses proches.</span></div>
         <div><b>Récit</b><span>Le code à partager avec tous ceux qui étaient là.</span></div>
         <div><b>Chronique</b><span>Le code de la famille, pour que chacun raconte.</span></div>
         <div><b>Voyage solo</b><span>Le code du carnet, à ouvrir au moment du départ.</span></div>
@@ -303,7 +303,7 @@
     <div class="of-posts">
       <figure class="of-post"><blockquote>« Acheté le 24 à 22 h, imprimé dans la foulée. À minuit, ma mère lisait la carte à voix haute. »</blockquote><span class="of-stamp"><span class="onde" aria-hidden="true"><i></i><i></i><i></i><i></i><i></i></span></span><figcaption><b>Exemple</b> · Mémoire, pour sa mère</figcaption></figure>
       <figure class="of-post"><blockquote>« J'habite à Montréal. Je lui ai envoyé la carte par message le matin de son anniversaire. Il m'a rappelé en pleurant. »</blockquote><span class="of-stamp"><span class="onde" aria-hidden="true"><i></i><i></i><i></i><i></i><i></i></span></span><figcaption><b>Exemple</b> · Ma vie, pour son père, à distance</figcaption></figure>
-      <figure class="of-post"><blockquote>« La carte a fait le tour de la table avant le gâteau. Chacun voulait savoir qui avait dit quoi. »</blockquote><span class="of-stamp"><span class="onde" aria-hidden="true"><i></i><i></i><i></i><i></i><i></i></span></span><figcaption><b>Exemple</b> · Un anniversaire, pour ses 40 ans</figcaption></figure>
+      <figure class="of-post"><blockquote>« La carte a fait le tour de la table avant le gâteau. Chacun voulait savoir qui avait dit quoi. »</blockquote><span class="of-stamp"><span class="onde" aria-hidden="true"><i></i><i></i><i></i><i></i><i></i></span></span><figcaption><b>Exemple</b> · Vœux · Anniversaire, pour ses 40 ans</figcaption></figure>
     </div>
   </div>
 </section>
@@ -314,7 +314,7 @@
     <details open data-t="offrir"><summary>Comment choisir entre Ma vie, Mes ancêtres et Un temps fort ?</summary><p>Ma vie suit toute une existence, Mes ancêtres remonte aux origines de la famille, Un temps fort s'attarde sur une époque vécue de l'intérieur. Le choix se fait au moment de l'achat et il est définitif : il décide de toutes les questions posées.</p></details>
     <details data-t="offrir"><summary>Il vit à l'étranger : comment l'offrir ?</summary><p>Tout se fait à distance : vous lui envoyez la carte par message, il raconte depuis son téléphone. La livraison est offerte en Europe ; ailleurs, les frais sont indiqués avant le paiement.</p></details>
     <details data-t="offrir"><summary>Puis-je offrir plusieurs livres dans la même commande ?</summary><p>Oui, autant d'histoires différentes que vous le souhaitez : chacune a sa carte cadeau, son code et son livre.</p></details>
-    <details data-t="raconter"><summary>Il n'a pas de smartphone, ou il n'est pas à l'aise avec ?</summary><p>Il faut un iPhone ou un téléphone Android, mais l'app tient en un geste : on touche la carte pour parler. Le plus simple est de l'accompagner pour la première question ; ensuite, il avance seul. Pour un anniversaire, les proches répondent depuis un simple lien.</p></details>
+    <details data-t="raconter"><summary>Il n'a pas de smartphone, ou il n'est pas à l'aise avec ?</summary><p>Il faut un iPhone ou un téléphone Android, mais l'app tient en un geste : on touche la carte pour parler. Le plus simple est de l'accompagner pour la première question ; ensuite, il avance seul. Pour Vœux, les proches répondent depuis un simple lien.</p></details>
     <details data-t="raconter"><summary>Puis-je glisser mes propres questions ?</summary><p>Oui, à tout moment dans l'app. Elles arrivent dans son paquet de cartes, avec votre prénom.</p></details>
     <details data-t="livre"><summary>Et si le cadeau ne plaît pas ?</summary><p>Vous êtes satisfait ou remboursé pendant 30 jours, sans avoir à vous justifier.</p></details>
   </div>
@@ -332,7 +332,7 @@
           <a href="#" aria-label="Facebook (compte à créer)"><svg viewBox="0 0 24 24"><path d="M14.5 21v-7.5h2.6l.4-3h-3V8.6c0-.9.3-1.5 1.5-1.5h1.6V4.4c-.3 0-1.2-.1-2.3-.1-2.3 0-3.8 1.4-3.8 3.9v2.3H9v3h2.5V21"/></svg></a>
         </div>
       </div>
-      <div><h4>Les livres</h4><ul><li><a href="ma-vie.html">Ma vie</a></li><li><a href="mes-ancetres.html">Mes ancêtres</a></li><li><a href="un-temps-fort.html">Un temps fort</a></li><li><a href="anniversaire.html">Un anniversaire : jusqu'à 30 voix</a></li><li><a href="recit.html">Récit : voyage, EVJF, mariage</a></li><li><a href="voyage-solo.html">Voyage solo : le carnet de bord</a></li><li><a href="chronique.html">Chronique : une année en famille</a></li></ul></div><div><h4>Offrir</h4><ul><li><a href="carte-cadeau.html">La carte cadeau</a></li><li><a href="offrir-noel.html">Pour Noël</a></li><li><a href="fete-des-grands-meres.html">Fête des grands-mères</a></li><li style="color:var(--grey)">Fête des mères</li><li style="color:var(--grey)">Fête des pères</li><li style="color:var(--grey)">Un anniversaire</li></ul></div><div><h4>Memoreees</h4><ul><li><a href="application.html">L'app</a></li><li><a href="comment-ca-marche.html">Comment ça marche</a></li><li><a href="index.html#prix">Tarifs</a></li><li><a href="aide.html">Aide et questions</a></li><li><a href="compte.html">Mon compte</a></li><li><a href="app.html">Télécharger l'app</a></li><li><a href="engagement.html">Notre engagement : 5 € par livre Mémoire</a></li><li><a href="devenir-ambassadeur.html">Devenir ambassadeur</a></li><li style="color:var(--grey)">Notre histoire</li></ul></div>
+      <div><h4>Les livres</h4><ul><li><a href="ma-vie.html">Ma vie</a></li><li><a href="mes-ancetres.html">Mes ancêtres</a></li><li><a href="un-temps-fort.html">Un temps fort</a></li><li><a href="anniversaire.html">Vœux : anniversaire, mariage, retraite…</a></li><li><a href="recit.html">Récit : voyage, EVJF, EVG</a></li><li><a href="voyage-solo.html">Voyage solo : le carnet de bord</a></li><li><a href="chronique.html">Chronique : une année en famille</a></li></ul></div><div><h4>Offrir</h4><ul><li><a href="carte-cadeau.html">La carte cadeau</a></li><li><a href="offrir-noel.html">Pour Noël</a></li><li><a href="fete-des-grands-meres.html">Fête des grands-mères</a></li><li style="color:var(--grey)">Fête des mères</li><li style="color:var(--grey)">Fête des pères</li><li style="color:var(--grey)">Un anniversaire</li></ul></div><div><h4>Memoreees</h4><ul><li><a href="application.html">L'app</a></li><li><a href="comment-ca-marche.html">Comment ça marche</a></li><li><a href="index.html#prix">Tarifs</a></li><li><a href="aide.html">Aide et questions</a></li><li><a href="compte.html">Mon compte</a></li><li><a href="app.html">Télécharger l'app</a></li><li><a href="engagement.html">Notre engagement : 25 € par livre Mémoire</a></li><li><a href="devenir-ambassadeur.html">Devenir ambassadeur</a></li><li style="color:var(--grey)">Notre histoire</li></ul></div>
     </div>
     <div class="fbottom"><span>© 2026 Memoreees. Tous droits réservés.</span><div class="lang " aria-label="Langue"><a href="index.html" aria-current="true" lang="fr">FR</a><a href="es/index.html" lang="es" hreflang="es">ES</a></div><nav class="legal" aria-label="Informations légales"><a href="donnees.html">Vos données, protégées</a><a href="mentions-legales.html">Mentions légales</a><a href="cgv.html">CGV</a><a href="confidentialite.html">Confidentialité</a><a href="cookies.html">Cookies</a><a href="donnees.html#supprimer">Supprimer mes données</a></nav></div>
   </div>
@@ -365,6 +365,6 @@
   document.addEventListener('click',function(e){if(e.target.closest('[data-cookie-reset]')){try{localStorage.removeItem(KEY);}catch(x){}bar.hidden=false;}});
 })();
 </script>
-<script src="assets/site.js?v=affd9ea8" defer></script>
+<script src="assets/site.js?v=1d4ec806" defer></script>
 </body>
 </html>

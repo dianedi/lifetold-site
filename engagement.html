@@ -59,13 +59,36 @@
 .eg-missions li{border-top:2px solid var(--ink);padding-top:12px}
 .eg-missions b{display:block;font:400 22px/1.15 var(--f-serif);margin-bottom:4px}
 .eg-missions span{font-size:14px;color:var(--grey)}
+.eg-books{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:18px;margin-top:32px}
+.eg-book{border-radius:26px;overflow:hidden;background:#fff;box-shadow:0 0 0 1px var(--rule);display:flex;flex-direction:column;transition:transform .25s,box-shadow .25s}
+.eg-book:hover{transform:translateY(-3px);box-shadow:0 0 0 1px var(--rule),0 18px 40px rgba(28,19,32,.08)}
+.eg-book img{width:100%;aspect-ratio:4/3;object-fit:cover}
+.eg-book div{padding:20px 22px 22px;display:flex;flex-direction:column;gap:8px;flex:1}
+.eg-book h3{font-size:28px}
+.eg-book p{margin:0;color:var(--grey);font-size:14.5px;flex:1}
+.eg-book .btn{align-self:flex-start;margin-top:8px}
+.eg-book .plus{font:700 12px var(--f-sans);color:var(--prune)}
+.eg-learn{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:clamp(28px,5vw,72px);align-items:start}
+.eg-stats{display:grid;gap:22px;margin-top:26px}
+.eg-stats div{display:grid;grid-template-columns:auto 1fr;gap:18px;align-items:baseline;border-top:1px solid var(--rule);padding-top:16px}
+.eg-stats b{font:400 clamp(40px,5vw,58px)/1 var(--f-serif)}
+.eg-stats span{font-size:14.5px;color:var(--grey)}
+.eg-help{display:grid;gap:14px}
+.eg-help a{display:block;border-radius:24px;padding:22px 24px;text-decoration:none;color:var(--ink);transition:transform .25s,box-shadow .25s}
+.eg-help a:hover{transform:translateY(-2px);box-shadow:0 14px 30px rgba(28,19,32,.08)}
+.eg-help .give{background:linear-gradient(160deg,#fff0e4,#ffe0cc)}
+.eg-help .time{background:linear-gradient(160deg,#fde7f1,#f7d2ea)}
+.eg-help .learn{background:var(--soft)}
+.eg-help b{display:block;font:400 26px/1.1 var(--f-serif);margin-bottom:6px}
+.eg-help span{display:block;font-size:14.5px;color:#4a3f4d}
+.eg-help i{font-style:normal;font-weight:700;font-size:13px;display:inline-block;margin-top:10px}
 .eg-notes{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:clamp(20px,4vw,48px)}
 .eg-notes h3{font-size:24px;margin-bottom:8px}
 .eg-notes p{margin:0;color:var(--grey);font-size:15px}
 .eg-soon{display:flex;flex-wrap:wrap;align-items:center;justify-content:space-between;gap:16px 32px;border-radius:999px;padding:18px 28px;box-shadow:inset 0 0 0 1px var(--rule)}
 .eg-soon p{margin:0;font-size:15px}
 .eg-soon .tag{font:800 11px/1 var(--f-sans);letter-spacing:.12em;text-transform:uppercase;color:var(--prune);background:var(--soft);border-radius:999px;padding:8px 12px;margin-right:10px}
-@media (max-width:860px){.eg-hero,.eg-asso{grid-template-columns:1fr}.eg-notes{grid-template-columns:1fr}.eg-soon{border-radius:24px}}
+@media (max-width:860px){.eg-hero,.eg-asso,.eg-learn{grid-template-columns:1fr}.eg-books{grid-template-columns:1fr}.eg-notes{grid-template-columns:1fr}.eg-soon{border-radius:24px}}
 @media (max-width:480px){.eg-missions{grid-template-columns:1fr}}
 </style>
 
@@ -111,16 +134,44 @@
 </section>
 
 <section>
-  <div class="wrap eg-notes">
-    <div><h3>Pourquoi Mémoire</h3><p>Ce sont les livres d'une vie, souvent offerts à un parent qui vieillit, parce qu'on a peur que ses histoires se perdent. Les familles qui vivent avec Alzheimer connaissent cette peur mieux que personne.</p></div>
-    <div><h3>En toute transparence</h3><p>Chaque année, nous publions ici le nombre de livres Mémoire vendus et le montant versé à l'association.</p></div>
-    <div><h3>Rien d'autre ne part</h3><p>L'association reçoit un don, et c'est tout : aucune voix, aucun texte, aucune donnée personnelle ne lui est transmise.</p></div>
+  <div class="wrap">
+    <p class="kicker">Les livres Mémoire</p>
+    <h2>Trois façons de raconter une vie, <em>5&nbsp;€ pour les familles à chaque fois</em></h2>
+    <div class="eg-books">
+      <article class="eg-book"><img src="assets/photos/hero-1.jpg" alt="" loading="lazy"><div><h3>Ma vie</h3><p>L'enfance, les amours, le travail, ce qu'on transmet : toute une vie racontée de sa voix.</p><span class="plus">99&nbsp;€ · dont 5&nbsp;€ pour France Alzheimer</span><button class="btn btn-ink" type="button" onclick="ltAddToCart('mavie')">Offrir Ma vie</button></div></article>
+      <article class="eg-book"><img src="assets/photos/anciennes-photos.jpg" alt="" loading="lazy"><div><h3>Mes ancêtres</h3><p>Les parents, les grands-parents, les origines : ce qui se perdrait sans ce livre.</p><span class="plus">99&nbsp;€ · dont 5&nbsp;€ pour France Alzheimer</span><button class="btn btn-ink" type="button" onclick="ltAddToCart('ancetres')">Offrir Mes ancêtres</button></div></article>
+      <article class="eg-book"><img src="assets/photos/commerce-ancien.jpg" alt="" loading="lazy"><div><h3>Un temps fort</h3><p>Une époque vécue de l'intérieur : ce qu'on entendait, ce qu'on craignait, ce qu'on espérait.</p><span class="plus">99&nbsp;€ · dont 5&nbsp;€ pour France Alzheimer</span><button class="btn btn-ink" type="button" onclick="ltAddToCart('tempsfort')">Offrir Un temps fort</button></div></article>
+    </div>
+  </div>
+</section>
+
+<section>
+  <div class="wrap eg-learn">
+    <div>
+      <p class="kicker">Comprendre</p>
+      <h2>Alzheimer, <em>une maladie de toute la famille</em></h2>
+      <p class="lead">La maladie d'Alzheimer abîme peu à peu la mémoire, puis l'autonomie. Elle touche la personne malade, mais aussi tous ceux qui l'entourent et l'accompagnent au quotidien.</p>
+      <div class="eg-stats">
+        <div><b>1,2 million</b><span>de personnes atteintes en France d'Alzheimer ou d'une maladie apparentée.</span></div>
+        <div><b>2 millions</b><span>et plus : les malades attendus en 2050, avec le vieillissement de la population.</span></div>
+      </div>
+      <p class="note" style="margin-top:16px">Sources : France Alzheimer, Assemblée nationale.</p>
+    </div>
+    <div>
+      <p class="kicker">Agir à titre personnel</p>
+      <h2>Vous aussi, <em>vous pouvez aider</em></h2>
+      <div class="eg-help" style="margin-top:26px">
+        <a class="give" href="https://www.francealzheimer.org/nous-accompagner/devenir-donateur/" rel="noopener"><b>Faire un don</b><span>Ponctuel ou régulier. Un don à une association reconnue d'utilité publique ouvre droit à une réduction d'impôt sur le revenu de 66 %, dans la limite de 20 % du revenu imposable.</span><i>Donner à France Alzheimer →</i></a>
+        <a class="time" href="https://www.francealzheimer.org/nous-accompagner/devenir-benevole/" rel="noopener"><b>Donner de son temps</b><span>Animer un groupe de parole, accompagner une famille, aider à une action près de chez vous : les associations départementales cherchent des bénévoles.</span><i>Devenir bénévole →</i></a>
+        <a class="learn" href="https://www.francealzheimer.org/comprendre-la-maladie/" rel="noopener"><b>S'informer</b><span>Les premiers signes, le diagnostic, les aides pour les aidants.</span><i>Comprendre la maladie →</i></a>
+      </div>
+    </div>
   </div>
 </section>
 
 <section style="padding-top:0;border-top:0">
   <div class="wrap">
-    <div class="eg-soon"><p><span class="tag">En préparation</span>Une journée de solidarité avec France Alzheimer. On vous en reparle.</p><a class="btn btn-ink" href="memoire.html">Offrir un livre Mémoire · 99 €</a></div>
+    <div class="eg-soon"><p><span class="tag">En préparation</span>Une journée de solidarité avec France Alzheimer. On vous en reparle.</p><a class="btn btn-line" href="https://www.francealzheimer.org/" rel="noopener">Découvrir France Alzheimer</a></div>
   </div>
 </section>
 </main>

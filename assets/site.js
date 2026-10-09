@@ -137,6 +137,23 @@
   var tiers = document.querySelector('.tiers'), feat = tiers && tiers.querySelector('.featured');
   if (tiers && feat && tiers.scrollWidth > tiers.clientWidth) tiers.scrollLeft = feat.offsetLeft - (tiers.clientWidth - feat.offsetWidth) / 2;
 
+  // Page de l'app : le téléphone reste en place, l'écran change avec le texte qu'on lit.
+  var plxSteps = [].slice.call(document.querySelectorAll('.plx-step'));
+  if (plxSteps.length) {
+    var plxCur = '0';
+    var plxUpdate = function () {
+      var mid = window.innerHeight / 2, best = plxSteps[0], d = Infinity;
+      plxSteps.forEach(function (s) { var r = s.getBoundingClientRect(), c = Math.abs(r.top + r.height / 2 - mid); if (c < d) { d = c; best = s; } });
+      if (best.dataset.i === plxCur) return;
+      plxCur = best.dataset.i;
+      document.querySelectorAll('.plx-step,.plx-screen').forEach(function (el) { el.classList.toggle('on', el.dataset.i === plxCur); });
+    };
+    window.addEventListener('scroll', plxUpdate, { passive: true });
+    document.body.addEventListener('scroll', plxUpdate, { passive: true });
+    window.addEventListener('resize', plxUpdate);
+    plxUpdate();
+  }
+
   // ---- Panier latéral (aperçu : rien n'est vendu, le panier reste dans ce navigateur) ----
   // Chaque histoire (produit à voix) une seule fois ; ses compléments (exemplaires en plus, voix en plus,
   // Lignes de vie) s'affichent rattachés à elle, en plus petit. Pas de remise automatique (décision du 09/10).

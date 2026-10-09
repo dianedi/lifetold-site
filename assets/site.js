@@ -153,7 +153,17 @@
     lignes: { name: 'Lignes de vie', note: 'Le livre-journal à remplir à la main', price: 39 }
   };
   var STORIES = ['mavie', 'ancetres', 'tempsfort', 'recit', 'chronique', 'anniversaire', 'voyageSolo'];
-  STORIES.forEach(function (k) { PRODUCTS['copie_' + k] = { name: 'Exemplaire en plus', note: 'Imprimé en même temps, livré ensemble', price: PRODUCTS[k].copy, parent: k }; });
+  STORIES.forEach(function (k) {
+    PRODUCTS['copie_' + k] = { name: 'Exemplaire en plus', note: 'Imprimé en même temps, livré ensemble', price: PRODUCTS[k].copy, parent: k };
+    PRODUCTS['carte_' + k] = { name: 'La carte cadeau', note: 'À personnaliser juste après le paiement, à imprimer ou à envoyer', price: 0, parent: k, max: 1, card: true };
+  });
+  // Un livre mis en avant au-dessus du code : ceux qui ne sont pas déjà dans le panier, à tour de rôle.
+  var PITCH = {
+    mavie: 'Toute une vie racontée de sa voix.', ancetres: 'Les origines de la famille, avant qu\'elles se perdent.', tempsfort: 'Une époque vécue de l\'intérieur.',
+    recit: 'Le voyage, l\'EVJF ou le mariage, raconté par tous.', chronique: 'Une année en famille, racontée par chacun.',
+    anniversaire: 'Les vœux de 30 proches pour ses prochains 60 ans.', voyageSolo: 'Le carnet de bord de celui qui part seul.'
+  };
+  var recoTimer = null;
   var MEMOIRE = { 'ma-vie': 'mavie', 'ancetres': 'ancetres', 'temps-fort': 'tempsfort' };
   var isStory = function (k) { return STORIES.indexOf(k) >= 0; };
   var firstMemoire = function () { return ['mavie', 'ancetres', 'tempsfort'].filter(function (k) { return cart[k]; })[0]; };
@@ -170,6 +180,7 @@
   var lastFocus = null;
   var parentOf = function (k) { return k === 'lignes' ? firstMemoire() : PRODUCTS[k] && PRODUCTS[k].parent; };
   var thumb = function (k, small) {
+    if (PRODUCTS[k].card) return '<div class="thumb small card-thumb"><span class="onde"><i></i><i></i><i></i><i></i><i></i></span></div>';
     var img = PRODUCTS[k].img || (PRODUCTS[parentOf(k)] || {}).img;
     return '<div class="thumb' + (small ? ' small' : '') + '">' + (img ? '<img class="bg" src="' + PH + img + '" alt="">' : '') + '<img class="logo" src="assets/favicon-192.png" alt=""></div>';
   };
@@ -192,13 +203,15 @@
     stories.forEach(function (k) {
       var p = PRODUCTS[k]; sub += p.price;
       html += '<div class="group"><div class="line">' + thumb(k) + '<div><b>' + p.name + '</b><small>' + p.note + '</small><button type="button" class="remove" data-dec="' + k + '">Retirer</button></div><span class="price">' + euro(p.price) + '</span></div>';
-      var kids = ['copie_' + k].concat(k === 'anniversaire' ? ['voix10'] : []).concat(k === firstMemoire() ? ['lignes'] : []);
+      var kids = ['carte_' + k, 'copie_' + k].concat(k === 'anniversaire' ? ['voix10'] : []).concat(k === firstMemoire() ? ['lignes'] : []);
       kids.forEach(function (c) {
         if (!cart[c]) return;
         var q = PRODUCTS[c]; sub += q.price * cart[c];
-        html += '<div class="line sub">' + thumb(c, true) + '<div><b>' + q.name + '</b><small>' + q.note + '</small>' + qty(c) + '</div><span class="price">' + euro(q.price * cart[c]) + '</span></div>';
+        var ctl = q.max === 1 ? '<button type="button" class="remove" data-dec="' + c + '">Retirer</button>' : qty(c);
+        html += '<div class="line sub">' + thumb(c, true) + '<div><b>' + q.name + '</b><small>' + q.note + '</small>' + ctl + '</div><span class="price' + (q.price ? '' : ' free') + '">' + (q.price ? euro(q.price * cart[c]) : 'Offerte') + '</span></div>';
       });
       var offers = [];
+      if (!cart['carte_' + k]) offers.push('<button type="button" data-inc="carte_' + k + '">+ La carte cadeau à offrir le jour même · <span class="free">offerte</span></button>');
       if (!cart['copie_' + k]) offers.push('<button type="button" data-inc="copie_' + k + '">+ Un exemplaire en plus · ' + euro(p.copy) + '</button>');
       if (k === 'anniversaire' && (cart.voix10 || 0) < 3) offers.push('<button type="button" data-inc="voix10">+ 10 voix de plus · 9 €</button>');
       if (k === firstMemoire() && !cart.lignes) offers.push('<button type="button" data-inc="lignes">+ Lignes de vie, le livre-journal à remplir à la main · 39 €</button>');
@@ -206,10 +219,21 @@
       html += '</div>';
     });
     body.innerHTML = html;
-    foot.innerHTML = '<details class="promo-toggle"><summary>Vous avez un code ?</summary><form class="promo" onsubmit="event.preventDefault();this.querySelector(\'button\').textContent=\'Aperçu\'"><label for="promo" style="position:absolute;left:-9999px">Code</label><input id="promo" placeholder="Votre code" autocomplete="off"><button type="submit">Appliquer</button></form></details>' +
+    var reco = STORIES.filter(function (k) { return !cart[k]; });
+    var recoHtml = reco.length ? '<div class="cart-reco" aria-label="À offrir aussi"><p class="reco-k">Et pour quelqu\'un d\'autre ?</p><div class="reco-track">' + reco.map(function (k, i) {
+      var p = PRODUCTS[k];
+      return '<div class="reco' + (i ? '' : ' on') + '"><img src="' + PH + p.img + '" alt=""><div><b>' + p.name.replace('Mémoire · ', '') + '</b><small>' + PITCH[k] + '</small></div><button type="button" data-inc="' + k + '">' + euro(p.price) + ' · Ajouter</button></div>';
+    }).join('') + '</div></div>' : '';
+    foot.innerHTML = recoHtml + '<details class="promo-toggle"><summary>Vous avez un code ?</summary><form class="promo" onsubmit="event.preventDefault();this.querySelector(\'button\').textContent=\'Aperçu\'"><label for="promo" style="position:absolute;left:-9999px">Code</label><input id="promo" placeholder="Votre code" autocomplete="off"><button type="submit">Appliquer</button></form></details>' +
       '<div class="sum"><span>Livraison</span><span>Offerte en Europe</span></div>' +
       '<div class="sum total"><span>Total</span><span>' + euro(sub) + '</span></div>' +
       '<button class="btn btn-ink" type="button" onclick="this.textContent=\'Aperçu : aucune vente possible\'">Finaliser la commande</button>';
+    clearInterval(recoTimer);
+    var slides = foot.querySelectorAll('.reco');
+    if (slides.length > 1 && !reduce) {
+      var ri = 0;
+      recoTimer = setInterval(function () { slides[ri].classList.remove('on'); ri = (ri + 1) % slides.length; slides[ri].classList.add('on'); }, 4000);
+    }
   }
   function openCart() {
     if (!drawer) return;
@@ -221,18 +245,18 @@
     drawer.classList.remove('open'); drawer.setAttribute('aria-hidden', 'true'); veil.hidden = true;
     if (lastFocus) lastFocus.focus();
   }
-  var add = function (k, n) {
+  var addItem = function (k, n) {
     if (!PRODUCTS[k]) return;
     var max = isStory(k) ? 1 : PRODUCTS[k].max || 99;
     cart[k] = Math.min(max, isStory(k) ? 1 : (cart[k] || 0) + (n || 1));
   };
-  window.ltAddToCart = function (k, n) { add(k, n); save(); openCart(); };
+  window.ltAddToCart = function (k, n) { addItem(k, n); save(); openCart(); };
   document.addEventListener('click', function (e) {
     var t = e.target.closest('[data-open-cart],[data-close-cart],[data-inc],[data-dec]');
     if (!t) return;
     if (t.hasAttribute('data-open-cart')) openCart();
     else if (t.hasAttribute('data-close-cart')) closeCart();
-    else if (t.dataset.inc) { add(t.dataset.inc); save(); renderCart(); }
+    else if (t.dataset.inc) { addItem(t.dataset.inc); save(); renderCart(); }
     else if (t.dataset.dec) { var k = t.dataset.dec; cart[k] = Math.max(0, (cart[k] || 0) - 1); if (!cart[k]) delete cart[k]; save(); renderCart(); }
   });
   document.addEventListener('keydown', function (e) { if (e.key === 'Escape' && drawer && drawer.classList.contains('open')) closeCart(); });

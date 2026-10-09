@@ -240,7 +240,7 @@
     foot.innerHTML = recoHtml + '<details class="promo-toggle"><summary>Vous avez un code ?</summary><form class="promo" onsubmit="event.preventDefault();this.querySelector(\'button\').textContent=\'Aperçu\'"><label for="promo" style="position:absolute;left:-9999px">Code</label><input id="promo" placeholder="Votre code" autocomplete="off"><button type="submit">Appliquer</button></form></details>' +
       '<div class="sum"><span>Livraison</span><span>Offerte en Europe</span></div>' +
       '<div class="sum total"><span>Total</span><span>' + euro(sub) + '</span></div>' +
-      '<button class="btn btn-ink" type="button" onclick="this.textContent=\'Aperçu : aucune vente possible\'">Finaliser la commande</button>';
+      '<a class="btn btn-ink" href="merci.html">Finaliser la commande</a><p class="note" style="margin:0;text-align:center">Aperçu : le paiement Shopify viendra ici. Le bouton montre la page qui suit le paiement.</p>';
     clearInterval(recoTimer);
     var slides = foot.querySelectorAll('.reco');
     if (slides.length > 1 && !reduce) {

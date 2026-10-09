@@ -1001,3 +1001,12 @@ header.site nav.main ul{gap:30px;font-size:15px;font-weight:600}
 .hero-top .trust-only{border-top:0;padding-top:0;justify-content:flex-start}
 .hero-top .hero-grid:has(.hero-assure){padding-bottom:28px}
 .hero-top .trust-only{padding-bottom:28px}
+
+/* Accueil : texte du hero plus large, une phrase par ligne pour le titre */
+.hero-top .hero-grid:has(.h1-wide){grid-template-columns:minmax(0,1fr)}
+.h1-wide{font-size:clamp(40px,6vw,82px)!important}
+.h1-wide span,.h1-wide em{display:block}
+@media (min-width:900px){.h1-wide span,.h1-wide em{white-space:nowrap}}
+.hero-top .lead-wide{max-width:900px}
+.hero-top .hero-assure{max-width:900px}
+.hero-top .trust-only{padding-bottom:clamp(36px,5vw,56px)}

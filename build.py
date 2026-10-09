@@ -107,6 +107,22 @@ def cookiebot_id() -> str:
     return cb
 
 
+def aide_config() -> str:
+    """Adresse et clé publique (« publishable », faite pour être publiée) de la fonction d'assistance, lues dans app/.env."""
+    env = ROOT.parent / "app" / ".env"
+    vals = {}
+    if env.exists():
+        for line in env.read_text(encoding="utf-8").splitlines():
+            if "=" in line and not line.lstrip().startswith("#"):
+                k, v = line.split("=", 1)
+                vals[k.strip()] = v.strip().strip('"')
+    url, key = vals.get("EXPO_PUBLIC_SUPABASE_URL", ""), vals.get("EXPO_PUBLIC_SUPABASE_PUBLISHABLE_KEY", "")
+    if not (url and key.startswith("sb_publishable_")):
+        return ""
+    return f' data-endpoint="{url.rstrip("/")}/functions/v1/aide" data-key="{key}"'
+
+
+AIDE_ATTRS = aide_config()
 COOKIEBOT_ID = cookiebot_id()
 COOKIEBOT_HEAD = (f'<script id="Cookiebot" src="https://consent.cookiebot.com/uc.js" data-cbid="{COOKIEBOT_ID}" '
                   f'data-blockingmode="auto" data-culture="fr"></script>\n') if COOKIEBOT_ID else ""
@@ -251,7 +267,7 @@ def main():
                     k, v = part.split(":", 1)
                     meta[k.strip()] = v.strip()
             text = text[m.end():]
-        text = text.replace("{{CTA}}", CTA).replace("{{PROOF}}", PROOF).replace("{{ONDE}}", ONDE).replace("{{STORES}}", STORES).replace("{{BRAND}}", BRAND).replace("{{REASSURE}}", REASSURE)
+        text = text.replace("{{AIDE}}", AIDE_ATTRS).replace("{{CTA}}", CTA).replace("{{PROOF}}", PROOF).replace("{{ONDE}}", ONDE).replace("{{STORES}}", STORES).replace("{{BRAND}}", BRAND).replace("{{REASSURE}}", REASSURE)
         (ROOT / src.name).write_text(page(meta, text), encoding="utf-8")
         print("✓", src.name)
 

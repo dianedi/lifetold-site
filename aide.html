@@ -13,7 +13,7 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=Manrope:wght@400;500;600;700;800&display=swap">
-<link rel="stylesheet" href="assets/site.css?v=ff6690c2">
+<link rel="stylesheet" href="assets/site.css?v=972a2633">
 </head>
 <body>
 <div class="annonce" role="region" aria-label="Offres en cours"><ul><li class="on">Livraison offerte en Europe</li><li>Satisfait ou remboursé</li><li>Paiement en 3x avec Alma</li></ul></div>
@@ -42,12 +42,11 @@
   <p class="kicker">Aide et questions</p>
   <h1>Une question ? <em>Posez-la ici</em></h1>
   <p class="lead">Écrivez votre question comme elle vous vient : la réponse arrive tout de suite. Si elle n'y est pas, votre message est transmis à l'équipe, qui vous répond par email.</p>
-  <div class="assistant" id="assistant" style="margin-top:32px;max-width:760px">
+  <div class="assistant" id="assistant" data-endpoint="https://nzztzdckihiusswrneyv.supabase.co/functions/v1/aide" data-key="sb_publishable_sCEy3Yeh8cfN6pVzG_J_8Q_DVYMWzBN" style="margin-top:32px;max-width:760px">
     <div class="log" aria-live="polite"><div class="msg bot">Bonjour. Que voulez-vous savoir sur Memoreees ?</div></div>
     <div class="suggest"><button type="button">Combien de temps pour remplir le livre ?</button><button type="button">Et s'il n'est pas à l'aise avec un téléphone ?</button><button type="button">Combien coûte la livraison ?</button></div>
     <form><label for="ask" style="position:absolute;left:-9999px">Votre question</label><input id="ask" placeholder="Votre question…" autocomplete="off"><button class="btn btn-ink" type="submit">Envoyer</button></form>
   </div>
-  <p class="note">Aperçu : les réponses viennent des questions ci-dessous. La version en ligne connaîtra toutes vos réponses et transmettra les autres questions par email à hello@memoreees.com.</p>
 </div>
 
 <section style="padding-top:clamp(40px,6vw,72px)">
@@ -151,6 +150,6 @@
   document.addEventListener('click',function(e){if(e.target.closest('[data-cookie-reset]')){try{localStorage.removeItem(KEY);}catch(x){}bar.hidden=false;}});
 })();
 </script>
-<script src="assets/site.js?v=e3208c41" defer></script>
+<script src="assets/site.js?v=10eb1b38" defer></script>
 </body>
 </html>

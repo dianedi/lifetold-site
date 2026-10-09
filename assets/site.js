@@ -340,9 +340,46 @@
     var STOP = 'le la les un une des de du et a au aux en est il elle je tu vous on que qui quoi pour par sur ce ces mon ma mes son sa ses pas ne se plus comment est-ce'.split(' ');
     var words = function (t) { return norm(t).split(/\s+/).filter(function (w) { return w.length > 2 && STOP.indexOf(w) < 0; }); };
     var say = function (html, who) { var m = document.createElement('div'); m.className = 'msg ' + who; m.innerHTML = html; log.appendChild(m); log.scrollTop = log.scrollHeight; };
+    var esc = function (t) { return String(t).replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;'); };
+    var api = chat.dataset.endpoint, key = chat.dataset.key, email = '';
+    var post = function (body) {
+      return fetch(api, { method: 'POST', headers: { 'Content-Type': 'application/json', apikey: key, Authorization: 'Bearer ' + key }, body: JSON.stringify(body) })
+        .then(function (r) { if (!r.ok) throw new Error(r.status); return r.json(); });
+    };
+    // « Transmettre à l'équipe » : on demande l'email une fois, puis on envoie la question et la réponse donnée.
+    var handoff = function (box, q, ans, id) {
+      var send = function () {
+        box.innerHTML = '<span class="chat-wait">Envoi…</span>';
+        post({ action: 'team', id: id, question: q, answer: ans, email: email, source: 'site' })
+          .then(function () { box.innerHTML = 'Transmis : l\'équipe vous répond par email.'; })
+          .catch(function () { box.innerHTML = 'L\'envoi n\'a pas abouti. Écrivez-nous à <a href="mailto:hello@memoreees.com">hello@memoreees.com</a>.'; });
+      };
+      if (email) return send();
+      box.innerHTML = '<form class="chat-mail"><label for="cm' + id + '" style="position:absolute;left:-9999px">Votre email</label><input id="cm' + id + '" type="email" required placeholder="Votre email, pour la réponse" autocomplete="email"><button type="submit">Transmettre</button></form>';
+      var f = box.querySelector('form');
+      f.querySelector('input').focus();
+      f.addEventListener('submit', function (e) { e.preventDefault(); email = f.querySelector('input').value.trim(); if (email) send(); });
+    };
+    var askLive = function (text) {
+      var wait = document.createElement('div'); wait.className = 'msg bot chat-dots'; wait.setAttribute('aria-label', 'Réponse en cours'); wait.innerHTML = '<i></i><i></i><i></i>';
+      log.appendChild(wait); log.scrollTop = log.scrollHeight;
+      post({ question: text, source: 'site' }).then(function (r) {
+        wait.remove();
+        var m = document.createElement('div'); m.className = 'msg bot';
+        m.innerHTML = '<div class="chat-answer"></div><button type="button" class="chat-team">' + (r.needs_team ? 'Transmettre à l\'équipe' : 'Pas la réponse attendue ? Transmettre à l\'équipe') + '</button>';
+        m.querySelector('.chat-answer').textContent = r.answer || '';
+        log.appendChild(m); log.scrollTop = log.scrollHeight;
+        var btn = m.querySelector('.chat-team');
+        btn.addEventListener('click', function () { var box = document.createElement('div'); box.className = 'chat-handoff'; btn.replaceWith(box); handoff(box, text, r.answer || '', r.id); });
+      }).catch(function () {
+        wait.remove();
+        say('La réponse n\'a pas pu arriver. Réessayez dans un instant, ou écrivez-nous à <a href="mailto:hello@memoreees.com">hello@memoreees.com</a>.', 'bot');
+      });
+    };
     var ask = function (text) {
       if (!text.trim()) return;
-      say(text.replace(/</g, '&lt;'), 'me');
+      say(esc(text), 'me');
+      if (api && key && window.fetch) return askLive(text);
       var w = words(text), best = null, score = 0;
       faq.forEach(function (f) {
         var fw = words(f.q + ' ' + f.a.replace(/<[^>]+>/g, ' '));

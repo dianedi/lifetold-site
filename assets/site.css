@@ -1020,3 +1020,16 @@ header.site nav.main ul{gap:30px;font-size:15px;font-weight:600}
 .addvoices-act b{font:400 48px/1 var(--f-serif)}
 .addvoices-act span{font-size:13px;color:var(--grey);margin-bottom:10px}
 @media (max-width:760px){.addvoices-card{grid-template-columns:1fr}.addvoices-act{justify-items:start;text-align:left}}
+
+/* Assistance en direct (page Aide) */
+.chat-answer{white-space:pre-line}
+.chat-team{display:block;margin-top:10px;padding:0;border:0;background:none;font:600 12.5px var(--f-sans);color:var(--grey);text-decoration:underline;text-underline-offset:3px;cursor:pointer}
+.chat-team:hover{color:var(--ink)}
+.chat-handoff{margin-top:10px;font-size:13.5px;color:var(--grey)}
+.chat-mail{display:flex;gap:6px;flex-wrap:wrap}
+.chat-mail input{flex:1;min-width:180px;border:0;border-radius:999px;padding:9px 14px;font:500 14px var(--f-sans);box-shadow:inset 0 0 0 1px var(--rule)}
+.chat-mail button{border:0;border-radius:999px;padding:9px 16px;font:700 13px var(--f-sans);background:var(--ink);color:#fff;cursor:pointer}
+.chat-dots{display:flex;gap:5px;align-items:center;width:max-content;padding:16px 18px}
+.chat-dots i{width:7px;height:7px;border-radius:50%;background:var(--grey);opacity:.35;animation:chatdot 1.2s infinite}
+.chat-dots i:nth-child(2){animation-delay:.2s}.chat-dots i:nth-child(3){animation-delay:.4s}
+@keyframes chatdot{40%{opacity:1;transform:translateY(-3px)}}

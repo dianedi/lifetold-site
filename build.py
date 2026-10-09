@@ -18,7 +18,7 @@ BRAND = "Memoreees"
 LOGO = ('<span class="brand" role="img" aria-label="Memoreees">'
         '<img class="va dark" src="assets/logo-a.png" alt="" width="929" height="105"><img class="vb dark" src="assets/logo-b.png" alt="" width="1269" height="250">'
         '<img class="va light" src="assets/logo-a-white.png" alt="" width="929" height="105"><img class="vb light" src="assets/logo-b-white.png" alt="" width="1269" height="250"></span>')
-ONDE = '<span class="onde" aria-hidden="true"><i></i><i></i><i></i><i></i><i></i><i></i><i></i></span>'
+ONDE = '<span class="onde" aria-hidden="true"><i></i><i></i><i></i><i></i><i></i></span>'
 
 NAV = [
     ("comment", "comment-ca-marche.html", "Comment ça marche"),

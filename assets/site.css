@@ -39,11 +39,12 @@ section{padding-block:clamp(64px,10vw,120px);border-top:1px solid var(--rule);po
 @keyframes marquee{to{transform:translateX(-50%)}}
 
 /* onde : le symbole de la voix */
-.onde{display:inline-flex;align-items:flex-end;gap:3px;height:22px;flex:none}
-.onde i{display:block;width:4px;border-radius:3px;background:var(--wave);background-size:700% 100%}
-.onde i:nth-child(1){height:70%;background-position:0 0}.onde i:nth-child(2){height:100%;background-position:16% 0}.onde i:nth-child(3){height:84%;background-position:33% 0}.onde i:nth-child(4){height:46%;background-position:50% 0}.onde i:nth-child(5){height:84%;background-position:66% 0}.onde i:nth-child(6){height:100%;background-position:83% 0}.onde i:nth-child(7){height:70%;background-position:100% 0}
-.onde.live i{animation:talk 1.1s ease-in-out infinite;transform-origin:bottom}
-.onde.live i:nth-child(2){animation-delay:.12s}.onde.live i:nth-child(3){animation-delay:.24s}.onde.live i:nth-child(4){animation-delay:.06s}.onde.live i:nth-child(5){animation-delay:.3s}.onde.live i:nth-child(6){animation-delay:.18s}.onde.live i:nth-child(7){animation-delay:.36s}
+.onde{display:inline-flex;align-items:center;gap:2px;height:22px;flex:none}
+/* L'onde du logo Memoreees (09/10) : 5 barres arrondies, centrées, dégradé jaune-orangé en haut vers rouge-orangé en bas */
+.onde i{display:block;width:5px;border-radius:9px;background:linear-gradient(180deg,#ffb51f,#fe7d0d 55%,#f5451b)}
+.onde i:nth-child(1){height:33%}.onde i:nth-child(2){height:73%}.onde i:nth-child(3){height:100%}.onde i:nth-child(4){height:48%}.onde i:nth-child(5){height:68%}
+.onde.live i{animation:talk 1.1s ease-in-out infinite;transform-origin:center}
+.onde.live i:nth-child(2){animation-delay:.12s}.onde.live i:nth-child(3){animation-delay:.24s}.onde.live i:nth-child(4){animation-delay:.06s}.onde.live i:nth-child(5){animation-delay:.3s}
 @keyframes talk{0%,100%{transform:scaleY(1)}50%{transform:scaleY(.4)}}
 
 /* header */
@@ -111,8 +112,8 @@ nav.main a:hover,nav.main a[aria-current]{text-decoration:underline;text-underli
 
 /* comment ça marche */
 .how-head{display:grid;justify-items:center;text-align:center;gap:14px}
-.how-head .onde{height:56px;gap:6px;opacity:.15;transform:scale(.85);transition:opacity .6s,transform .6s}
-.how-head .onde i{width:9px;border-radius:5px}
+.how-head .onde{height:56px;gap:5px;opacity:.15;transform:scale(.85);transition:opacity .6s,transform .6s}
+.how-head .onde i{width:12px;border-radius:9px}
 .how-head.on .onde{opacity:1;transform:scale(1)}
 .steps{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:32px;margin-top:56px}
 .steps > div{border-top:1px solid var(--ink);padding-top:18px;min-width:0}
@@ -238,7 +239,7 @@ details p,details ul{margin:10px 0 0;color:var(--grey);font-size:15px;max-width:
 .ok{font-size:13px;color:var(--prune);margin-top:8px}
 @media (max-width:760px){.sunday{grid-template-columns:1fr}}
 .final{text-align:center;display:grid;justify-items:center;gap:22px}
-.final .onde{height:44px;gap:5px}.final .onde i{width:7px}
+.final .onde{height:44px;gap:4px}.final .onde i{width:10px}
 
 /* pages intérieures */
 .page-hero{padding-block:clamp(40px,7vw,88px) clamp(40px,6vw,72px)}
@@ -590,7 +591,7 @@ header.site nav.main ul{gap:30px;font-size:15px;font-weight:600}
 .app-card .from{font-size:10px;color:var(--prune);margin-top:8px;font-weight:700}
 .app-card .hint{font-size:10.5px;color:var(--grey);line-height:1.4;display:grid;gap:8px}
 .app-card .hint .onde{height:26px}
-.app-card .hint .onde i{width:5px}
+.app-card .hint .onde i{width:6px}
 .app-card .timer{font:700 11px/1 var(--f-sans);color:var(--ink);letter-spacing:.05em}
 .app-list{display:grid;gap:7px;padding:0 2px}
 .app-list h4{font:400 18px/1.1 var(--f-serif);margin:2px 2px 2px}

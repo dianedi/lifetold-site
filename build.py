@@ -29,12 +29,10 @@ NAV = [
     ("comment", "comment-ca-marche.html", "Comment ça marche"),
     ("app", "application.html", "L'app"),
     ("livres", "index.html#livres", "Les livres"),
-    ("offrir", "carte-cadeau.html", "Offrir"),
 ]
 
 # Messages du bandeau (validés le 08/10), fixes : tous visibles sur grand écran, un à la fois en fondu sur mobile. Alma : à installer sur la boutique avant la mise en ligne.
 BANNER = [
-    "<b>Black Friday</b> · Lignes de vie offert pour l'achat d'un livre Mémoire",
     "Livraison offerte en Europe",
     "Satisfait ou remboursé",
     "Paiement en 3x avec Alma",
@@ -149,7 +147,7 @@ def header(active: str) -> str:
       <a class="icon-btn hide-sm" href="aide.html" aria-label="Aide et questions"{current if active == "aide" else ""}>{ICON_HELP}</a>
       <a class="icon-btn hide-sm" href="compte.html" aria-label="Mon compte">{ICON_USER}</a>
       <button class="icon-btn cart-btn" type="button" aria-label="Ouvrir le panier" data-open-cart>{ICON_BAG}<span class="cart-count" hidden>0</span></button>
-      <a class="btn btn-cta hdr-cta" href="index.html#prix" aria-label="Écrire ou offrir une histoire"><span class="roll r-btn" aria-hidden="true"><span><em>Écrire</em><em>Offrir</em><em>Écrire</em></span></span>une histoire</a>
+      <a class="btn btn-cta hdr-cta" href="carte-cadeau.html" aria-label="Écrire ou offrir une histoire"><span class="roll r-btn" aria-hidden="true"><span><em>Écrire</em><em>Offrir</em><em>Écrire</em></span></span>une histoire</a>
       <button class="icon-btn menu-btn" type="button" aria-expanded="false" aria-controls="mnav" aria-label="Menu"><svg viewBox="0 0 24 24"><path d="M4 7h16M4 12h16M4 17h16"/></svg></button>
     </div>
   </div>

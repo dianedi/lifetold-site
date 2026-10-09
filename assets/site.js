@@ -102,7 +102,13 @@
   var ann = document.querySelectorAll('.annonce li');
   if (ann.length > 1) {
     var ai = 0;
-    setInterval(function () { if (window.innerWidth > 1180) return; ann[ai].classList.remove('on'); ai = (ai + 1) % ann.length; ann[ai].classList.add('on'); }, 3500);
+    setInterval(function () {
+      if (window.innerWidth > 1180) return;
+      var prev = ann[ai];
+      prev.classList.remove('on'); prev.classList.add('out');
+      setTimeout(function () { prev.classList.add('reset'); prev.classList.remove('out'); requestAnimationFrame(function () { prev.classList.remove('reset'); }); }, 600);
+      ai = (ai + 1) % ann.length; ann[ai].classList.add('on');
+    }, 3500);
   }
 
   // FAQ : onglets par thème (data-t sur chaque question) et ouverture au survol sur ordinateur.
@@ -167,7 +173,7 @@
     anniversaire: { name: 'Un anniversaire', note: 'Jusqu\'à 30 voix, une page par voix', price: 49, img: 'anniversaire-gateau.jpg', copy: 29 },
     voyageSolo: { name: 'Voyage solo', note: 'Le carnet de bord, jusqu\'à 80 pages', price: 49, img: 'hero-3.jpg', copy: 29 },
     voix10: { name: '10 voix de plus', note: 'Jusqu\'à 60 voix au total', price: 9, parent: 'anniversaire', max: 3 },
-    lignes: { name: 'Lignes de vie', note: 'Le livre-journal à remplir à la main', price: 39 }
+    lignes: { name: 'Lignes de vie', note: 'Le livre-journal à remplir à la main · livré en 72 h', price: 39, alone: true }
   };
   var STORIES = ['mavie', 'ancetres', 'tempsfort', 'recit', 'chronique', 'anniversaire', 'voyageSolo'];
   STORIES.forEach(function (k) {
@@ -195,7 +201,7 @@
   var euro = function (n) { return (Math.round(n * 100) / 100).toLocaleString('fr-FR', { minimumFractionDigits: n % 1 ? 2 : 0 }) + ' €'; };
   var count = function () { return Object.keys(cart).reduce(function (a, k) { return a + cart[k]; }, 0); };
   var lastFocus = null;
-  var parentOf = function (k) { return k === 'lignes' ? firstMemoire() : PRODUCTS[k] && PRODUCTS[k].parent; };
+  var parentOf = function (k) { return PRODUCTS[k] && PRODUCTS[k].parent; };
   // Une image propre à chaque complément : la carte, le livre en deux exemplaires, la bulle « +10 », le carnet à lignes.
   var ACC = {
     card: '<svg viewBox="0 0 40 48"><rect x="6" y="4" width="28" height="40" rx="3" fill="url(#gcg)"/><defs><linearGradient id="gcg" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#fde7f1"/><stop offset="1" stop-color="#ffe0cc"/></linearGradient></defs><g fill="#fa8216"><rect x="13" y="22" width="2.4" height="5" rx="1.2"/><rect x="16.6" y="19" width="2.4" height="11" rx="1.2"/><rect x="20.2" y="17.5" width="2.4" height="14" rx="1.2"/><rect x="23.8" y="21" width="2.4" height="7" rx="1.2"/><rect x="27.4" y="19.5" width="2.4" height="10" rx="1.2"/></g><path d="M6 36h28" stroke="#fff" stroke-dasharray="2 2"/></svg>',
@@ -216,11 +222,11 @@
     var body = document.getElementById('cart-body'), foot = document.getElementById('cart-foot');
     if (!body) return;
     // Un complément sans son histoire n'a pas de sens : il part avec elle.
-    Object.keys(cart).forEach(function (k) { if (!isStory(k) && !parentOf(k)) delete cart[k]; });
+    Object.keys(cart).forEach(function (k) { if (!isStory(k) && !parentOf(k) && !(PRODUCTS[k] && PRODUCTS[k].alone)) delete cart[k]; });
     var badge = document.querySelector('.cart-count');
     if (badge) { badge.hidden = count() === 0; badge.textContent = count(); }
     var stories = STORIES.filter(function (k) { return cart[k]; });
-    if (!stories.length) {
+    if (!stories.length && !cart.lignes) {
       body.innerHTML = '<p class="empty">Votre panier est vide.</p>';
       foot.innerHTML = '<a class="btn btn-ink" href="index.html#prix">Choisir un livre</a>';
       return;
@@ -229,7 +235,7 @@
     stories.forEach(function (k) {
       var p = PRODUCTS[k]; sub += p.price;
       html += '<div class="group"><div class="line">' + thumb(k) + '<div><b>' + p.name + '</b><small>' + p.note + '</small><button type="button" class="remove" data-dec="' + k + '">Retirer</button></div><span class="price">' + euro(p.price) + '</span></div>';
-      var kids = ['carte_' + k, 'copie_' + k].concat(k === 'anniversaire' ? ['voix10'] : []).concat(k === firstMemoire() ? ['lignes'] : []);
+      var kids = ['carte_' + k, 'copie_' + k].concat(k === 'anniversaire' ? ['voix10'] : []);
       kids.forEach(function (c) {
         if (!cart[c]) return;
         var q = PRODUCTS[c]; sub += q.price * cart[c];
@@ -244,10 +250,14 @@
       if (!cart['carte_' + k]) offers.push(opt('carte_' + k, 'La carte cadeau', 'À imprimer ou à envoyer le jour même. Ajoutez-la pour la recevoir.', 'Offerte'));
       if (!cart['copie_' + k]) offers.push(opt('copie_' + k, 'Un exemplaire en plus', 'Le même livre, pour un autre membre de la famille.', euro(p.copy)));
       if (k === 'anniversaire' && (cart.voix10 || 0) < 3) offers.push(opt('voix10', '10 voix de plus', 'Pour inviter jusqu\'à 40, 50 ou 60 proches.', '9 €'));
-      if (k === firstMemoire() && !cart.lignes) offers.push(opt('lignes', 'Lignes de vie', 'Le livre-journal à remplir à la main.', '39 €'));
       if (offers.length) html += '<div class="opts"><p class="opts-k">À ajouter si vous le souhaitez</p>' + offers.join('') + '</div>';
       html += '</div>';
     });
+    // Lignes de vie : un livre papier, vendu seul.
+    if (cart.lignes) {
+      sub += PRODUCTS.lignes.price * cart.lignes;
+      html += '<div class="group"><div class="line">' + thumb('lignes') + '<div><b>Lignes de vie</b><small>' + PRODUCTS.lignes.note + '</small>' + qty('lignes') + '</div><span class="price">' + euro(PRODUCTS.lignes.price * cart.lignes) + '</span></div></div>';
+    }
     body.innerHTML = html;
     var reco = STORIES.filter(function (k) { return !cart[k]; });
     var recoHtml = reco.length ? '<div class="cart-reco" aria-label="À offrir aussi"><p class="reco-k">Et pour quelqu\'un d\'autre ?</p><div class="reco-track">' + reco.map(function (k, i) {
